@@ -1,7 +1,8 @@
 import { useState } from 'react'
+import { signIn, useSession } from 'next-auth/react'
 import type { Lang } from '../data'
 import { t } from '../data'
-import { taallamGoLogoSrc } from '../logo'
+import { LocalizedThemeLogo } from '../components/LocalizedThemeLogo'
 
 interface Props {
   lang: Lang
@@ -10,6 +11,7 @@ interface Props {
 }
 
 export function AuthPage({ lang, navigate, mode: initialMode }: Props) {
+  const { update } = useSession()
   const [mode, setMode] = useState(initialMode)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -18,18 +20,55 @@ export function AuthPage({ lang, navigate, mode: initialMode }: Props) {
   const [showPass, setShowPass] = useState(false)
   const [loading, setLoading] = useState(false)
   const [submitted, setSubmitted] = useState(false)
+  const [error, setError] = useState('')
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    setError('')
     setLoading(true)
-    setTimeout(() => {
-      setLoading(false)
-      if (mode === 'login' || mode === 'register') {
-        navigate('dashboard')
-      } else {
+
+    try {
+      if (mode === 'forgot') {
         setSubmitted(true)
+        return
       }
-    }, 1400)
+
+      if (mode === 'register') {
+        const response = await fetch('/api/auth/register', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name,
+            phone,
+            email,
+            password,
+            confirmPassword: password,
+            language: lang,
+          }),
+        })
+        const result = await response.json()
+        if (!response.ok || !result.success) {
+          throw new Error(result.error || t('Inscription impossible.', 'ØªØ¹Ø°Ø± Ø¥Ù†Ø´Ø§Ø¡ Ø§Ù„Ø­Ø³Ø§Ø¨.', lang))
+        }
+      }
+
+      const result = await signIn('credentials', {
+        email,
+        password,
+        redirect: false,
+      })
+
+      if (result?.error) {
+        throw new Error(t('Email ou mot de passe incorrect.', 'Ø§Ù„Ø¨Ø±ÙŠØ¯ Ø£Ùˆ ÙƒÙ„Ù…Ø© Ø§Ù„Ù…Ø±ÙˆØ± ØºÙŠØ± ØµØ­ÙŠØ­Ø©.', lang))
+      }
+
+      await update()
+      navigate('dashboard')
+    } catch (caught) {
+      setError(caught instanceof Error ? caught.message : t('Une erreur est survenue.', 'Ø­Ø¯Ø« Ø®Ø·Ø£.', lang))
+    } finally {
+      setLoading(false)
+    }
   }
 
   const inputStyle = {
@@ -57,7 +96,7 @@ export function AuthPage({ lang, navigate, mode: initialMode }: Props) {
         {/* Logo */}
         <div style={{ textAlign: 'center', marginBottom: 32 }}>
           <button onClick={() => navigate('home')} style={{ background: 'none', border: 'none', cursor: 'pointer' }}>
-            <img src={taallamGoLogoSrc} alt="TaallamGo" style={{ height: 40, width: 'auto' }} />
+            <LocalizedThemeLogo lang={lang} />
           </button>
         </div>
 
@@ -99,6 +138,19 @@ export function AuthPage({ lang, navigate, mode: initialMode }: Props) {
             </p>
 
             <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+              {error && (
+                <div role="alert" style={{
+                  backgroundColor: 'color-mix(in srgb, var(--error) 12%, var(--surface))',
+                  border: '1px solid color-mix(in srgb, var(--error) 34%, var(--border))',
+                  color: 'var(--error)',
+                  borderRadius: 10,
+                  padding: '10px 12px',
+                  fontSize: 13,
+                  fontWeight: 600,
+                }}>
+                  {error}
+                </div>
+              )}
               {mode === 'register' && (
                 <div>
                   <label style={{ fontSize: 13, fontWeight: 600, color: 'var(--foreground)', display: 'block', marginBottom: 6 }}>

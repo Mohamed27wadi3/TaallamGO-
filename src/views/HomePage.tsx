@@ -92,6 +92,7 @@ const categoryImages: Record<string, string> = {
 export function HomePage({ lang, navigate, dir }: Props) {
   const [searchQuery, setSearchQuery] = useState('')
   const isMobile = useIsMobile()
+  const isRtl = dir === 'rtl'
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault()
@@ -111,28 +112,10 @@ export function HomePage({ lang, navigate, dir }: Props) {
         overflow: 'hidden',
       }}>
         <AnimatedBackground variant="hero" />
-        <div className="tg-learning-path" aria-hidden="true">
-          <svg viewBox="0 0 560 360" fill="none">
-            <path className="tg-learning-path-line" d="M38 282C96 204 152 238 204 168C254 100 306 122 360 78C416 34 466 58 522 28" />
-            {[
-              { x: 38, y: 282, label: '01' },
-              { x: 204, y: 168, label: '02' },
-              { x: 360, y: 78, label: '03' },
-              { x: 522, y: 28, label: '04' },
-            ].map((node, index) => (
-              <g key={node.label} className="tg-learning-node" style={{ animationDelay: `${index * 220}ms` }}>
-                <circle cx={node.x} cy={node.y} r="24" />
-                <text x={node.x} y={node.y + 5} textAnchor="middle">{node.label}</text>
-              </g>
-            ))}
-          </svg>
-          <div className="tg-study-chip tg-study-chip--one">{t('Objectif', 'هدف', lang)}</div>
-          <div className="tg-study-chip tg-study-chip--two">{t('Cours', 'دورة', lang)}</div>
-          <div className="tg-study-chip tg-study-chip--three">{t('Certificat', 'شهادة', lang)}</div>
-        </div>
-
-        <div style={{ maxWidth: 1200, margin: '0 auto', position: 'relative' }}>
-          <Reveal style={{ maxWidth: 680 }}>
+        <div className="tg-hero-shell">
+          <div className="tg-hero-layout">
+            <div className="tg-hero-content" style={{ textAlign: isRtl ? 'right' : 'left' }}>
+          <Reveal style={{ maxWidth: 680, marginInlineStart: isRtl ? 'auto' : 0 }}>
             {/* Eyebrow */}
             <div style={{
               display: 'inline-flex', alignItems: 'center', gap: 8,
@@ -176,7 +159,7 @@ export function HomePage({ lang, navigate, dir }: Props) {
             </p>
 
             {/* CTA buttons */}
-            <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', marginBottom: isMobile ? 32 : 48 }}>
+            <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', justifyContent: isRtl ? 'flex-end' : 'flex-start', marginBottom: isMobile ? 32 : 48 }}>
               <button
                 onClick={() => navigate('catalog')}
                 style={{
@@ -211,10 +194,10 @@ export function HomePage({ lang, navigate, dir }: Props) {
             </div>
 
             {/* Search bar */}
-            <form onSubmit={handleSearch} style={{ display: 'flex', flexDirection: isMobile ? 'column' : 'row', gap: isMobile ? 10 : 0, maxWidth: 520 }}>
+            <form onSubmit={handleSearch} style={{ display: 'flex', flexDirection: isMobile ? 'column' : isRtl ? 'row-reverse' : 'row', gap: isMobile ? 10 : 0, maxWidth: 520, marginInlineStart: isRtl ? 'auto' : 0 }}>
               <div style={{ flex: 1, position: 'relative' }}>
                 <svg
-                  style={{ position: 'absolute', left: 14, top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none' }}
+                  style={{ position: 'absolute', left: isRtl ? 'auto' : 14, right: isRtl ? 14 : 'auto', top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none' }}
                   width="18" height="18" viewBox="0 0 18 18" fill="none"
                 >
                   <circle cx="7.5" cy="7.5" r="5" stroke="currentColor" strokeWidth="1.8" />
@@ -229,11 +212,13 @@ export function HomePage({ lang, navigate, dir }: Props) {
                     width: '100%', height: 50,
                     backgroundColor: 'var(--surface)',
                     border: '1.5px solid var(--border)',
-                    borderRight: isMobile ? '1.5px solid var(--border)' : 'none',
-                    borderRadius: isMobile ? 12 : '12px 0 0 12px',
-                    padding: '0 16px 0 42px',
+                    borderRight: isMobile || isRtl ? '1.5px solid var(--border)' : 'none',
+                    borderLeft: isMobile || !isRtl ? '1.5px solid var(--border)' : 'none',
+                    borderRadius: isMobile ? 12 : isRtl ? '0 12px 12px 0' : '12px 0 0 12px',
+                    padding: isRtl ? '0 42px 0 16px' : '0 16px 0 42px',
                     fontSize: 15, color: 'var(--foreground)',
                     outline: 'none',
+                    direction: dir,
                     fontFamily: lang === 'ar' ? "'IBM Plex Sans Arabic'" : "'Plus Jakarta Sans'",
                   }}
                 />
@@ -243,7 +228,7 @@ export function HomePage({ lang, navigate, dir }: Props) {
                 style={{
                   backgroundColor: 'var(--accent)', color: 'var(--accent-foreground)',
                   border: 'none', cursor: 'pointer',
-                  padding: isMobile ? '14px 22px' : '0 22px', borderRadius: isMobile ? 12 : '0 12px 12px 0',
+                  padding: isMobile ? '14px 22px' : '0 22px', borderRadius: isMobile ? 12 : isRtl ? '12px 0 0 12px' : '0 12px 12px 0',
                   fontSize: 14, fontWeight: 700,
                   whiteSpace: 'nowrap',
                   width: isMobile ? '100%' : 'auto',
@@ -255,7 +240,7 @@ export function HomePage({ lang, navigate, dir }: Props) {
           </Reveal>
 
           {/* Stats row */}
-          <div style={{ display: 'flex', gap: 32, marginTop: 56, flexWrap: 'wrap' }}>
+          <div style={{ display: 'flex', gap: isMobile ? 18 : 32, marginTop: isMobile ? 42 : 56, flexWrap: 'wrap', justifyContent: isRtl ? 'flex-end' : 'flex-start' }}>
             {[
               { num: '500+', label: t('Formations disponibles', 'دورة متاحة', lang) },
               { num: '8', label: t('Plateformes intégrées', 'منصة متكاملة', lang) },
@@ -267,6 +252,30 @@ export function HomePage({ lang, navigate, dir }: Props) {
                 <div style={{ fontSize: 13, color: 'var(--foreground)', marginTop: 4 }}>{stat.label}</div>
               </div>
             ))}
+          </div>
+            </div>
+
+            <div className="tg-hero-visual" aria-hidden="true">
+        <div className="tg-learning-path" aria-hidden="true">
+          <svg viewBox="0 0 560 360" fill="none">
+            <path className="tg-learning-path-line" d="M38 282C96 204 152 238 204 168C254 100 306 122 360 78C416 34 466 58 522 28" />
+            {[
+              { x: 38, y: 282, label: '01' },
+              { x: 204, y: 168, label: '02' },
+              { x: 360, y: 78, label: '03' },
+              { x: 522, y: 28, label: '04' },
+            ].map((node, index) => (
+              <g key={node.label} className="tg-learning-node" style={{ animationDelay: `${index * 220}ms` }}>
+                <circle cx={node.x} cy={node.y} r="24" />
+                <text x={node.x} y={node.y + 5} textAnchor="middle">{node.label}</text>
+              </g>
+            ))}
+          </svg>
+          <div className="tg-study-chip tg-study-chip--one">{t('Objectif', 'هدف', lang)}</div>
+          <div className="tg-study-chip tg-study-chip--two">{t('Cours', 'دورة', lang)}</div>
+          <div className="tg-study-chip tg-study-chip--three">{t('Certificat', 'شهادة', lang)}</div>
+        </div>
+            </div>
           </div>
         </div>
       </section>

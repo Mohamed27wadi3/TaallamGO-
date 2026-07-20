@@ -2,7 +2,7 @@ import { useState } from 'react'
 import type { Lang } from '../data'
 import { t, mockOrders, orderStatuses } from '../data'
 import { useIsMobile } from '../hooks/useIsMobile'
-import { taallamGoLogoSrc } from '../logo'
+import { LocalizedThemeLogo } from '../components/LocalizedThemeLogo'
 import { formatDzd } from '../format'
 
 interface Props {
@@ -312,7 +312,7 @@ export function AdminDashboard({ lang, navigate }: Props) {
       }}>
         <div style={{ padding: isMobile ? 0 : '0 16px', marginBottom: isMobile ? 0 : 24, flexShrink: 0 }}>
           <button onClick={() => navigate('home')} style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}>
-            <img src={taallamGoLogoSrc} alt="TaallamGo" style={{ height: 28, width: 'auto', maxWidth: 130 }} />
+            <LocalizedThemeLogo lang={lang} className="tg-theme-logo--sidebar" />
           </button>
           <div style={{ display: isMobile ? 'none' : 'block', fontSize: 10, fontWeight: 700, color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '0.1em', marginTop: 8 }}>
             ADMIN

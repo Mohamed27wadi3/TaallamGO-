@@ -1,6 +1,6 @@
 import type { Lang } from '../data'
 import { t } from '../data'
-import { taallamGoLogoSrc } from '../logo'
+import { LocalizedThemeLogo } from './LocalizedThemeLogo'
 
 interface Props {
   lang: Lang
@@ -45,7 +45,9 @@ export function Footer({ lang, navigate, dir }: Props) {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 180px), 1fr))', gap: 40, marginBottom: 48 }}>
           {/* Brand */}
           <div>
-            <img src={taallamGoLogoSrc} alt="TaallamGo" style={{ height: 36, width: 'auto', marginBottom: 16 }} />
+            <button onClick={() => navigate('home')} style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0, marginBottom: 16 }}>
+              <LocalizedThemeLogo lang={lang} className="tg-theme-logo--footer" />
+            </button>
             <p style={{ fontSize: 14, color: 'var(--muted-foreground)', lineHeight: 1.7, margin: 0 }}>
               {t(
                 'Les meilleures formations mondiales, accessibles depuis l\'Algérie.',

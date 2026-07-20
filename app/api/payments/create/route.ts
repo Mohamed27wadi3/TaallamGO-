@@ -24,9 +24,10 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Verify order belongs to user
+    // Verify order belongs to user and is still payable
     const order = await db.order.findFirst({
       where: { id: orderId, userId: session.user.id },
+      include: { payment: true },
     })
 
     if (!order) {
@@ -34,6 +35,39 @@ export async function POST(request: NextRequest) {
         { success: false, error: 'Order not found' },
         { status: 404 },
       )
+    }
+
+    if (['paid', 'processing', 'delivered', 'cancelled', 'refunded'].includes(order.status)) {
+      return NextResponse.json(
+        { success: false, error: 'Order is not payable' },
+        { status: 409 },
+      )
+    }
+
+    if (order.payment) {
+      if (order.payment.status === 'succeeded') {
+        return NextResponse.json(
+          { success: false, error: 'Order already paid' },
+          { status: 409 },
+        )
+      }
+
+      const attempt = await db.paymentAttempt.create({
+        data: {
+          paymentId: order.payment.id,
+          status: 'initiated',
+          metadata: { provider: 'mock', retry: true },
+        },
+      })
+
+      return NextResponse.json({
+        success: true,
+        data: {
+          ...order.payment,
+          attempts: [attempt],
+          notice: 'Paiement de demonstration — aucune somme ne sera debitee.',
+        },
+      })
     }
 
     // Create payment intent
@@ -50,6 +84,9 @@ export async function POST(request: NextRequest) {
         provider: 'mock',
         status: 'processing',
         referenceExternal: paymentIntent.id,
+        metadata: {
+          notice: 'Paiement de demonstration — aucune somme ne sera debitee.',
+        },
       },
       include: {
         attempts: true,
@@ -61,6 +98,7 @@ export async function POST(request: NextRequest) {
       data: {
         paymentId: payment.id,
         status: 'initiated',
+        metadata: { provider: 'mock' },
       },
     })
 

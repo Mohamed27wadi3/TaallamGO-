@@ -1,6 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { db } from '@/lib/db'
 import { getSession } from '@/lib/auth'
+import { MockPaymentProvider } from '@/lib/services'
+
+const paymentProvider = new MockPaymentProvider()
 
 export async function POST(request: NextRequest) {
   try {
@@ -34,6 +37,45 @@ export async function POST(request: NextRequest) {
       )
     }
 
+    if (order.status === 'paid' || order.payment.status === 'succeeded') {
+      return NextResponse.json(
+        { success: false, error: 'Order already paid' },
+        { status: 409 },
+      )
+    }
+
+    if (!['awaiting_payment', 'payment_review'].includes(order.status)) {
+      return NextResponse.json(
+        { success: false, error: 'Order is not payable' },
+        { status: 409 },
+      )
+    }
+
+    const confirmed = await paymentProvider.confirmPayment(
+      order.payment.id,
+      order.payment.referenceExternal || '',
+    )
+
+    if (!confirmed) {
+      await db.payment.update({
+        where: { id: order.payment.id },
+        data: { status: 'failed' },
+      })
+
+      await db.paymentAttempt.create({
+        data: {
+          paymentId: order.payment.id,
+          status: 'failed',
+          errorMessage: 'Mock payment refused',
+        },
+      })
+
+      return NextResponse.json(
+        { success: false, error: 'Payment refused' },
+        { status: 402 },
+      )
+    }
+
     // Update payment status
     const updatedPayment = await db.payment.update({
       where: { id: order.payment.id },
@@ -52,6 +94,14 @@ export async function POST(request: NextRequest) {
         orderId,
         type: 'payment_confirmed',
         data: { paymentId: updatedPayment.id },
+      },
+    })
+
+    await db.paymentAttempt.create({
+      data: {
+        paymentId: updatedPayment.id,
+        status: 'succeeded',
+        metadata: { provider: updatedPayment.provider },
       },
     })
 

@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { useSession } from 'next-auth/react'
 import type { Lang } from './data'
 import { Header } from './components/Header'
 import { Footer } from './components/Footer'
@@ -15,6 +16,7 @@ import { AdminDashboard } from './views/AdminDashboard'
 import { PlatformsPage } from './views/PlatformsPage'
 import { HowItWorksPage } from './views/HowItWorksPage'
 import { CustomRequestPage } from './views/CustomRequestPage'
+import { ProfilePage } from './views/ProfilePage'
 
 type Page =
   | 'home'
@@ -28,6 +30,7 @@ type Page =
   | 'auth-forgot'
   | 'dashboard'
   | 'admin'
+  | 'profile'
   | 'custom-request'
   | 'organizations'
   | 'about'
@@ -36,6 +39,7 @@ type Page =
 
 const PAGES_NO_HEADER: Page[] = ['dashboard', 'admin']
 const PAGES_NO_FOOTER: Page[] = ['dashboard', 'admin', 'auth-login', 'auth-register', 'auth-forgot']
+const PROTECTED_PAGES: Page[] = ['dashboard', 'admin', 'profile']
 
 function getInitialLang(): Lang {
   if (typeof window === 'undefined') return 'fr'
@@ -60,6 +64,7 @@ const BACK_FALLBACKS: Record<Page, Page> = {
   'auth-forgot': 'auth-login',
   dashboard: 'home',
   admin: 'home',
+  profile: 'dashboard',
   'custom-request': 'catalog',
   organizations: 'home',
   about: 'home',
@@ -73,6 +78,7 @@ export default function App() {
   const [courseData, setCourseData] = useState<unknown>(null)
   const [navigationHistory, setNavigationHistory] = useState<NavigationEntry[]>([])
   const { theme, toggleTheme } = useTheme()
+  const { status } = useSession()
 
   const dir = lang === 'ar' ? 'rtl' : 'ltr'
 
@@ -80,6 +86,13 @@ export default function App() {
     document.documentElement.lang = lang
     document.documentElement.dir = dir
   }, [dir, lang])
+
+  useEffect(() => {
+    if (status === 'unauthenticated' && PROTECTED_PAGES.includes(page)) {
+      setNavigationHistory(prev => [...prev, { page, data: courseData }].slice(-12))
+      setPage('auth-login')
+    }
+  }, [courseData, page, status])
 
   const navigate = (target: string, data?: unknown) => {
     const nextPage = target as Page
@@ -124,6 +137,7 @@ export default function App() {
       case 'auth-forgot': return <AuthPage {...props} mode="forgot" />
       case 'dashboard': return <CustomerDashboard {...props} />
       case 'admin': return <AdminDashboard {...props} />
+      case 'profile': return <ProfilePage {...props} />
       case 'organizations': return <OrganizationsPage {...props} />
       case 'help': return <HelpPage {...props} />
       case 'about': return <AboutPage {...props} />
