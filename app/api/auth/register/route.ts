@@ -22,7 +22,7 @@ export async function POST(request: NextRequest) {
 
     if (existingUser) {
       return NextResponse.json(
-        { success: false, error: 'Un compte existe deja avec cet email.' },
+        { success: false, error: 'Un compte existe déjà avec cet email.' },
         { status: 409 },
       )
     }
@@ -55,14 +55,14 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     if (error instanceof z.ZodError) {
       return NextResponse.json(
-        { success: false, error: error.issues[0]?.message || 'Donnees invalides.' },
+        { success: false, error: error.issues[0]?.message || 'Données invalides.' },
         { status: 400 },
       )
     }
 
     console.error(error)
     return NextResponse.json(
-      { success: false, error: 'Impossible de creer le compte.' },
+      { success: false, error: 'Impossible de créer le compte.' },
       { status: 500 },
     )
   }

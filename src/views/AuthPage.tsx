@@ -48,7 +48,7 @@ export function AuthPage({ lang, navigate, mode: initialMode }: Props) {
         })
         const result = await response.json()
         if (!response.ok || !result.success) {
-          throw new Error(result.error || t('Inscription impossible.', 'ØªØ¹Ø°Ø± Ø¥Ù†Ø´Ø§Ø¡ Ø§Ù„Ø­Ø³Ø§Ø¨.', lang))
+          throw new Error(result.error || t('Inscription impossible.', 'تعذر إنشاء الحساب.', lang))
         }
       }
 
@@ -59,13 +59,13 @@ export function AuthPage({ lang, navigate, mode: initialMode }: Props) {
       })
 
       if (result?.error) {
-        throw new Error(t('Email ou mot de passe incorrect.', 'Ø§Ù„Ø¨Ø±ÙŠØ¯ Ø£Ùˆ ÙƒÙ„Ù…Ø© Ø§Ù„Ù…Ø±ÙˆØ± ØºÙŠØ± ØµØ­ÙŠØ­Ø©.', lang))
+        throw new Error(t('Email ou mot de passe incorrect.', 'البريد أو كلمة المرور غير صحيحة.', lang))
       }
 
       await update()
       navigate('dashboard')
     } catch (caught) {
-      setError(caught instanceof Error ? caught.message : t('Une erreur est survenue.', 'Ø­Ø¯Ø« Ø®Ø·Ø£.', lang))
+      setError(caught instanceof Error ? caught.message : t('Une erreur est survenue.', 'حدث خطأ.', lang))
     } finally {
       setLoading(false)
     }

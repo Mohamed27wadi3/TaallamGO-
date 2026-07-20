@@ -70,7 +70,7 @@ export function ProfilePage({ lang, navigate, dir }: Props) {
 
       const result = await response.json()
       if (!response.ok || !result.success) {
-        setError(result.error || t('Impossible de charger le profil.', 'ØªØ¹Ø°Ø± ØªØ­Ù…ÙŠÙ„ Ø§Ù„Ù…Ù„Ù.', lang))
+        setError(result.error || t('Impossible de charger le profil.', 'تعذر تحميل الملف.', lang))
         setLoading(false)
         return
       }
@@ -134,18 +134,18 @@ export function ProfilePage({ lang, navigate, dir }: Props) {
     setSaving(false)
 
     if (!response.ok || !result.success) {
-      setError(result.error || t('Enregistrement impossible.', 'ØªØ¹Ø°Ø± Ø§Ù„Ø­ÙØ¸.', lang))
+      setError(result.error || t('Enregistrement impossible.', 'تعذر الحفظ.', lang))
       return
     }
 
-    setMessage(t('Profil mis a jour.', 'ØªÙ… ØªØ­Ø¯ÙŠØ« Ø§Ù„Ù…Ù„Ù.', lang))
+    setMessage(t('Profil mis à jour.', 'تم تحديث الملف.', lang))
     setForm(current => ({ ...current, currentPassword: '', newPassword: '' }))
   }
 
   if (loading) {
     return (
       <div style={{ minHeight: '70vh', backgroundColor: 'var(--background)', display: 'grid', placeItems: 'center', color: 'var(--muted-foreground)' }}>
-        {t('Chargement...', 'Ø¬Ø§Ø±ÙŠ Ø§Ù„ØªØ­Ù…ÙŠÙ„...', lang)}
+        {t('Chargement...', 'جاري التحميل...', lang)}
       </div>
     )
   }
@@ -158,14 +158,14 @@ export function ProfilePage({ lang, navigate, dir }: Props) {
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 16, flexWrap: 'wrap', marginBottom: 24 }}>
           <div>
             <h1 style={{ fontSize: isMobile ? 26 : 34, fontWeight: 800, color: 'var(--foreground)', margin: 0 }}>
-              {t('Mon profil', 'Ù…Ù„ÙÙŠ Ø§Ù„Ø´Ø®ØµÙŠ', lang)}
+              {t('Mon profil', 'ملفي الشخصي', lang)}
             </h1>
             <p style={{ color: 'var(--muted-foreground)', margin: '8px 0 0', fontSize: 15 }}>
-              {t('Informations du compte et securite.', 'Ù…Ø¹Ù„ÙˆÙ…Ø§Øª Ø§Ù„Ø­Ø³Ø§Ø¨ ÙˆØ§Ù„Ø£Ù…Ø§Ù†.', lang)}
+              {t('Informations du compte et sécurité.', 'معلومات الحساب والأمان.', lang)}
             </p>
           </div>
           <button onClick={() => navigate('dashboard')} style={{ backgroundColor: 'var(--surface)', color: 'var(--primary)', border: '1px solid var(--border)', borderRadius: 10, padding: '10px 16px', cursor: 'pointer', fontWeight: 700 }}>
-            {t('Mes commandes', 'Ø·Ù„Ø¨Ø§ØªÙŠ', lang)}
+            {t('Mes commandes', 'طلباتي', lang)}
           </button>
         </div>
 
@@ -179,26 +179,26 @@ export function ProfilePage({ lang, navigate, dir }: Props) {
             </h2>
             <p style={{ color: 'var(--muted-foreground)', margin: '0 0 12px', fontSize: 14 }}>{profile?.email}</p>
             <span style={{ display: 'inline-flex', borderRadius: 999, padding: '5px 10px', backgroundColor: 'var(--surface-secondary)', color: 'var(--foreground)', fontSize: 12, fontWeight: 700 }}>
-              {profile?.emailVerified ? t('Email verifie', 'Ø¨Ø±ÙŠØ¯ Ù…Ø¤ÙƒØ¯', lang) : t('Email non verifie', 'Ø¨Ø±ÙŠØ¯ ØºÙŠØ± Ù…Ø¤ÙƒØ¯', lang)}
+              {profile?.emailVerified ? t('Email vérifié', 'بريد مؤكد', lang) : t('Email non vérifié', 'بريد غير مؤكد', lang)}
             </span>
             <div style={{ marginTop: 18, color: 'var(--muted-foreground)', fontSize: 13 }}>
-              {t('Inscrit le', 'ØªØ§Ø±ÙŠØ® Ø§Ù„ØªØ³Ø¬ÙŠÙ„', lang)} {profile ? new Date(profile.createdAt).toLocaleDateString(lang === 'ar' ? 'ar-DZ' : 'fr-DZ') : ''}
+              {t('Inscrit le', 'تاريخ التسجيل', lang)} {profile ? new Date(profile.createdAt).toLocaleDateString(lang === 'ar' ? 'ar-DZ' : 'fr-DZ') : ''}
             </div>
           </aside>
 
           <main style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
             <form onSubmit={saveProfile} style={{ backgroundColor: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 16, padding: isMobile ? 18 : 24 }}>
               <h2 style={{ fontSize: 18, fontWeight: 800, color: 'var(--foreground)', margin: '0 0 18px' }}>
-                {t('Informations personnelles', 'Ø§Ù„Ù…Ø¹Ù„ÙˆÙ…Ø§Øª Ø§Ù„Ø´Ø®ØµÙŠØ©', lang)}
+                {t('Informations personnelles', 'المعلومات الشخصية', lang)}
               </h2>
               {message && <div role="status" style={{ color: 'var(--success)', fontWeight: 700, marginBottom: 14 }}>{message}</div>}
               {error && <div role="alert" style={{ color: 'var(--error)', fontWeight: 700, marginBottom: 14 }}>{error}</div>}
               <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: 14 }}>
                 {[
-                  ['firstName', t('Prenom', 'Ø§Ù„Ø§Ø³Ù…', lang)],
-                  ['lastName', t('Nom', 'Ø§Ù„Ù„Ù‚Ø¨', lang)],
-                  ['phone', t('Telephone', 'Ø§Ù„Ù‡Ø§ØªÙ', lang)],
-                  ['wilaya', t('Wilaya', 'Ø§Ù„ÙˆÙ„Ø§ÙŠØ©', lang)],
+                  ['firstName', t('Prénom', 'الاسم', lang)],
+                  ['lastName', t('Nom', 'اللقب', lang)],
+                  ['phone', t('Téléphone', 'الهاتف', lang)],
+                  ['wilaya', t('Wilaya', 'الولاية', lang)],
                 ].map(([key, label]) => (
                   <label key={key} style={{ display: 'block' }}>
                     <span style={{ display: 'block', color: 'var(--foreground)', fontWeight: 700, fontSize: 13, marginBottom: 6 }}>{label}</span>
@@ -206,30 +206,30 @@ export function ProfilePage({ lang, navigate, dir }: Props) {
                   </label>
                 ))}
                 <label style={{ display: 'block' }}>
-                  <span style={{ display: 'block', color: 'var(--foreground)', fontWeight: 700, fontSize: 13, marginBottom: 6 }}>{t('Langue', 'Ø§Ù„Ù„ØºØ©', lang)}</span>
+                  <span style={{ display: 'block', color: 'var(--foreground)', fontWeight: 700, fontSize: 13, marginBottom: 6 }}>{t('Langue', 'اللغة', lang)}</span>
                   <select value={form.language} onChange={event => setForm(current => ({ ...current, language: event.target.value as Lang }))} style={inputStyle}>
-                    <option value="fr">Francais</option>
-                    <option value="ar">Arabic</option>
+                    <option value="fr">Français</option>
+                    <option value="ar">العربية</option>
                   </select>
                 </label>
               </div>
 
               <h3 style={{ fontSize: 16, fontWeight: 800, color: 'var(--foreground)', margin: '24px 0 14px' }}>
-                {t('Mot de passe', 'ÙƒÙ„Ù…Ø© Ø§Ù„Ù…Ø±ÙˆØ±', lang)}
+                {t('Mot de passe', 'كلمة المرور', lang)}
               </h3>
               <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: 14 }}>
-                <input type="password" placeholder={t('Mot de passe actuel', 'ÙƒÙ„Ù…Ø© Ø§Ù„Ù…Ø±ÙˆØ± Ø§Ù„Ø­Ø§Ù„ÙŠØ©', lang)} value={form.currentPassword} onChange={event => setForm(current => ({ ...current, currentPassword: event.target.value }))} style={inputStyle} />
-                <input type="password" placeholder={t('Nouveau mot de passe', 'ÙƒÙ„Ù…Ø© Ù…Ø±ÙˆØ± Ø¬Ø¯ÙŠØ¯Ø©', lang)} value={form.newPassword} onChange={event => setForm(current => ({ ...current, newPassword: event.target.value }))} style={inputStyle} />
+                <input type="password" placeholder={t('Mot de passe actuel', 'كلمة المرور الحالية', lang)} value={form.currentPassword} onChange={event => setForm(current => ({ ...current, currentPassword: event.target.value }))} style={inputStyle} />
+                <input type="password" placeholder={t('Nouveau mot de passe', 'كلمة مرور جديدة', lang)} value={form.newPassword} onChange={event => setForm(current => ({ ...current, newPassword: event.target.value }))} style={inputStyle} />
               </div>
               <button disabled={saving} style={{ marginTop: 20, backgroundColor: saving ? 'var(--border)' : 'var(--accent)', color: saving ? 'var(--muted-foreground)' : 'var(--accent-foreground)', border: 'none', borderRadius: 12, padding: '12px 20px', cursor: saving ? 'default' : 'pointer', fontWeight: 800 }}>
-                {saving ? t('Enregistrement...', 'Ø¬Ø§Ø±ÙŠ Ø§Ù„Ø­ÙØ¸...', lang) : t('Enregistrer', 'Ø­ÙØ¸', lang)}
+                {saving ? t('Enregistrement...', 'جاري الحفظ...', lang) : t('Enregistrer', 'حفظ', lang)}
               </button>
             </form>
 
             <section style={{ backgroundColor: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 16, padding: isMobile ? 18 : 24 }}>
-              <h2 style={{ fontSize: 18, fontWeight: 800, color: 'var(--foreground)', margin: '0 0 14px' }}>{t('Historique recent', 'Ø¢Ø®Ø± Ø§Ù„Ø·Ù„Ø¨Ø§Øª', lang)}</h2>
+              <h2 style={{ fontSize: 18, fontWeight: 800, color: 'var(--foreground)', margin: '0 0 14px' }}>{t('Historique récent', 'آخر الطلبات', lang)}</h2>
               {(profile?.orders.length || 0) === 0 ? (
-                <p style={{ color: 'var(--muted-foreground)', margin: 0 }}>{t('Aucune commande recente.', 'Ù„Ø§ ØªÙˆØ¬Ø¯ Ø·Ù„Ø¨Ø§Øª Ø­Ø¯ÙŠØ«Ø©.', lang)}</p>
+                <p style={{ color: 'var(--muted-foreground)', margin: 0 }}>{t('Aucune commande récente.', 'لا توجد طلبات حديثة.', lang)}</p>
               ) : profile?.orders.map(order => (
                 <div key={order.id} style={{ display: 'flex', justifyContent: 'space-between', gap: 12, padding: '12px 0', borderTop: '1px solid var(--border)', flexWrap: 'wrap' }}>
                   <div>

@@ -65,7 +65,7 @@ export async function POST(request: NextRequest) {
         data: {
           ...order.payment,
           attempts: [attempt],
-          notice: 'Paiement de demonstration — aucune somme ne sera debitee.',
+          notice: 'Paiement de démonstration — aucune somme ne sera débitée.',
         },
       })
     }
@@ -85,7 +85,7 @@ export async function POST(request: NextRequest) {
         status: 'processing',
         referenceExternal: paymentIntent.id,
         metadata: {
-          notice: 'Paiement de demonstration — aucune somme ne sera debitee.',
+          notice: 'Paiement de démonstration — aucune somme ne sera débitée.',
         },
       },
       include: {

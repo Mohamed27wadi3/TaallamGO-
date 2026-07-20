@@ -51,7 +51,7 @@ export default function RegisterPage() {
     setLoading(false)
 
     if (result?.error) {
-      setError('Compte cree, mais connexion impossible.')
+      setError('Compte créé, mais connexion impossible.')
       return
     }
 
@@ -66,7 +66,7 @@ export default function RegisterPage() {
             <LocalizedThemeLogo lang={lang} />
           </a>
         </div>
-        <h1 className="text-2xl font-bold mb-6 text-center" style={{ color: 'var(--foreground)' }}>Creer un compte TaallamGo</h1>
+        <h1 className="text-2xl font-bold mb-6 text-center" style={{ color: 'var(--foreground)' }}>Créer un compte TaallamGo</h1>
 
         <form className="space-y-4" onSubmit={submit}>
           {error && <div role="alert" className="text-sm font-semibold" style={{ color: 'var(--error)' }}>{error}</div>}
@@ -127,7 +127,7 @@ export default function RegisterPage() {
             className="w-full py-2 rounded-lg font-semibold"
             style={{ backgroundColor: loading ? 'var(--border)' : 'var(--accent)', color: loading ? 'var(--muted-foreground)' : 'var(--accent-foreground)' }}
           >
-            {loading ? 'Creation...' : 'Creer mon compte'}
+            {loading ? 'Création...' : 'Créer mon compte'}
           </button>
         </form>
 

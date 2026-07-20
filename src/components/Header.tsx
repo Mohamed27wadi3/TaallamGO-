@@ -20,10 +20,10 @@ interface Props {
 }
 
 const navLinks = [
-  { key: 'catalog', fr: 'Catalogue', ar: 'Ø§Ù„ÙƒØªØ§Ù„ÙˆØ¬' },
-  { key: 'platforms', fr: 'Plateformes', ar: 'Ø§Ù„Ù…Ù†ØµØ§Øª' },
-  { key: 'how-it-works', fr: 'Comment Ã§a marche', ar: 'ÙƒÙŠÙ ÙŠØ¹Ù…Ù„' },
-  { key: 'help', fr: 'Aide', ar: 'Ø§Ù„Ù…Ø³Ø§Ø¹Ø¯Ø©' },
+  { key: 'catalog', fr: 'Catalogue', ar: 'الكتالوج' },
+  { key: 'platforms', fr: 'Plateformes', ar: 'المنصات' },
+  { key: 'how-it-works', fr: 'Comment ça marche', ar: 'كيف يعمل' },
+  { key: 'help', fr: 'Aide', ar: 'المساعدة' },
 ]
 
 export function Header({ lang, onLangToggle, currentPage, navigate, dir, theme, onThemeToggle }: Props) {
@@ -41,12 +41,12 @@ export function Header({ lang, onLangToggle, currentPage, navigate, dir, theme, 
   const initial = (userName.trim()[0] || 'T').toUpperCase()
 
   const profileLinks = [
-    { key: 'profile', label: t('Mon profil', 'Ù…Ù„ÙÙŠ Ø§Ù„Ø´Ø®ØµÙŠ', lang) },
-    { key: 'dashboard', label: t('Mes commandes', 'Ø·Ù„Ø¨Ø§ØªÙŠ', lang) },
-    { key: 'dashboard', label: t('Mes paiements', 'Ù…Ø¯ÙÙˆØ¹Ø§ØªÙŠ', lang) },
-    { key: 'dashboard', label: t('Mes factures', 'ÙÙˆØ§ØªÙŠØ±ÙŠ', lang) },
-    { key: 'dashboard', label: t('Mes tickets', 'ØªØ°Ø§ÙƒØ±ÙŠ', lang) },
-    { key: 'dashboard', label: t('ParamÃ¨tres', 'Ø§Ù„Ø¥Ø¹Ø¯Ø§Ø¯Ø§Øª', lang) },
+    { key: 'profile', label: t('Mon profil', 'ملفي الشخصي', lang) },
+    { key: 'dashboard', label: t('Mes commandes', 'طلباتي', lang) },
+    { key: 'dashboard', label: t('Mes paiements', 'مدفوعاتي', lang) },
+    { key: 'dashboard', label: t('Mes factures', 'فواتيري', lang) },
+    { key: 'dashboard', label: t('Mes tickets', 'تذاكري', lang) },
+    { key: 'dashboard', label: t('Paramètres', 'الإعدادات', lang) },
   ]
 
   useEffect(() => {
@@ -145,7 +145,7 @@ export function Header({ lang, onLangToggle, currentPage, navigate, dir, theme, 
               gap: 4,
             }}
           >
-            {!isTinyHeader && <span>{lang === 'fr' ? 'ðŸ‡©ðŸ‡¿' : 'ðŸ‡«ðŸ‡·'}</span>}
+            {!isTinyHeader && <span>{lang === 'fr' ? '🇩🇿' : '🇫🇷'}</span>}
             <span>{lang === 'fr' ? 'AR' : 'FR'}</span>
           </button>
 
@@ -237,7 +237,7 @@ export function Header({ lang, onLangToggle, currentPage, navigate, dir, theme, 
                       textAlign: dir === 'rtl' ? 'right' : 'left',
                     }}
                   >
-                    {t('DÃ©connexion', 'ØªØ³Ø¬ÙŠÙ„ Ø§Ù„Ø®Ø±ÙˆØ¬', lang)}
+                    {t('Déconnexion', 'تسجيل الخروج', lang)}
                   </button>
                 </div>
               )}
@@ -258,7 +258,7 @@ export function Header({ lang, onLangToggle, currentPage, navigate, dir, theme, 
                 transition: 'all 0.15s',
               }}
             >
-              {t('Connexion', 'ØªØ³Ø¬ÙŠÙ„ Ø§Ù„Ø¯Ø®ÙˆÙ„', lang)}
+              {t('Connexion', 'تسجيل الدخول', lang)}
             </button>
           )}
 
@@ -278,7 +278,7 @@ export function Header({ lang, onLangToggle, currentPage, navigate, dir, theme, 
                 transition: 'all 0.15s',
               }}
             >
-              {t('Explorer', 'Ø§Ø³ØªÙƒØ´Ù', lang)}
+              {t('Explorer', 'استكشف', lang)}
             </button>
           )}
 
@@ -360,7 +360,7 @@ export function Header({ lang, onLangToggle, currentPage, navigate, dir, theme, 
                 onClick={handleSignOut}
                 style={{ display: 'block', width: '100%', textAlign: dir === 'rtl' ? 'right' : 'left', background: 'none', border: 'none', cursor: 'pointer', padding: '10px 0', fontSize: 15, fontWeight: 700, color: 'var(--error)' }}
               >
-                {t('DÃ©connexion', 'ØªØ³Ø¬ÙŠÙ„ Ø§Ù„Ø®Ø±ÙˆØ¬', lang)}
+                {t('Déconnexion', 'تسجيل الخروج', lang)}
               </button>
             </>
           ) : (
@@ -369,13 +369,13 @@ export function Header({ lang, onLangToggle, currentPage, navigate, dir, theme, 
                 onClick={() => { navigate('auth-login'); setMobileOpen(false) }}
                 style={{ display: 'block', width: '100%', textAlign: dir === 'rtl' ? 'right' : 'left', background: 'none', border: 'none', cursor: 'pointer', padding: '10px 0', fontSize: 15, fontWeight: 600, color: 'var(--accent)' }}
               >
-                {t('Connexion', 'ØªØ³Ø¬ÙŠÙ„ Ø§Ù„Ø¯Ø®ÙˆÙ„', lang)}
+                {t('Connexion', 'تسجيل الدخول', lang)}
               </button>
               <button
                 onClick={() => { navigate('catalog'); setMobileOpen(false) }}
                 style={{ display: 'block', width: '100%', background: 'var(--accent)', border: 'none', cursor: 'pointer', padding: '11px 14px', borderRadius: 8, fontSize: 15, fontWeight: 700, color: 'var(--accent-foreground)', marginTop: 8 }}
               >
-                {t('Explorer les formations', 'Ø§Ø³ØªÙƒØ´Ù Ø§Ù„Ø¯ÙˆØ±Ø§Øª', lang)}
+                {t('Explorer les formations', 'استكشف الدورات', lang)}
               </button>
             </>
           )}

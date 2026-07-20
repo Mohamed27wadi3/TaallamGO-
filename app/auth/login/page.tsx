@@ -53,7 +53,7 @@ export default function LoginPage() {
             <LocalizedThemeLogo lang={lang} />
           </a>
         </div>
-        <h1 className="text-2xl font-bold mb-6 text-center" style={{ color: 'var(--foreground)' }}>Se connecter a TaallamGo</h1>
+        <h1 className="text-2xl font-bold mb-6 text-center" style={{ color: 'var(--foreground)' }}>Se connecter à TaallamGo</h1>
 
         <form className="space-y-4" onSubmit={submit}>
           {error && <div role="alert" className="text-sm font-semibold" style={{ color: 'var(--error)' }}>{error}</div>}
@@ -95,7 +95,7 @@ export default function LoginPage() {
         <p className="text-center text-sm mt-6" style={{ color: 'var(--muted-foreground)' }}>
           Pas encore inscrit?{' '}
           <a href="/auth/register" className="hover:underline" style={{ color: 'var(--accent)' }}>
-            Creer un compte
+            Créer un compte
           </a>
         </p>
       </div>
