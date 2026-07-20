@@ -2,6 +2,7 @@ import { useState } from 'react'
 import type { Lang } from '../data'
 import { t } from '../data'
 import { ImageWithFallback } from '../components/ImageWithFallback'
+import { useIsMobile } from '../hooks/useIsMobile'
 
 interface Course {
   id: string
@@ -36,6 +37,7 @@ const EXCHANGE_RATE = 135 // 1 USD = 135 DZD approx
 export function CourseDetailPage({ lang, navigate, course: propCourse, dir }: Props) {
   const [orderStep, setOrderStep] = useState(0) // 0: view, 1: quote, 2: confirm, 3: payment, 4: success
   const [paymentMethod, setPaymentMethod] = useState<string | null>(null)
+  const isMobile = useIsMobile()
 
   const course = propCourse || {
     id: '1',
@@ -126,13 +128,13 @@ export function CourseDetailPage({ lang, navigate, course: propCourse, dir }: Pr
         </div>
       </div>
 
-      <div style={{ maxWidth: 1200, margin: '0 auto', padding: '36px 24px' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 360px', gap: 36, alignItems: 'start' }}>
+      <div style={{ maxWidth: 1200, margin: '0 auto', padding: isMobile ? '22px 14px' : '36px 24px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 360px', gap: isMobile ? 22 : 36, alignItems: 'start' }}>
 
           {/* Left column */}
           <div>
             {/* Course image */}
-            <div style={{ borderRadius: 16, overflow: 'hidden', marginBottom: 28, aspectRatio: '16/7' }}>
+            <div style={{ borderRadius: 16, overflow: 'hidden', marginBottom: 28, aspectRatio: isMobile ? '16/10' : '16/7' }}>
               <ImageWithFallback
                 src={course.image}
                 alt={lang === 'ar' ? course.titleAr : course.title}
@@ -158,7 +160,7 @@ export function CourseDetailPage({ lang, navigate, course: propCourse, dir }: Pr
               )}
             </div>
 
-            <h1 style={{ fontSize: 28, fontWeight: 800, color: '#172033', margin: '0 0 12px', lineHeight: 1.25 }}>
+            <h1 style={{ fontSize: isMobile ? 23 : 28, fontWeight: 800, color: '#172033', margin: '0 0 12px', lineHeight: 1.25 }}>
               {lang === 'ar' ? course.titleAr : course.title}
             </h1>
 
@@ -253,7 +255,7 @@ export function CourseDetailPage({ lang, navigate, course: propCourse, dir }: Pr
           </div>
 
           {/* Right column — price panel */}
-          <div style={{ position: 'sticky', top: 80 }}>
+          <div style={{ position: isMobile ? 'static' : 'sticky', top: 80 }}>
             <div style={{
               backgroundColor: '#FFFFFF',
               border: '1px solid #E4E9F0',

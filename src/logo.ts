@@ -1,4 +1,4 @@
-import taallamGoLogo from './imports/TaallamGO_-_logo.png'
+import taallamGoLogo from './tout les image de projet/TaallamGO - logo.png'
 
 type ImportedImage = string | { src: string }
 

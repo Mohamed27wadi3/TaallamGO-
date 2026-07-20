@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import type { Lang } from '../data'
 import { t, mockOrders, orderStatuses } from '../data'
+import { useIsMobile } from '../hooks/useIsMobile'
 import { taallamGoLogoSrc } from '../logo'
 
 interface Props {
@@ -41,6 +42,7 @@ export function AdminDashboard({ lang, navigate }: Props) {
   const [tab, setTab] = useState<AdminTab>('dashboard')
   const [showConfirm, setShowConfirm] = useState(false)
   const [confirmAction, setConfirmAction] = useState('')
+  const isMobile = useIsMobile()
 
   const kpis = [
     { label: t('Commandes du jour', 'طلبات اليوم', lang), value: '12', delta: '+3', color: '#132A4F', icon: '📦' },
@@ -82,8 +84,8 @@ export function AdminDashboard({ lang, navigate }: Props) {
             </div>
           </div>
 
-          <div style={{ backgroundColor: '#FFFFFF', border: '1px solid #E4E9F0', borderRadius: 16, overflow: 'hidden' }}>
-            <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 13 }}>
+          <div style={{ backgroundColor: '#FFFFFF', border: '1px solid #E4E9F0', borderRadius: 16, overflowX: 'auto' }}>
+            <table style={{ width: '100%', minWidth: 760, borderCollapse: 'collapse', fontSize: 13 }}>
               <thead>
                 <tr style={{ backgroundColor: '#F7F9FC', borderBottom: '1px solid #E4E9F0' }}>
                   {[t('ID', 'الرقم', lang), t('Client', 'العميل', lang), t('Formation', 'الدورة', lang), t('Montant', 'المبلغ', lang), t('Statut', 'الحالة', lang), t('Date', 'التاريخ', lang), t('Actions', 'الإجراءات', lang)].map(h => (
@@ -151,8 +153,8 @@ export function AdminDashboard({ lang, navigate }: Props) {
           }}>
             ⚠️ {t('Note de sécurité : la modification, la confirmation et le remboursement d\'une même transaction nécessitent deux validateurs différents.', 'ملاحظة أمان: تعديل وتأكيد واسترداد نفس المعاملة يتطلب مدققين مختلفين.', lang)}
           </div>
-          <div style={{ backgroundColor: '#FFFFFF', border: '1px solid #E4E9F0', borderRadius: 16, overflow: 'hidden' }}>
-            <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 13 }}>
+          <div style={{ backgroundColor: '#FFFFFF', border: '1px solid #E4E9F0', borderRadius: 16, overflowX: 'auto' }}>
+            <table style={{ width: '100%', minWidth: 720, borderCollapse: 'collapse', fontSize: 13 }}>
               <thead>
                 <tr style={{ backgroundColor: '#F7F9FC', borderBottom: '1px solid #E4E9F0' }}>
                   {[t('ID', 'الرقم', lang), t('Client', 'العميل', lang), t('Montant', 'المبلغ', lang), t('Méthode', 'الطريقة', lang), t('Statut', 'الحالة', lang), t('Actions', 'الإجراءات', lang)].map(h => (
@@ -227,7 +229,7 @@ export function AdminDashboard({ lang, navigate }: Props) {
         </div>
 
         {/* KPI grid */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))', gap: 16, marginBottom: 28 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? 'repeat(2, minmax(0, 1fr))' : 'repeat(auto-fill, minmax(180px, 1fr))', gap: isMobile ? 10 : 16, marginBottom: 28 }}>
           {kpis.map((kpi, i) => (
             <div key={i} style={{
               backgroundColor: '#FFFFFF', border: '1px solid #E4E9F0', borderRadius: 14,
@@ -252,7 +254,7 @@ export function AdminDashboard({ lang, navigate }: Props) {
         </div>
 
         {/* Recent orders table */}
-        <div style={{ backgroundColor: '#FFFFFF', border: '1px solid #E4E9F0', borderRadius: 16, overflow: 'hidden' }}>
+        <div style={{ backgroundColor: '#FFFFFF', border: '1px solid #E4E9F0', borderRadius: 16, overflowX: 'auto' }}>
           <div style={{ padding: '18px 20px', borderBottom: '1px solid #E4E9F0', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <h3 style={{ fontSize: 15, fontWeight: 700, color: '#172033', margin: 0 }}>
               {t('Commandes récentes', 'الطلبات الأخيرة', lang)}
@@ -264,7 +266,7 @@ export function AdminDashboard({ lang, navigate }: Props) {
               {t('Tout voir', 'عرض الكل', lang)}
             </button>
           </div>
-          <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 13 }}>
+          <table style={{ width: '100%', minWidth: 720, borderCollapse: 'collapse', fontSize: 13 }}>
             <thead>
               <tr style={{ backgroundColor: '#F7F9FC' }}>
                 {[t('ID', 'الرقم', lang), t('Client', 'العميل', lang), t('Formation', 'الدورة', lang), t('Montant', 'المبلغ', lang), t('Statut', 'الحالة', lang)].map(h => (
@@ -296,31 +298,34 @@ export function AdminDashboard({ lang, navigate }: Props) {
   }
 
   return (
-    <div style={{ minHeight: '100vh', display: 'flex', backgroundColor: '#0F1F3C' }}>
+    <div style={{ minHeight: '100vh', display: 'flex', flexDirection: isMobile ? 'column' : 'row', backgroundColor: '#0F1F3C' }}>
       {/* Admin Sidebar — dark theme */}
       <aside style={{
-        width: 220, flexShrink: 0,
+        width: isMobile ? '100%' : 220, flexShrink: 0,
         backgroundColor: '#0F1F3C',
         borderRight: '1px solid rgba(255,255,255,0.08)',
-        padding: '24px 0',
-        display: 'flex', flexDirection: 'column',
+        padding: isMobile ? '10px 12px' : '24px 0',
+        display: 'flex', flexDirection: isMobile ? 'row' : 'column',
+        overflowX: isMobile ? 'auto' : 'visible',
+        gap: isMobile ? 8 : 0,
       }}>
-        <div style={{ padding: '0 16px', marginBottom: 24 }}>
+        <div style={{ padding: isMobile ? 0 : '0 16px', marginBottom: isMobile ? 0 : 24, flexShrink: 0 }}>
           <button onClick={() => navigate('home')} style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}>
-            <img src={taallamGoLogoSrc} alt="TaallamGo" style={{ height: 28, width: 'auto', filter: 'brightness(0) invert(1)' }} />
+            <img src={taallamGoLogoSrc} alt="TaallamGo" style={{ height: 28, width: 'auto', maxWidth: 130, filter: 'brightness(0) invert(1)' }} />
           </button>
-          <div style={{ fontSize: 10, fontWeight: 700, color: '#18A979', textTransform: 'uppercase', letterSpacing: '0.1em', marginTop: 8 }}>
+          <div style={{ display: isMobile ? 'none' : 'block', fontSize: 10, fontWeight: 700, color: '#18A979', textTransform: 'uppercase', letterSpacing: '0.1em', marginTop: 8 }}>
             ADMIN
           </div>
         </div>
 
-        <nav style={{ flex: 1, padding: '0 8px' }}>
+        <nav style={{ flex: 1, padding: isMobile ? 0 : '0 8px', display: 'flex', flexDirection: isMobile ? 'row' : 'column', gap: isMobile ? 8 : 0 }}>
           {adminLinks.map(link => (
             <button
               key={link.key}
               onClick={() => setTab(link.key as AdminTab)}
               style={{
-                display: 'flex', alignItems: 'center', gap: 10, width: '100%',
+                display: 'flex', alignItems: 'center', gap: 10, width: isMobile ? 'auto' : '100%',
+                whiteSpace: 'nowrap',
                 padding: '9px 12px', borderRadius: 8, border: 'none', cursor: 'pointer',
                 fontSize: 13, fontWeight: 500,
                 backgroundColor: tab === link.key ? 'rgba(24,169,121,0.15)' : 'transparent',
@@ -338,7 +343,7 @@ export function AdminDashboard({ lang, navigate }: Props) {
           ))}
         </nav>
 
-        <div style={{ padding: '16px', borderTop: '1px solid rgba(255,255,255,0.08)', marginTop: 'auto' }}>
+        <div style={{ display: isMobile ? 'none' : 'block', padding: '16px', borderTop: '1px solid rgba(255,255,255,0.08)', marginTop: 'auto' }}>
           <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.4)', marginBottom: 10 }}>admin@taallamgo.dz</div>
           <button
             onClick={() => navigate('home')}
@@ -350,7 +355,7 @@ export function AdminDashboard({ lang, navigate }: Props) {
       </aside>
 
       {/* Main content */}
-      <main style={{ flex: 1, backgroundColor: '#F7F9FC', padding: '32px 32px', minWidth: 0 }}>
+      <main style={{ flex: 1, backgroundColor: '#F7F9FC', padding: isMobile ? '18px 14px 28px' : '32px 32px', minWidth: 0, width: '100%', overflowX: 'hidden' }}>
         {renderContent()}
       </main>
 

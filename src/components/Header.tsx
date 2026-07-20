@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import type { Lang } from '../data'
 import { t } from '../data'
+import { useIsMobile } from '../hooks/useIsMobile'
 import { taallamGoLogoSrc } from '../logo'
 
 type Page = string
@@ -22,20 +23,21 @@ const navLinks = [
 
 export function Header({ lang, onLangToggle, currentPage, navigate, dir }: Props) {
   const [mobileOpen, setMobileOpen] = useState(false)
+  const isMobile = useIsMobile()
 
   return (
     <header style={{ backgroundColor: '#FFFFFF', borderBottom: '1px solid #E4E9F0', position: 'sticky', top: 0, zIndex: 50 }}>
-      <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 24px', height: 64, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+      <div style={{ maxWidth: 1200, margin: '0 auto', padding: isMobile ? '0 14px' : '0 24px', height: 64, display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 10 }}>
         {/* Logo */}
         <button
           onClick={() => navigate('home')}
           style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0, display: 'flex', alignItems: 'center' }}
         >
-          <img src={taallamGoLogoSrc} alt="TaallamGo" style={{ height: 36, width: 'auto' }} />
+          <img src={taallamGoLogoSrc} alt="TaallamGo" style={{ height: isMobile ? 30 : 36, width: 'auto', maxWidth: isMobile ? 150 : 190 }} />
         </button>
 
         {/* Desktop nav */}
-        <nav style={{ display: 'flex', alignItems: 'center', gap: 4 }} className="hidden md:flex">
+        <nav style={{ display: isMobile ? 'none' : 'flex', alignItems: 'center', gap: 4 }}>
           {navLinks.map(link => (
             <button
               key={link.key}
@@ -84,6 +86,7 @@ export function Header({ lang, onLangToggle, currentPage, navigate, dir }: Props
 
           <button
             onClick={() => navigate('auth-login')}
+            className="hidden sm:block"
             style={{
               background: 'none',
               border: '1px solid #E4E9F0',
@@ -101,6 +104,7 @@ export function Header({ lang, onLangToggle, currentPage, navigate, dir }: Props
 
           <button
             onClick={() => navigate('catalog')}
+            className="hidden sm:block"
             style={{
               background: '#132A4F',
               border: 'none',
@@ -165,6 +169,18 @@ export function Header({ lang, onLangToggle, currentPage, navigate, dir }: Props
               {lang === 'ar' ? link.ar : link.fr}
             </button>
           ))}
+          <button
+            onClick={() => { navigate('auth-login'); setMobileOpen(false) }}
+            style={{ display: 'block', width: '100%', textAlign: dir === 'rtl' ? 'right' : 'left', background: 'none', border: 'none', cursor: 'pointer', padding: '10px 0', fontSize: 15, fontWeight: 600, color: '#132A4F' }}
+          >
+            {t('Connexion', 'ØªØ³Ø¬ÙŠÙ„ Ø§Ù„Ø¯Ø®ÙˆÙ„', lang)}
+          </button>
+          <button
+            onClick={() => { navigate('catalog'); setMobileOpen(false) }}
+            style={{ display: 'block', width: '100%', background: '#132A4F', border: 'none', cursor: 'pointer', padding: '11px 14px', borderRadius: 8, fontSize: 15, fontWeight: 700, color: '#FFFFFF', marginTop: 8 }}
+          >
+            {t('Explorer les formations', 'Ø§Ø³ØªÙƒØ´Ù Ø§Ù„Ø¯ÙˆØ±Ø§Øª', lang)}
+          </button>
         </div>
       )}
     </header>

@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import type { Lang } from '../data'
 import { t, mockOrders, orderStatuses } from '../data'
+import { useIsMobile } from '../hooks/useIsMobile'
 import { taallamGoLogoSrc } from '../logo'
 
 interface Props {
@@ -37,6 +38,7 @@ function StatusBadge({ statusKey, lang }: { statusKey: string; lang: Lang }) {
 export function CustomerDashboard({ lang, navigate }: Props) {
   const [tab, setTab] = useState<Tab>('overview')
   const [selectedOrder, setSelectedOrder] = useState<typeof mockOrders[0] | null>(null)
+  const isMobile = useIsMobile()
 
 
   const orderTimelineSteps = [
@@ -191,7 +193,7 @@ export function CustomerDashboard({ lang, navigate }: Props) {
                 <div style={{ fontSize: 14, color: '#667085' }}>ahmed.bensalem@email.com</div>
               </div>
             </div>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
+            <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: 16 }}>
               {[
                 { label: t('Prénom', 'الاسم الأول', lang), value: 'Ahmed' },
                 { label: t('Nom', 'اللقب', lang), value: 'Bensalem' },
@@ -336,29 +338,31 @@ export function CustomerDashboard({ lang, navigate }: Props) {
   }
 
   return (
-    <div style={{ minHeight: '100vh', backgroundColor: '#F7F9FC', display: 'flex' }}>
+    <div style={{ minHeight: '100vh', backgroundColor: '#F7F9FC', display: 'flex', flexDirection: isMobile ? 'column' : 'row' }}>
       {/* Sidebar */}
       <aside style={{
-        width: 240, flexShrink: 0,
+        width: isMobile ? '100%' : 240, flexShrink: 0,
         backgroundColor: '#FFFFFF', borderRight: '1px solid #E4E9F0',
-        padding: '24px 0',
-        display: 'flex', flexDirection: 'column',
+        padding: isMobile ? '10px 12px' : '24px 0',
+        display: 'flex', flexDirection: isMobile ? 'row' : 'column',
+        overflowX: isMobile ? 'auto' : 'visible',
+        gap: isMobile ? 8 : 0,
       }}
-        className="hidden md:flex"
       >
-        <div style={{ padding: '0 20px', marginBottom: 8 }}>
-          <button onClick={() => navigate('home')} style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0, marginBottom: 24 }}>
-            <img src={taallamGoLogoSrc} alt="TaallamGo" style={{ height: 30, width: 'auto' }} />
+        <div style={{ padding: isMobile ? 0 : '0 20px', marginBottom: isMobile ? 0 : 8, flexShrink: 0 }}>
+          <button onClick={() => navigate('home')} style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0, marginBottom: isMobile ? 0 : 24 }}>
+            <img src={taallamGoLogoSrc} alt="TaallamGo" style={{ height: isMobile ? 28 : 30, width: 'auto', maxWidth: 130 }} />
           </button>
         </div>
 
-        <nav style={{ flex: 1, padding: '0 10px' }}>
+        <nav style={{ flex: 1, padding: isMobile ? 0 : '0 10px', display: 'flex', flexDirection: isMobile ? 'row' : 'column', gap: isMobile ? 8 : 0 }}>
           {sidebarLinks.map(link => (
             <button
               key={link.key}
               onClick={() => setTab(link.key as Tab)}
               style={{
-                display: 'flex', alignItems: 'center', gap: 10, width: '100%',
+                display: 'flex', alignItems: 'center', gap: 10, width: isMobile ? 'auto' : '100%',
+                whiteSpace: 'nowrap',
                 padding: '10px 12px', borderRadius: 10, border: 'none', cursor: 'pointer',
                 fontSize: 14, fontWeight: 500,
                 backgroundColor: tab === link.key || (tab === 'order-detail' && link.key === 'orders') ? '#E8EDF5' : 'transparent',
@@ -374,7 +378,7 @@ export function CustomerDashboard({ lang, navigate }: Props) {
           ))}
         </nav>
 
-        <div style={{ padding: '16px 20px', borderTop: '1px solid #E4E9F0', marginTop: 'auto' }}>
+        <div style={{ display: isMobile ? 'none' : 'block', padding: '16px 20px', borderTop: '1px solid #E4E9F0', marginTop: 'auto' }}>
           <button
             onClick={() => navigate('home')}
             style={{
@@ -388,7 +392,7 @@ export function CustomerDashboard({ lang, navigate }: Props) {
       </aside>
 
       {/* Main content */}
-      <main style={{ flex: 1, padding: '32px 32px', minWidth: 0 }}>
+      <main style={{ flex: 1, padding: isMobile ? '18px 14px 28px' : '32px 32px', minWidth: 0, width: '100%', overflowX: 'hidden' }}>
         {renderContent()}
       </main>
     </div>

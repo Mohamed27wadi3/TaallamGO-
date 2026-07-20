@@ -2,6 +2,7 @@ import { useState } from 'react'
 import type { Lang } from '../data'
 import { t, categories, courses } from '../data'
 import { CourseCard } from '../components/CourseCard'
+import { useIsMobile } from '../hooks/useIsMobile'
 
 interface Props {
   lang: Lang
@@ -77,6 +78,7 @@ const trustPoints = [
 
 export function HomePage({ lang, navigate, dir }: Props) {
   const [searchQuery, setSearchQuery] = useState('')
+  const isMobile = useIsMobile()
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault()
@@ -91,7 +93,7 @@ export function HomePage({ lang, navigate, dir }: Props) {
       {/* Hero Section */}
       <section style={{
         background: 'linear-gradient(135deg, #132A4F 0%, #1B3A6B 60%, #132A4F 100%)',
-        padding: '80px 24px 96px',
+        padding: isMobile ? '48px 14px 62px' : '80px 24px 96px',
         position: 'relative',
         overflow: 'hidden',
       }}>
@@ -132,7 +134,7 @@ export function HomePage({ lang, navigate, dir }: Props) {
               color: '#FFFFFF',
               lineHeight: 1.15,
               margin: '0 0 20px',
-              letterSpacing: '-0.02em',
+              letterSpacing: 0,
             }}>
               {t(
                 'Les meilleures formations mondiales, accessibles depuis l\'Algérie.',
@@ -156,14 +158,15 @@ export function HomePage({ lang, navigate, dir }: Props) {
             </p>
 
             {/* CTA buttons */}
-            <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', marginBottom: 48 }}>
+            <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', marginBottom: isMobile ? 32 : 48 }}>
               <button
                 onClick={() => navigate('catalog')}
                 style={{
                   backgroundColor: '#18A979', color: '#FFFFFF',
                   border: 'none', cursor: 'pointer',
-                  padding: '13px 28px', borderRadius: 12,
+                  padding: '13px 20px', borderRadius: 12,
                   fontSize: 16, fontWeight: 700,
+                  width: isMobile ? '100%' : 'auto',
                   transition: 'all 0.15s',
                   boxShadow: '0 4px 16px rgba(24,169,121,0.35)',
                 }}
@@ -177,8 +180,9 @@ export function HomePage({ lang, navigate, dir }: Props) {
                 style={{
                   backgroundColor: 'transparent', color: '#FFFFFF',
                   border: '1.5px solid rgba(255,255,255,0.35)', cursor: 'pointer',
-                  padding: '13px 28px', borderRadius: 12,
+                  padding: '13px 20px', borderRadius: 12,
                   fontSize: 16, fontWeight: 600,
+                  width: isMobile ? '100%' : 'auto',
                   transition: 'all 0.15s',
                 }}
                 onMouseEnter={e => (e.currentTarget.style.borderColor = 'rgba(255,255,255,0.6)')}
@@ -189,7 +193,7 @@ export function HomePage({ lang, navigate, dir }: Props) {
             </div>
 
             {/* Search bar */}
-            <form onSubmit={handleSearch} style={{ display: 'flex', gap: 0, maxWidth: 520 }}>
+            <form onSubmit={handleSearch} style={{ display: 'flex', flexDirection: isMobile ? 'column' : 'row', gap: isMobile ? 10 : 0, maxWidth: 520 }}>
               <div style={{ flex: 1, position: 'relative' }}>
                 <svg
                   style={{ position: 'absolute', left: 14, top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none' }}
@@ -207,8 +211,8 @@ export function HomePage({ lang, navigate, dir }: Props) {
                     width: '100%', height: 50,
                     backgroundColor: 'rgba(255,255,255,0.1)',
                     border: '1.5px solid rgba(255,255,255,0.2)',
-                    borderRight: 'none',
-                    borderRadius: '12px 0 0 12px',
+                    borderRight: isMobile ? '1.5px solid rgba(255,255,255,0.2)' : 'none',
+                    borderRadius: isMobile ? 12 : '12px 0 0 12px',
                     padding: '0 16px 0 42px',
                     fontSize: 15, color: '#FFFFFF',
                     outline: 'none',
@@ -221,9 +225,10 @@ export function HomePage({ lang, navigate, dir }: Props) {
                 style={{
                   backgroundColor: '#18A979', color: '#FFFFFF',
                   border: 'none', cursor: 'pointer',
-                  padding: '0 22px', borderRadius: '0 12px 12px 0',
+                  padding: isMobile ? '14px 22px' : '0 22px', borderRadius: isMobile ? 12 : '0 12px 12px 0',
                   fontSize: 14, fontWeight: 700,
                   whiteSpace: 'nowrap',
+                  width: isMobile ? '100%' : 'auto',
                 }}
               >
                 {t('Rechercher', 'بحث', lang)}
