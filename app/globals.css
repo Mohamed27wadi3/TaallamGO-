@@ -225,6 +225,105 @@ select:focus {
   transform: scale(1.04);
 }
 
+.tg-hero-title {
+  position: relative;
+  max-width: 760px;
+  animation: tgHeroTitle 780ms var(--ease-premium) both;
+  text-shadow: 0 2px 0 rgba(255, 255, 255, 0.72), 0 18px 42px rgba(19, 42, 79, 0.14);
+}
+
+.tg-hero-title::after {
+  position: absolute;
+  right: 0;
+  bottom: -10px;
+  left: 0;
+  width: min(260px, 58%);
+  height: 5px;
+  content: "";
+  background: linear-gradient(90deg, var(--accent), rgba(143, 180, 232, 0));
+  border-radius: 999px;
+  animation: tgHeroUnderline 1100ms 280ms var(--ease-premium) both;
+}
+
+.tg-hero-copy {
+  animation: tgHeroCopy 820ms 120ms var(--ease-premium) both;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.55);
+}
+
+.tg-learning-path {
+  position: absolute;
+  top: 70px;
+  right: max(10px, 4vw);
+  z-index: 0;
+  width: min(46vw, 560px);
+  min-width: 360px;
+  opacity: 0.82;
+  pointer-events: none;
+}
+
+.tg-learning-path svg {
+  width: 100%;
+  filter: drop-shadow(0 22px 36px rgba(19, 42, 79, 0.13));
+}
+
+.tg-learning-path-line {
+  stroke: rgba(19, 42, 79, 0.34);
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-dasharray: 12 14;
+  animation: tgLearningDash 18s linear infinite;
+}
+
+.tg-learning-node {
+  animation: tgNodePulse 2400ms var(--ease-premium) infinite;
+  transform-origin: center;
+}
+
+.tg-learning-node circle {
+  fill: rgba(255, 255, 255, 0.88);
+  stroke: var(--accent);
+  stroke-width: 3;
+}
+
+.tg-learning-node text {
+  fill: #132A4F;
+  font: 800 14px var(--font-sans);
+}
+
+.tg-study-chip {
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  padding: 0 13px;
+  border: 1px solid rgba(47, 128, 237, 0.22);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.82);
+  color: #132A4F;
+  font-size: 13px;
+  font-weight: 800;
+  box-shadow: 0 12px 28px rgba(19, 42, 79, 0.12);
+  backdrop-filter: blur(10px);
+  animation: tgStudyFloat 4200ms var(--ease-premium) infinite alternate;
+}
+
+.tg-study-chip--one {
+  top: 28px;
+  left: 22px;
+}
+
+.tg-study-chip--two {
+  top: 154px;
+  right: 36px;
+  animation-delay: 420ms;
+}
+
+.tg-study-chip--three {
+  right: 116px;
+  bottom: 28px;
+  animation-delay: 860ms;
+}
+
 .tg-reveal {
   opacity: 0;
   transform: translateY(18px);
@@ -399,6 +498,35 @@ select:focus {
   to { transform: translate3d(24px, 34px, 0) scale(1.04); }
 }
 
+@keyframes tgHeroTitle {
+  from { opacity: 0; transform: translate3d(0, 20px, 0) scale(0.985); }
+  to { opacity: 1; transform: translate3d(0, 0, 0) scale(1); }
+}
+
+@keyframes tgHeroCopy {
+  from { opacity: 0; transform: translate3d(0, 14px, 0); }
+  to { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+
+@keyframes tgHeroUnderline {
+  from { opacity: 0; transform: scaleX(0.18); transform-origin: left; }
+  to { opacity: 1; transform: scaleX(1); transform-origin: left; }
+}
+
+@keyframes tgLearningDash {
+  to { stroke-dashoffset: -260; }
+}
+
+@keyframes tgNodePulse {
+  0%, 100% { transform: scale(1); opacity: 0.9; }
+  50% { transform: scale(1.08); opacity: 1; }
+}
+
+@keyframes tgStudyFloat {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(0, -12px, 0); }
+}
+
 @keyframes tgDash {
   to { stroke-dashoffset: -180; }
 }
@@ -420,6 +548,22 @@ select:focus {
 }
 
 @media (max-width: 767px) {
+  .tg-learning-path {
+    top: 18px;
+    right: -120px;
+    width: 460px;
+    min-width: 460px;
+    opacity: 0.34;
+  }
+
+  .tg-study-chip {
+    display: none;
+  }
+
+  .tg-hero-title {
+    text-shadow: 0 2px 0 rgba(255, 255, 255, 0.8), 0 12px 30px rgba(19, 42, 79, 0.14);
+  }
+
   .tg-category-grid {
     grid-template-columns: 1fr;
   }
@@ -437,9 +581,44 @@ select:focus {
 }
 
 @media (min-width: 768px) and (max-width: 1023px) {
+  .tg-learning-path {
+    right: -42px;
+    width: 420px;
+    min-width: 420px;
+    opacity: 0.56;
+  }
+
   .tg-category-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+}
+
+:root[data-theme="dark"] .tg-hero-title {
+  color: #F5F7FA !important;
+  text-shadow: 0 18px 42px rgba(0, 0, 0, 0.34);
+}
+
+:root[data-theme="dark"] .tg-hero-copy {
+  color: #DCE7F3 !important;
+  text-shadow: none;
+}
+
+:root[data-theme="dark"] .tg-learning-path-line {
+  stroke: rgba(143, 180, 232, 0.44);
+}
+
+:root[data-theme="dark"] .tg-learning-node circle {
+  fill: rgba(23, 33, 43, 0.9);
+}
+
+:root[data-theme="dark"] .tg-learning-node text,
+:root[data-theme="dark"] .tg-study-chip {
+  color: #F5F7FA;
+  fill: #F5F7FA;
+}
+
+:root[data-theme="dark"] .tg-study-chip {
+  background: rgba(23, 33, 43, 0.82);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -460,5 +639,14 @@ select:focus {
   .tg-cursor-dot,
   .tg-cursor-ring {
     display: none;
+  }
+
+  .tg-hero-title,
+  .tg-hero-copy,
+  .tg-hero-title::after,
+  .tg-learning-path-line,
+  .tg-learning-node,
+  .tg-study-chip {
+    animation: none !important;
   }
 }

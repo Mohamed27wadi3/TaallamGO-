@@ -105,12 +105,31 @@ export function HomePage({ lang, navigate, dir }: Props) {
 
       {/* Hero Section */}
       <section style={{
-        background: 'linear-gradient(135deg, var(--background) 0%, var(--surface) 48%, var(--surface-secondary) 100%)',
+        background: 'linear-gradient(135deg, #DCEEFF 0%, #F8FBFF 48%, #EAF3FF 100%)',
         padding: isMobile ? '48px 14px 62px' : '80px 24px 96px',
         position: 'relative',
         overflow: 'hidden',
       }}>
         <AnimatedBackground variant="hero" />
+        <div className="tg-learning-path" aria-hidden="true">
+          <svg viewBox="0 0 560 360" fill="none">
+            <path className="tg-learning-path-line" d="M38 282C96 204 152 238 204 168C254 100 306 122 360 78C416 34 466 58 522 28" />
+            {[
+              { x: 38, y: 282, label: '01' },
+              { x: 204, y: 168, label: '02' },
+              { x: 360, y: 78, label: '03' },
+              { x: 522, y: 28, label: '04' },
+            ].map((node, index) => (
+              <g key={node.label} className="tg-learning-node" style={{ animationDelay: `${index * 220}ms` }}>
+                <circle cx={node.x} cy={node.y} r="24" />
+                <text x={node.x} y={node.y + 5} textAnchor="middle">{node.label}</text>
+              </g>
+            ))}
+          </svg>
+          <div className="tg-study-chip tg-study-chip--one">{t('Objectif', 'هدف', lang)}</div>
+          <div className="tg-study-chip tg-study-chip--two">{t('Cours', 'دورة', lang)}</div>
+          <div className="tg-study-chip tg-study-chip--three">{t('Certificat', 'شهادة', lang)}</div>
+        </div>
 
         <div style={{ maxWidth: 1200, margin: '0 auto', position: 'relative' }}>
           <Reveal style={{ maxWidth: 680 }}>
@@ -127,10 +146,10 @@ export function HomePage({ lang, navigate, dir }: Props) {
               </span>
             </div>
 
-            <h1 style={{
+            <h1 className="tg-hero-title" style={{
               fontSize: 'clamp(28px, 4vw, 52px)',
               fontWeight: 800,
-              color: 'var(--primary)',
+              color: '#071A33',
               lineHeight: 1.15,
               margin: '0 0 20px',
               letterSpacing: 0,
@@ -142,9 +161,9 @@ export function HomePage({ lang, navigate, dir }: Props) {
               )}
             </h1>
 
-            <p style={{
+            <p className="tg-hero-copy" style={{
               fontSize: 'clamp(15px, 1.5vw, 18px)',
-              color: 'var(--muted-foreground)',
+              color: '#172033',
               lineHeight: 1.7,
               margin: '0 0 36px',
               maxWidth: 560,
