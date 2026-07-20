@@ -161,15 +161,15 @@ type InlineProps = { lang: Lang; navigate: (p: string) => void; dir: 'ltr' | 'rt
 function OrganizationsPage({ lang }: InlineProps) {
   const t = (fr: string, ar: string, _?: unknown) => lang === 'ar' ? ar : fr
   const [submitted, setSubmitted] = useState(false)
-  const inputStyle = { width: '100%', height: 44, border: '1.5px solid #E4E9F0', borderRadius: 10, padding: '0 14px', fontSize: 14, color: '#172033', outline: 'none', backgroundColor: '#FFFFFF', fontFamily: lang === 'ar' ? "'IBM Plex Sans Arabic'" : "'Plus Jakarta Sans'" }
+  const inputStyle = { width: '100%', height: 44, border: '1.5px solid var(--border)', borderRadius: 10, padding: '0 14px', fontSize: 14, color: 'var(--foreground)', outline: 'none', backgroundColor: 'var(--surface)', fontFamily: lang === 'ar' ? "'IBM Plex Sans Arabic'" : "'Plus Jakarta Sans'" }
 
   return (
-    <div style={{ minHeight: '100vh', backgroundColor: '#EEF6FF' }}>
-      <div style={{ backgroundColor: '#132A4F', padding: '56px 24px', textAlign: 'center' }}>
-        <h1 style={{ fontSize: 36, fontWeight: 800, color: '#FFFFFF', margin: '0 0 12px' }}>
+    <div style={{ minHeight: '100vh', backgroundColor: 'var(--background)' }}>
+      <div style={{ backgroundColor: 'var(--surface-secondary)', padding: '56px 24px', textAlign: 'center' }}>
+        <h1 style={{ fontSize: 36, fontWeight: 800, color: 'var(--foreground)', margin: '0 0 12px' }}>
           {t('Pour les organisations', 'للمؤسسات', lang)}
         </h1>
-        <p style={{ fontSize: 17, color: 'rgba(255,255,255,0.7)', margin: 0, maxWidth: 540, marginLeft: 'auto', marginRight: 'auto' }}>
+        <p style={{ fontSize: 17, color: 'var(--muted-foreground)', margin: 0, maxWidth: 540, marginLeft: 'auto', marginRight: 'auto' }}>
           {t('Universités, entreprises, clubs et établissements. Formations groupées avec factures.', 'الجامعات والشركات والنوادي. دورات جماعية مع فواتير.', lang)}
         </p>
       </div>
@@ -181,10 +181,10 @@ function OrganizationsPage({ lang }: InlineProps) {
             { icon: '🎯', title: t('Clubs & associations', 'النوادي والجمعيات', lang), desc: t('Accès pour vos membres aux meilleurs cours.', 'وصول لأعضائكم إلى أفضل الدورات.', lang) },
             { icon: '📊', title: t('Tarifs préférentiels', 'أسعار تفضيلية', lang), desc: t('Réductions sur commandes groupées.', 'خصومات على الطلبات الجماعية.', lang) },
           ].map((item, i) => (
-            <div key={i} style={{ backgroundColor: '#FFFFFF', border: '1px solid #E4E9F0', borderRadius: 16, padding: 24 }}>
+            <div key={i} style={{ backgroundColor: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 16, padding: 24 }}>
               <div style={{ fontSize: 32, marginBottom: 12 }}>{item.icon}</div>
-              <h3 style={{ fontSize: 15, fontWeight: 700, color: '#172033', margin: '0 0 8px' }}>{item.title}</h3>
-              <p style={{ fontSize: 13, color: '#667085', margin: 0 }}>{item.desc}</p>
+              <h3 style={{ fontSize: 15, fontWeight: 700, color: 'var(--foreground)', margin: '0 0 8px' }}>{item.title}</h3>
+              <p style={{ fontSize: 13, color: 'var(--muted-foreground)', margin: 0 }}>{item.desc}</p>
             </div>
           ))}
         </div>
@@ -192,12 +192,12 @@ function OrganizationsPage({ lang }: InlineProps) {
         {submitted ? (
           <div style={{ textAlign: 'center', padding: 40 }}>
             <div style={{ fontSize: 48, marginBottom: 16 }}>🎉</div>
-            <h2 style={{ fontSize: 22, fontWeight: 800, color: '#172033', margin: '0 0 10px' }}>{t('Demande reçue !', 'تم استلام الطلب!', lang)}</h2>
-            <p style={{ fontSize: 15, color: '#667085' }}>{t('Nous vous contacterons sous 48h.', 'سنتواصل معكم خلال 48 ساعة.', lang)}</p>
+            <h2 style={{ fontSize: 22, fontWeight: 800, color: 'var(--foreground)', margin: '0 0 10px' }}>{t('Demande reçue !', 'تم استلام الطلب!', lang)}</h2>
+            <p style={{ fontSize: 15, color: 'var(--muted-foreground)' }}>{t('Nous vous contacterons sous 48h.', 'سنتواصل معكم خلال 48 ساعة.', lang)}</p>
           </div>
         ) : (
-          <div style={{ backgroundColor: '#FFFFFF', border: '1px solid #E4E9F0', borderRadius: 20, padding: 32 }}>
-            <h2 style={{ fontSize: 20, fontWeight: 800, color: '#172033', margin: '0 0 24px' }}>{t('Demande de devis groupé', 'طلب عرض سعر جماعي', lang)}</h2>
+          <div style={{ backgroundColor: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 20, padding: 32 }}>
+            <h2 style={{ fontSize: 20, fontWeight: 800, color: 'var(--foreground)', margin: '0 0 24px' }}>{t('Demande de devis groupé', 'طلب عرض سعر جماعي', lang)}</h2>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 16 }}>
               {[
                 { label: t('Organisation', 'المؤسسة', lang), ph: t('Nom de votre organisation', 'اسم مؤسستكم', lang) },
@@ -206,20 +206,20 @@ function OrganizationsPage({ lang }: InlineProps) {
                 { label: t('Nombre d\'apprenants', 'عدد المتعلمين', lang), ph: '10, 50, 100...' },
               ].map((f, i) => (
                 <div key={i}>
-                  <label style={{ fontSize: 13, fontWeight: 600, color: '#172033', display: 'block', marginBottom: 6 }}>{f.label}</label>
+                  <label style={{ fontSize: 13, fontWeight: 600, color: 'var(--foreground)', display: 'block', marginBottom: 6 }}>{f.label}</label>
                   <input type="text" placeholder={f.ph} style={inputStyle} />
                 </div>
               ))}
             </div>
             <div style={{ marginBottom: 16 }}>
-              <label style={{ fontSize: 13, fontWeight: 600, color: '#172033', display: 'block', marginBottom: 6 }}>
+              <label style={{ fontSize: 13, fontWeight: 600, color: 'var(--foreground)', display: 'block', marginBottom: 6 }}>
                 {t('Besoins et commentaires', 'الاحتياجات والتعليقات', lang)}
               </label>
               <textarea placeholder={t('Plateformes souhaitées, budget, délai...', 'المنصات المطلوبة، الميزانية، الموعد...', lang)} rows={3}
                 style={{ ...inputStyle, height: 'auto', padding: '10px 14px', resize: 'vertical' }} />
             </div>
             <button onClick={() => setSubmitted(true)} style={{
-              backgroundColor: '#132A4F', color: '#FFFFFF', border: 'none', cursor: 'pointer',
+              backgroundColor: 'var(--accent)', color: 'var(--accent-foreground)', border: 'none', cursor: 'pointer',
               padding: '13px', borderRadius: 12, fontSize: 15, fontWeight: 700, width: '100%',
             }}>
               {t('Envoyer la demande', 'إرسال الطلب', lang)}
@@ -243,35 +243,35 @@ function HelpPage({ lang, navigate }: InlineProps) {
   const [openFaq, setOpenFaq] = useState<number | null>(null)
 
   return (
-    <div style={{ minHeight: '100vh', backgroundColor: '#EEF6FF' }}>
-      <div style={{ backgroundColor: '#132A4F', padding: '56px 24px', textAlign: 'center' }}>
-        <h1 style={{ fontSize: 36, fontWeight: 800, color: '#FFFFFF', margin: '0 0 12px' }}>
+    <div style={{ minHeight: '100vh', backgroundColor: 'var(--background)' }}>
+      <div style={{ backgroundColor: 'var(--surface-secondary)', padding: '56px 24px', textAlign: 'center' }}>
+        <h1 style={{ fontSize: 36, fontWeight: 800, color: 'var(--foreground)', margin: '0 0 12px' }}>
           {t('Centre d\'aide', 'مركز المساعدة', lang)}
         </h1>
       </div>
       <div style={{ maxWidth: 760, margin: '0 auto', padding: '48px 24px' }}>
-        <h2 style={{ fontSize: 22, fontWeight: 800, color: '#172033', margin: '0 0 24px' }}>
+        <h2 style={{ fontSize: 22, fontWeight: 800, color: 'var(--foreground)', margin: '0 0 24px' }}>
           {t('Questions fréquentes', 'الأسئلة الشائعة', lang)}
         </h2>
         {faqs.map((faq, i) => (
-          <div key={i} style={{ borderBottom: '1px solid #E4E9F0', padding: '16px 0' }}>
+          <div key={i} style={{ borderBottom: '1px solid var(--border)', padding: '16px 0' }}>
             <button onClick={() => setOpenFaq(openFaq === i ? null : i)}
               style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%', background: 'none', border: 'none', cursor: 'pointer', padding: 0, textAlign: 'left' }}>
-              <span style={{ fontSize: 15, fontWeight: 600, color: '#172033' }}>{faq.q}</span>
+              <span style={{ fontSize: 15, fontWeight: 600, color: 'var(--foreground)' }}>{faq.q}</span>
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none" style={{ flexShrink: 0, marginLeft: 16, transition: 'transform 0.2s', transform: openFaq === i ? 'rotate(180deg)' : 'none' }}>
-                <polyline points="5,8 10,13 15,8" stroke="#667085" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                <polyline points="5,8 10,13 15,8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </button>
             {openFaq === i && (
-              <p style={{ margin: '12px 0 0', fontSize: 14, color: '#667085', lineHeight: 1.7 }}>{faq.a}</p>
+              <p style={{ margin: '12px 0 0', fontSize: 14, color: 'var(--muted-foreground)', lineHeight: 1.7 }}>{faq.a}</p>
             )}
           </div>
         ))}
-        <div style={{ marginTop: 40, backgroundColor: '#FFFFFF', border: '1px solid #E4E9F0', borderRadius: 16, padding: 28, textAlign: 'center' }}>
-          <h3 style={{ fontSize: 17, fontWeight: 700, color: '#172033', margin: '0 0 10px' }}>{t('Besoin d\'aide supplémentaire ?', 'تحتاج مزيداً من المساعدة؟', lang)}</h3>
-          <p style={{ fontSize: 14, color: '#667085', margin: '0 0 20px' }}>{t('Notre équipe est disponible pour vous aider.', 'فريقنا متاح لمساعدتك.', lang)}</p>
+        <div style={{ marginTop: 40, backgroundColor: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 16, padding: 28, textAlign: 'center' }}>
+          <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--foreground)', margin: '0 0 10px' }}>{t('Besoin d\'aide supplémentaire ?', 'تحتاج مزيداً من المساعدة؟', lang)}</h3>
+          <p style={{ fontSize: 14, color: 'var(--muted-foreground)', margin: '0 0 20px' }}>{t('Notre équipe est disponible pour vous aider.', 'فريقنا متاح لمساعدتك.', lang)}</p>
           <button onClick={() => navigate('dashboard')} style={{
-            backgroundColor: '#132A4F', color: '#FFFFFF', border: 'none', cursor: 'pointer',
+            backgroundColor: 'var(--accent)', color: 'var(--accent-foreground)', border: 'none', cursor: 'pointer',
             padding: '11px 24px', borderRadius: 10, fontSize: 14, fontWeight: 700,
           }}>
             {t('Ouvrir un ticket', 'فتح تذكرة', lang)}
@@ -285,18 +285,18 @@ function HelpPage({ lang, navigate }: InlineProps) {
 function AboutPage({ lang }: InlineProps) {
   const t = (fr: string, ar: string, _?: unknown) => lang === 'ar' ? ar : fr
   return (
-    <div style={{ minHeight: '100vh', backgroundColor: '#EEF6FF' }}>
-      <div style={{ backgroundColor: '#132A4F', padding: '56px 24px', textAlign: 'center' }}>
-        <h1 style={{ fontSize: 36, fontWeight: 800, color: '#FFFFFF', margin: '0 0 12px' }}>
+    <div style={{ minHeight: '100vh', backgroundColor: 'var(--background)' }}>
+      <div style={{ backgroundColor: 'var(--surface-secondary)', padding: '56px 24px', textAlign: 'center' }}>
+        <h1 style={{ fontSize: 36, fontWeight: 800, color: 'var(--foreground)', margin: '0 0 12px' }}>
           {t('À propos de TaallamGo', 'حول TaallamGo', lang)}
         </h1>
       </div>
       <div style={{ maxWidth: 760, margin: '0 auto', padding: '56px 24px' }}>
-        <div style={{ backgroundColor: '#FFFFFF', border: '1px solid #E4E9F0', borderRadius: 20, padding: '36px', marginBottom: 24 }}>
-          <h2 style={{ fontSize: 22, fontWeight: 800, color: '#172033', margin: '0 0 16px' }}>
+        <div style={{ backgroundColor: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 20, padding: '36px', marginBottom: 24 }}>
+          <h2 style={{ fontSize: 22, fontWeight: 800, color: 'var(--foreground)', margin: '0 0 16px' }}>
             {t('Notre mission', 'مهمتنا', lang)}
           </h2>
-          <p style={{ fontSize: 16, color: '#667085', lineHeight: 1.8, margin: 0 }}>
+          <p style={{ fontSize: 16, color: 'var(--muted-foreground)', lineHeight: 1.8, margin: 0 }}>
             {t(
               'TaallamGo a été créé pour résoudre un problème réel : les Algériens souhaitant se former aux meilleures plateformes mondiales se heurtent aux barrières de paiement. Notre mission est de rendre l\'apprentissage international accessible à tous, simplement et légalement.',
               'تأسّست TaallamGo لحلّ مشكلة حقيقية: الجزائريون الراغبون في التعلم على أفضل المنصات العالمية يواجهون عوائق الدفع. مهمتنا هي جعل التعلم الدولي متاحاً للجميع، بشكل بسيط وقانوني.',
@@ -309,13 +309,13 @@ function AboutPage({ lang }: InlineProps) {
           { title: t('Sécurité', 'الأمان', lang), desc: t('Vos données et votre argent sont protégés. Nous ne demanderons jamais votre mot de passe.', 'بياناتك وأموالك محمية. لن نطلب أبداً كلمة مرورك.', lang) },
           { title: t('Légalité', 'الشرعية', lang), desc: t('Uniquement des moyens de paiement autorisés par la réglementation algérienne.', 'طرق دفع مرخصة بالتنظيم الجزائري فقط.', lang) },
         ].map((v, i) => (
-          <div key={i} style={{ backgroundColor: '#FFFFFF', border: '1px solid #E4E9F0', borderRadius: 16, padding: '24px', marginBottom: 16, display: 'flex', gap: 16, alignItems: 'flex-start' }}>
-            <div style={{ width: 40, height: 40, borderRadius: 10, backgroundColor: '#E8EDF5', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 18, flexShrink: 0 }}>
+          <div key={i} style={{ backgroundColor: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 16, padding: '24px', marginBottom: 16, display: 'flex', gap: 16, alignItems: 'flex-start' }}>
+            <div style={{ width: 40, height: 40, borderRadius: 10, backgroundColor: 'var(--surface-secondary)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 18, flexShrink: 0 }}>
               {['🔍', '🔒', '⚖️'][i]}
             </div>
             <div>
-              <h3 style={{ fontSize: 16, fontWeight: 700, color: '#172033', margin: '0 0 6px' }}>{v.title}</h3>
-              <p style={{ fontSize: 14, color: '#667085', margin: 0, lineHeight: 1.65 }}>{v.desc}</p>
+              <h3 style={{ fontSize: 16, fontWeight: 700, color: 'var(--foreground)', margin: '0 0 6px' }}>{v.title}</h3>
+              <p style={{ fontSize: 14, color: 'var(--muted-foreground)', margin: 0, lineHeight: 1.65 }}>{v.desc}</p>
             </div>
           </div>
         ))}
@@ -333,20 +333,20 @@ function TrustPage({ lang }: InlineProps) {
     { icon: '📋', title: t('Preuve de traitement', 'إثبات المعالجة', lang), desc: t('Chaque commande est documentée et traçable. Vous pouvez suivre l\'avancement en temps réel.', 'كل طلب موثق وقابل للتتبع. يمكنك متابعة التقدم في الوقت الفعلي.', lang) },
   ]
   return (
-    <div style={{ minHeight: '100vh', backgroundColor: '#EEF6FF' }}>
-      <div style={{ backgroundColor: '#132A4F', padding: '56px 24px', textAlign: 'center' }}>
-        <h1 style={{ fontSize: 36, fontWeight: 800, color: '#FFFFFF', margin: '0 0 12px' }}>
+    <div style={{ minHeight: '100vh', backgroundColor: 'var(--background)' }}>
+      <div style={{ backgroundColor: 'var(--surface-secondary)', padding: '56px 24px', textAlign: 'center' }}>
+        <h1 style={{ fontSize: 36, fontWeight: 800, color: 'var(--foreground)', margin: '0 0 12px' }}>
           {t('Confiance & sécurité', 'الثقة والأمان', lang)}
         </h1>
       </div>
       <div style={{ maxWidth: 800, margin: '0 auto', padding: '56px 24px' }}>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
           {points.map((p, i) => (
-            <div key={i} style={{ backgroundColor: '#FFFFFF', border: '1px solid #E4E9F0', borderRadius: 16, padding: 28, display: 'flex', gap: 20, alignItems: 'flex-start' }}>
-              <div style={{ width: 52, height: 52, borderRadius: 14, backgroundColor: '#E8EDF5', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 22, flexShrink: 0 }}>{p.icon}</div>
+            <div key={i} style={{ backgroundColor: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 16, padding: 28, display: 'flex', gap: 20, alignItems: 'flex-start' }}>
+              <div style={{ width: 52, height: 52, borderRadius: 14, backgroundColor: 'var(--surface-secondary)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 22, flexShrink: 0 }}>{p.icon}</div>
               <div>
-                <h3 style={{ fontSize: 17, fontWeight: 700, color: '#172033', margin: '0 0 8px' }}>{p.title}</h3>
-                <p style={{ fontSize: 15, color: '#667085', margin: 0, lineHeight: 1.7 }}>{p.desc}</p>
+                <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--foreground)', margin: '0 0 8px' }}>{p.title}</h3>
+                <p style={{ fontSize: 15, color: 'var(--muted-foreground)', margin: 0, lineHeight: 1.7 }}>{p.desc}</p>
               </div>
             </div>
           ))}
@@ -359,11 +359,11 @@ function TrustPage({ lang }: InlineProps) {
 function ContactPage({ lang }: InlineProps) {
   const t = (fr: string, ar: string, _?: unknown) => lang === 'ar' ? ar : fr
   const [submitted, setSubmitted] = useState(false)
-  const inputStyle = { width: '100%', height: 44, border: '1.5px solid #E4E9F0', borderRadius: 10, padding: '0 14px', fontSize: 14, color: '#172033', outline: 'none', backgroundColor: '#FFFFFF', fontFamily: lang === 'ar' ? "'IBM Plex Sans Arabic'" : "'Plus Jakarta Sans'" }
+  const inputStyle = { width: '100%', height: 44, border: '1.5px solid var(--border)', borderRadius: 10, padding: '0 14px', fontSize: 14, color: 'var(--foreground)', outline: 'none', backgroundColor: 'var(--surface)', fontFamily: lang === 'ar' ? "'IBM Plex Sans Arabic'" : "'Plus Jakarta Sans'" }
   return (
-    <div style={{ minHeight: '100vh', backgroundColor: '#EEF6FF' }}>
-      <div style={{ backgroundColor: '#132A4F', padding: '56px 24px', textAlign: 'center' }}>
-        <h1 style={{ fontSize: 36, fontWeight: 800, color: '#FFFFFF', margin: '0 0 12px' }}>
+    <div style={{ minHeight: '100vh', backgroundColor: 'var(--background)' }}>
+      <div style={{ backgroundColor: 'var(--surface-secondary)', padding: '56px 24px', textAlign: 'center' }}>
+        <h1 style={{ fontSize: 36, fontWeight: 800, color: 'var(--foreground)', margin: '0 0 12px' }}>
           {t('Contact', 'تواصل معنا', lang)}
         </h1>
       </div>
@@ -371,11 +371,11 @@ function ContactPage({ lang }: InlineProps) {
         {submitted ? (
           <div style={{ textAlign: 'center', padding: 40 }}>
             <div style={{ fontSize: 48, marginBottom: 16 }}>✅</div>
-            <h2 style={{ fontSize: 22, fontWeight: 800, color: '#172033', margin: '0 0 10px' }}>{t('Message envoyé !', 'تم إرسال الرسالة!', lang)}</h2>
-            <p style={{ fontSize: 15, color: '#667085' }}>{t('Nous vous répondrons sous 48h ouvrables.', 'سنرد عليك خلال 48 ساعة عمل.', lang)}</p>
+            <h2 style={{ fontSize: 22, fontWeight: 800, color: 'var(--foreground)', margin: '0 0 10px' }}>{t('Message envoyé !', 'تم إرسال الرسالة!', lang)}</h2>
+            <p style={{ fontSize: 15, color: 'var(--muted-foreground)' }}>{t('Nous vous répondrons sous 48h ouvrables.', 'سنرد عليك خلال 48 ساعة عمل.', lang)}</p>
           </div>
         ) : (
-          <div style={{ backgroundColor: '#FFFFFF', border: '1px solid #E4E9F0', borderRadius: 20, padding: 36 }}>
+          <div style={{ backgroundColor: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 20, padding: 36 }}>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
               {[
                 { label: t('Nom', 'الاسم', lang), ph: t('Votre nom', 'اسمك', lang), type: 'text' },
@@ -383,17 +383,17 @@ function ContactPage({ lang }: InlineProps) {
                 { label: t('Objet', 'الموضوع', lang), ph: t('Sujet de votre message', 'موضوع رسالتك', lang), type: 'text' },
               ].map((f, i) => (
                 <div key={i}>
-                  <label style={{ fontSize: 13, fontWeight: 600, color: '#172033', display: 'block', marginBottom: 6 }}>{f.label}</label>
+                  <label style={{ fontSize: 13, fontWeight: 600, color: 'var(--foreground)', display: 'block', marginBottom: 6 }}>{f.label}</label>
                   <input type={f.type} placeholder={f.ph} style={inputStyle} />
                 </div>
               ))}
               <div>
-                <label style={{ fontSize: 13, fontWeight: 600, color: '#172033', display: 'block', marginBottom: 6 }}>{t('Message', 'الرسالة', lang)}</label>
+                <label style={{ fontSize: 13, fontWeight: 600, color: 'var(--foreground)', display: 'block', marginBottom: 6 }}>{t('Message', 'الرسالة', lang)}</label>
                 <textarea placeholder={t('Votre message...', 'رسالتك...', lang)} rows={4}
                   style={{ ...inputStyle, height: 'auto', padding: '10px 14px', resize: 'vertical' }} />
               </div>
               <button onClick={() => setSubmitted(true)} style={{
-                backgroundColor: '#132A4F', color: '#FFFFFF', border: 'none', cursor: 'pointer',
+                backgroundColor: 'var(--accent)', color: 'var(--accent-foreground)', border: 'none', cursor: 'pointer',
                 padding: '13px', borderRadius: 12, fontSize: 15, fontWeight: 700,
               }}>
                 {t('Envoyer', 'إرسال', lang)}

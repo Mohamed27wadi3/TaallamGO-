@@ -6,7 +6,7 @@ interface Props extends React.ImgHTMLAttributes<HTMLImageElement> {
   fallbackBg?: string
 }
 
-export function ImageWithFallback({ src, alt, fallbackBg = '#E4E9F0', className, style, ...props }: Props) {
+export function ImageWithFallback({ src, alt, fallbackBg = 'var(--border)', className, style, ...props }: Props) {
   const [error, setError] = useState(false)
 
   if (error) {
@@ -17,7 +17,7 @@ export function ImageWithFallback({ src, alt, fallbackBg = '#E4E9F0', className,
         aria-label={alt}
         role="img"
       >
-        <span style={{ color: '#667085', fontSize: 12 }}>Image</span>
+        <span style={{ color: 'var(--muted-foreground)', fontSize: 12 }}>Image</span>
       </div>
     )
   }

@@ -23,8 +23,8 @@ export function CustomRequestPage({ lang, navigate }: Props) {
   const [submitted, setSubmitted] = useState(false)
 
   const inputStyle = {
-    width: '100%', height: 46, border: '1.5px solid #E4E9F0', borderRadius: 10,
-    padding: '0 14px', fontSize: 14, color: '#172033', outline: 'none', backgroundColor: '#FFFFFF',
+    width: '100%', height: 46, border: '1.5px solid var(--border)', borderRadius: 10,
+    padding: '0 14px', fontSize: 14, color: 'var(--foreground)', outline: 'none', backgroundColor: 'var(--surface)',
     fontFamily: lang === 'ar' ? "'IBM Plex Sans Arabic'" : "'Plus Jakarta Sans'",
   }
 
@@ -33,10 +33,10 @@ export function CustomRequestPage({ lang, navigate }: Props) {
       <div style={{ minHeight: '60vh', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 24 }}>
         <div style={{ textAlign: 'center', maxWidth: 460 }}>
           <div style={{ fontSize: 52, marginBottom: 20 }}>🎉</div>
-          <h2 style={{ fontSize: 24, fontWeight: 800, color: '#172033', margin: '0 0 12px' }}>
+          <h2 style={{ fontSize: 24, fontWeight: 800, color: 'var(--foreground)', margin: '0 0 12px' }}>
             {t('Demande envoyée !', 'تم إرسال الطلب!', lang)}
           </h2>
-          <p style={{ fontSize: 15, color: '#667085', lineHeight: 1.7, margin: '0 0 28px' }}>
+          <p style={{ fontSize: 15, color: 'var(--muted-foreground)', lineHeight: 1.7, margin: '0 0 28px' }}>
             {t(
               'Notre équipe va analyser votre demande et vous contacter sous 24-48h ouvrables. Vérifiez votre boite email.',
               'سيحلل فريقنا طلبك ويتواصل معك خلال 24-48 ساعة عمل. تحقق من بريدك الإلكتروني.',
@@ -53,7 +53,7 @@ export function CustomRequestPage({ lang, navigate }: Props) {
           <button
             onClick={() => navigate('home')}
             style={{
-              backgroundColor: '#132A4F', color: '#FFFFFF',
+              backgroundColor: 'var(--accent)', color: 'var(--accent-foreground)',
               border: 'none', cursor: 'pointer',
               padding: '13px 32px', borderRadius: 12,
               fontSize: 15, fontWeight: 700,
@@ -67,13 +67,13 @@ export function CustomRequestPage({ lang, navigate }: Props) {
   }
 
   return (
-    <div style={{ minHeight: '100vh', backgroundColor: '#EEF6FF', padding: '48px 24px' }}>
+    <div style={{ minHeight: '100vh', backgroundColor: 'var(--background)', padding: '48px 24px' }}>
       <div style={{ maxWidth: 620, margin: '0 auto' }}>
         <div style={{ textAlign: 'center', marginBottom: 40 }}>
-          <h1 style={{ fontSize: 28, fontWeight: 800, color: '#172033', margin: '0 0 8px' }}>
+          <h1 style={{ fontSize: 28, fontWeight: 800, color: 'var(--foreground)', margin: '0 0 8px' }}>
             {t('Demande personnalisée', 'طلب مخصص', lang)}
           </h1>
-          <p style={{ fontSize: 15, color: '#667085', margin: 0 }}>
+          <p style={{ fontSize: 15, color: 'var(--muted-foreground)', margin: 0 }}>
             {t('Vous n\'avez pas trouvé votre formation ? Soumettez votre demande.', 'لم تجد دورتك؟ قدّم طلبك.', lang)}
           </p>
         </div>
@@ -84,32 +84,32 @@ export function CustomRequestPage({ lang, navigate }: Props) {
             <div key={i} style={{ display: 'flex', alignItems: 'center' }}>
               <div style={{
                 width: 32, height: 32, borderRadius: '50%',
-                backgroundColor: i <= step ? '#132A4F' : '#E4E9F0',
-                color: i <= step ? '#FFFFFF' : '#667085',
+                backgroundColor: i <= step ? 'var(--accent)' : 'var(--border)',
+                color: i <= step ? 'var(--accent-foreground)' : 'var(--muted-foreground)',
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
                 fontSize: 13, fontWeight: 700,
                 flexShrink: 0,
               }}>
                 {i < step ? '✓' : i + 1}
               </div>
-              <span style={{ fontSize: 12, color: i === step ? '#172033' : '#667085', fontWeight: i === step ? 700 : 400, marginLeft: 6, marginRight: i < steps.length - 1 ? 0 : 0 }}>
+              <span style={{ fontSize: 12, color: i === step ? 'var(--foreground)' : 'var(--muted-foreground)', fontWeight: i === step ? 700 : 400, marginLeft: 6, marginRight: i < steps.length - 1 ? 0 : 0 }}>
                 {lang === 'ar' ? s.ar : s.fr}
               </span>
               {i < steps.length - 1 && (
-                <div style={{ width: 40, height: 2, backgroundColor: i < step ? '#132A4F' : '#E4E9F0', margin: '0 10px', flexShrink: 0 }} />
+                <div style={{ width: 40, height: 2, backgroundColor: i < step ? 'var(--accent)' : 'var(--border)', margin: '0 10px', flexShrink: 0 }} />
               )}
             </div>
           ))}
         </div>
 
-        <div style={{ backgroundColor: '#FFFFFF', border: '1px solid #E4E9F0', borderRadius: 20, padding: '32px' }}>
+        <div style={{ backgroundColor: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 20, padding: '32px' }}>
           {step === 0 && (
             <div>
-              <h2 style={{ fontSize: 18, fontWeight: 700, color: '#172033', margin: '0 0 20px' }}>
+              <h2 style={{ fontSize: 18, fontWeight: 700, color: 'var(--foreground)', margin: '0 0 20px' }}>
                 {t('Lien officiel de l\'offre', 'الرابط الرسمي للعرض', lang)}
               </h2>
               <div style={{ marginBottom: 20 }}>
-                <label style={{ fontSize: 13, fontWeight: 600, color: '#172033', display: 'block', marginBottom: 6 }}>
+                <label style={{ fontSize: 13, fontWeight: 600, color: 'var(--foreground)', display: 'block', marginBottom: 6 }}>
                   {t('URL officielle', 'الرابط الرسمي', lang)}
                 </label>
                 <input
@@ -119,14 +119,14 @@ export function CustomRequestPage({ lang, navigate }: Props) {
                   placeholder="https://www.udemy.com/course/..."
                   style={inputStyle}
                 />
-                <p style={{ fontSize: 12, color: '#667085', marginTop: 6 }}>
+                <p style={{ fontSize: 12, color: 'var(--muted-foreground)', marginTop: 6 }}>
                   {t('Copiez l\'URL directement depuis la page officielle de la formation.', 'انسخ الرابط مباشرة من الصفحة الرسمية للدورة.', lang)}
                 </p>
               </div>
               {url && (
                 <div style={{
-                  backgroundColor: '#EAF3FF', border: '1px solid #BFD8FF',
-                  borderRadius: 10, padding: '12px 14px', marginBottom: 20, fontSize: 13, color: '#132A4F',
+                  backgroundColor: 'var(--surface-secondary)', border: '1px solid var(--border)',
+                  borderRadius: 10, padding: '12px 14px', marginBottom: 20, fontSize: 13, color: 'var(--accent)',
                 }}>
                   ✅ {t('Plateforme détectée : ', 'تم اكتشاف المنصة: ', lang)}
                   <strong>
@@ -141,8 +141,8 @@ export function CustomRequestPage({ lang, navigate }: Props) {
                 onClick={() => url && setStep(1)}
                 disabled={!url}
                 style={{
-                  backgroundColor: url ? '#132A4F' : '#E4E9F0',
-                  color: url ? '#FFFFFF' : '#667085',
+                  backgroundColor: url ? 'var(--accent)' : 'var(--border)',
+                  color: url ? 'var(--accent-foreground)' : 'var(--muted-foreground)',
                   border: 'none', cursor: url ? 'pointer' : 'default',
                   padding: '13px', borderRadius: 12,
                   fontSize: 15, fontWeight: 700, width: '100%',
@@ -155,7 +155,7 @@ export function CustomRequestPage({ lang, navigate }: Props) {
 
           {step === 1 && (
             <div>
-              <h2 style={{ fontSize: 18, fontWeight: 700, color: '#172033', margin: '0 0 20px' }}>
+              <h2 style={{ fontSize: 18, fontWeight: 700, color: 'var(--foreground)', margin: '0 0 20px' }}>
                 {t('Détails de votre demande', 'تفاصيل طلبك', lang)}
               </h2>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
@@ -164,7 +164,7 @@ export function CustomRequestPage({ lang, navigate }: Props) {
                   { label: t('Votre email', 'بريدك الإلكتروني', lang), value: email, setter: setEmail, placeholder: 'vous@email.com', type: 'email' },
                 ].map((field, i) => (
                   <div key={i}>
-                    <label style={{ fontSize: 13, fontWeight: 600, color: '#172033', display: 'block', marginBottom: 6 }}>
+                    <label style={{ fontSize: 13, fontWeight: 600, color: 'var(--foreground)', display: 'block', marginBottom: 6 }}>
                       {field.label}
                     </label>
                     <input
@@ -177,7 +177,7 @@ export function CustomRequestPage({ lang, navigate }: Props) {
                   </div>
                 ))}
                 <div>
-                  <label style={{ fontSize: 13, fontWeight: 600, color: '#172033', display: 'block', marginBottom: 6 }}>
+                  <label style={{ fontSize: 13, fontWeight: 600, color: 'var(--foreground)', display: 'block', marginBottom: 6 }}>
                     {t('Commentaire (optionnel)', 'تعليق (اختياري)', lang)}
                   </label>
                   <textarea
@@ -192,8 +192,8 @@ export function CustomRequestPage({ lang, navigate }: Props) {
               <div style={{ display: 'flex', gap: 10, marginTop: 24 }}>
                 <button onClick={() => setStep(0)} style={{
                   flex: 1, padding: '12px', borderRadius: 12,
-                  border: '1.5px solid #E4E9F0', backgroundColor: '#FFFFFF',
-                  cursor: 'pointer', fontSize: 14, fontWeight: 600, color: '#172033',
+                  border: '1.5px solid var(--border)', backgroundColor: 'var(--surface)',
+                  cursor: 'pointer', fontSize: 14, fontWeight: 600, color: 'var(--foreground)',
                 }}>
                   ← {t('Retour', 'رجوع', lang)}
                 </button>
@@ -202,8 +202,8 @@ export function CustomRequestPage({ lang, navigate }: Props) {
                   disabled={!name || !email}
                   style={{
                     flex: 2, padding: '12px', borderRadius: 12, border: 'none',
-                    backgroundColor: name && email ? '#132A4F' : '#E4E9F0',
-                    color: name && email ? '#FFFFFF' : '#667085',
+                    backgroundColor: name && email ? 'var(--accent)' : 'var(--border)',
+                    color: name && email ? 'var(--accent-foreground)' : 'var(--muted-foreground)',
                     cursor: name && email ? 'pointer' : 'default',
                     fontSize: 15, fontWeight: 700,
                   }}
@@ -216,7 +216,7 @@ export function CustomRequestPage({ lang, navigate }: Props) {
 
           {step === 2 && (
             <div>
-              <h2 style={{ fontSize: 18, fontWeight: 700, color: '#172033', margin: '0 0 20px' }}>
+              <h2 style={{ fontSize: 18, fontWeight: 700, color: 'var(--foreground)', margin: '0 0 20px' }}>
                 {t('Résumé et confirmation', 'الملخص والتأكيد', lang)}
               </h2>
               {[
@@ -225,9 +225,9 @@ export function CustomRequestPage({ lang, navigate }: Props) {
                 { label: t('Email', 'البريد', lang), value: email },
                 { label: t('Commentaire', 'التعليق', lang), value: comment || t('(aucun)', '(لا يوجد)', lang) },
               ].map((row, i) => (
-                <div key={i} style={{ display: 'flex', gap: 12, padding: '10px 0', borderBottom: '1px solid #F0F3F8', fontSize: 14 }}>
-                  <span style={{ color: '#667085', minWidth: 100, flexShrink: 0 }}>{row.label}</span>
-                  <span style={{ color: '#172033', fontWeight: 500, wordBreak: 'break-all' }}>{row.value}</span>
+                <div key={i} style={{ display: 'flex', gap: 12, padding: '10px 0', borderBottom: '1px solid var(--surface-secondary)', fontSize: 14 }}>
+                  <span style={{ color: 'var(--muted-foreground)', minWidth: 100, flexShrink: 0 }}>{row.label}</span>
+                  <span style={{ color: 'var(--foreground)', fontWeight: 500, wordBreak: 'break-all' }}>{row.value}</span>
                 </div>
               ))}
 
@@ -242,8 +242,8 @@ export function CustomRequestPage({ lang, navigate }: Props) {
               <div style={{ display: 'flex', gap: 10 }}>
                 <button onClick={() => setStep(1)} style={{
                   flex: 1, padding: '12px', borderRadius: 12,
-                  border: '1.5px solid #E4E9F0', backgroundColor: '#FFFFFF',
-                  cursor: 'pointer', fontSize: 14, fontWeight: 600, color: '#172033',
+                  border: '1.5px solid var(--border)', backgroundColor: 'var(--surface)',
+                  cursor: 'pointer', fontSize: 14, fontWeight: 600, color: 'var(--foreground)',
                 }}>
                   ← {t('Modifier', 'تعديل', lang)}
                 </button>
@@ -251,7 +251,7 @@ export function CustomRequestPage({ lang, navigate }: Props) {
                   onClick={() => setSubmitted(true)}
                   style={{
                     flex: 2, padding: '12px', borderRadius: 12, border: 'none',
-                    backgroundColor: '#2F80ED', color: '#FFFFFF',
+                    backgroundColor: 'var(--accent)', color: 'var(--accent-foreground)',
                     cursor: 'pointer', fontSize: 15, fontWeight: 700,
                   }}
                 >

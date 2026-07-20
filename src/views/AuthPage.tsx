@@ -34,9 +34,9 @@ export function AuthPage({ lang, navigate, mode: initialMode }: Props) {
 
   const inputStyle = {
     width: '100%', height: 46,
-    border: '1.5px solid #E4E9F0', borderRadius: 10,
-    padding: '0 14px', fontSize: 14, color: '#172033',
-    backgroundColor: '#FFFFFF', outline: 'none',
+    border: '1.5px solid var(--border)', borderRadius: 10,
+    padding: '0 14px', fontSize: 14, color: 'var(--foreground)',
+    backgroundColor: 'var(--surface)', outline: 'none',
     fontFamily: lang === 'ar' ? "'IBM Plex Sans Arabic'" : "'Plus Jakarta Sans'",
     transition: 'border-color 0.15s',
   }
@@ -44,11 +44,11 @@ export function AuthPage({ lang, navigate, mode: initialMode }: Props) {
   return (
     <div style={{
       minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center',
-      backgroundColor: '#EEF6FF', padding: 24,
+      backgroundColor: 'var(--background)', padding: 24,
     }}>
       <div style={{
-        backgroundColor: '#FFFFFF',
-        border: '1px solid #E4E9F0',
+        backgroundColor: 'var(--surface)',
+        border: '1px solid var(--border)',
         borderRadius: 20,
         padding: '40px 40px',
         width: '100%', maxWidth: 440,
@@ -64,10 +64,10 @@ export function AuthPage({ lang, navigate, mode: initialMode }: Props) {
         {mode === 'forgot' && submitted ? (
           <div style={{ textAlign: 'center', padding: '16px 0' }}>
             <div style={{ fontSize: 40, marginBottom: 16 }}>📧</div>
-            <h2 style={{ fontSize: 20, fontWeight: 800, color: '#172033', margin: '0 0 10px' }}>
+            <h2 style={{ fontSize: 20, fontWeight: 800, color: 'var(--foreground)', margin: '0 0 10px' }}>
               {t('Email envoyé !', 'تم إرسال البريد!', lang)}
             </h2>
-            <p style={{ fontSize: 14, color: '#667085', lineHeight: 1.7 }}>
+            <p style={{ fontSize: 14, color: 'var(--muted-foreground)', lineHeight: 1.7 }}>
               {t(
                 `Un lien de réinitialisation a été envoyé à ${email || 'votre adresse'}. Vérifiez aussi vos spams.`,
                 `تم إرسال رابط إعادة التعيين إلى ${email || 'بريدك'}. تحقق من البريد غير المرغوب أيضاً.`,
@@ -78,7 +78,7 @@ export function AuthPage({ lang, navigate, mode: initialMode }: Props) {
               onClick={() => setMode('login')}
               style={{
                 marginTop: 24, background: 'none', border: 'none', cursor: 'pointer',
-                color: '#132A4F', fontSize: 14, fontWeight: 600, textDecoration: 'underline',
+                color: 'var(--accent)', fontSize: 14, fontWeight: 600, textDecoration: 'underline',
                 textUnderlineOffset: 3,
               }}
             >
@@ -87,12 +87,12 @@ export function AuthPage({ lang, navigate, mode: initialMode }: Props) {
           </div>
         ) : (
           <>
-            <h1 style={{ fontSize: 22, fontWeight: 800, color: '#172033', margin: '0 0 6px', textAlign: 'center' }}>
+            <h1 style={{ fontSize: 22, fontWeight: 800, color: 'var(--foreground)', margin: '0 0 6px', textAlign: 'center' }}>
               {mode === 'login' && t('Connexion', 'تسجيل الدخول', lang)}
               {mode === 'register' && t('Créer un compte', 'إنشاء حساب', lang)}
               {mode === 'forgot' && t('Mot de passe oublié', 'نسيت كلمة المرور', lang)}
             </h1>
-            <p style={{ fontSize: 14, color: '#667085', textAlign: 'center', margin: '0 0 28px' }}>
+            <p style={{ fontSize: 14, color: 'var(--muted-foreground)', textAlign: 'center', margin: '0 0 28px' }}>
               {mode === 'login' && t('Bon retour ! Entrez vos identifiants.', 'مرحباً بعودتك! أدخل بياناتك.', lang)}
               {mode === 'register' && t('Rejoignez TaallamGo gratuitement.', 'انضم إلى TaallamGo مجاناً.', lang)}
               {mode === 'forgot' && t('Entrez votre email pour réinitialiser.', 'أدخل بريدك لإعادة التعيين.', lang)}
@@ -101,7 +101,7 @@ export function AuthPage({ lang, navigate, mode: initialMode }: Props) {
             <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
               {mode === 'register' && (
                 <div>
-                  <label style={{ fontSize: 13, fontWeight: 600, color: '#172033', display: 'block', marginBottom: 6 }}>
+                  <label style={{ fontSize: 13, fontWeight: 600, color: 'var(--foreground)', display: 'block', marginBottom: 6 }}>
                     {t('Nom complet', 'الاسم الكامل', lang)}
                   </label>
                   <input
@@ -111,14 +111,14 @@ export function AuthPage({ lang, navigate, mode: initialMode }: Props) {
                     placeholder={t('Votre nom complet', 'اسمك الكامل', lang)}
                     required
                     style={inputStyle}
-                    onFocus={e => (e.currentTarget.style.borderColor = '#132A4F')}
-                    onBlur={e => (e.currentTarget.style.borderColor = '#E4E9F0')}
+                    onFocus={e => (e.currentTarget.style.borderColor = 'var(--accent)')}
+                    onBlur={e => (e.currentTarget.style.borderColor = 'var(--border)')}
                   />
                 </div>
               )}
 
               <div>
-                <label style={{ fontSize: 13, fontWeight: 600, color: '#172033', display: 'block', marginBottom: 6 }}>
+                <label style={{ fontSize: 13, fontWeight: 600, color: 'var(--foreground)', display: 'block', marginBottom: 6 }}>
                   {t('Adresse email', 'البريد الإلكتروني', lang)}
                 </label>
                 <input
@@ -128,14 +128,14 @@ export function AuthPage({ lang, navigate, mode: initialMode }: Props) {
                   placeholder="exemple@email.com"
                   required
                   style={inputStyle}
-                  onFocus={e => (e.currentTarget.style.borderColor = '#132A4F')}
-                  onBlur={e => (e.currentTarget.style.borderColor = '#E4E9F0')}
+                  onFocus={e => (e.currentTarget.style.borderColor = 'var(--accent)')}
+                  onBlur={e => (e.currentTarget.style.borderColor = 'var(--border)')}
                 />
               </div>
 
               {mode === 'register' && (
                 <div>
-                  <label style={{ fontSize: 13, fontWeight: 600, color: '#172033', display: 'block', marginBottom: 6 }}>
+                  <label style={{ fontSize: 13, fontWeight: 600, color: 'var(--foreground)', display: 'block', marginBottom: 6 }}>
                     {t('Téléphone (optionnel)', 'الهاتف (اختياري)', lang)}
                   </label>
                   <input
@@ -144,8 +144,8 @@ export function AuthPage({ lang, navigate, mode: initialMode }: Props) {
                     onChange={e => setPhone(e.target.value)}
                     placeholder="+213 6XX XXX XXX"
                     style={inputStyle}
-                    onFocus={e => (e.currentTarget.style.borderColor = '#132A4F')}
-                    onBlur={e => (e.currentTarget.style.borderColor = '#E4E9F0')}
+                    onFocus={e => (e.currentTarget.style.borderColor = 'var(--accent)')}
+                    onBlur={e => (e.currentTarget.style.borderColor = 'var(--border)')}
                   />
                 </div>
               )}
@@ -153,14 +153,14 @@ export function AuthPage({ lang, navigate, mode: initialMode }: Props) {
               {mode !== 'forgot' && (
                 <div>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 6 }}>
-                    <label style={{ fontSize: 13, fontWeight: 600, color: '#172033' }}>
+                    <label style={{ fontSize: 13, fontWeight: 600, color: 'var(--foreground)' }}>
                       {t('Mot de passe', 'كلمة المرور', lang)}
                     </label>
                     {mode === 'login' && (
                       <button
                         type="button"
                         onClick={() => setMode('forgot')}
-                        style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: 13, color: '#2F80ED', fontWeight: 500 }}
+                        style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: 13, color: 'var(--accent)', fontWeight: 500 }}
                       >
                         {t('Oublié ?', 'نسيت؟', lang)}
                       </button>
@@ -175,22 +175,22 @@ export function AuthPage({ lang, navigate, mode: initialMode }: Props) {
                       required
                       minLength={8}
                       style={{ ...inputStyle, paddingRight: 44 }}
-                      onFocus={e => (e.currentTarget.style.borderColor = '#132A4F')}
-                      onBlur={e => (e.currentTarget.style.borderColor = '#E4E9F0')}
+                      onFocus={e => (e.currentTarget.style.borderColor = 'var(--accent)')}
+                      onBlur={e => (e.currentTarget.style.borderColor = 'var(--border)')}
                     />
                     <button
                       type="button"
                       onClick={() => setShowPass(!showPass)}
                       style={{
                         position: 'absolute', right: 12, top: '50%', transform: 'translateY(-50%)',
-                        background: 'none', border: 'none', cursor: 'pointer', color: '#667085', fontSize: 16,
+                        background: 'none', border: 'none', cursor: 'pointer', color: 'var(--muted-foreground)', fontSize: 16,
                       }}
                     >
                       {showPass ? '🙈' : '👁️'}
                     </button>
                   </div>
                   {mode === 'register' && (
-                    <p style={{ fontSize: 12, color: '#667085', margin: '6px 0 0' }}>
+                    <p style={{ fontSize: 12, color: 'var(--muted-foreground)', margin: '6px 0 0' }}>
                       {t('Minimum 8 caractères.', 'الحد الأدنى 8 أحرف.', lang)}
                     </p>
                   )}
@@ -198,8 +198,8 @@ export function AuthPage({ lang, navigate, mode: initialMode }: Props) {
               )}
 
               {mode === 'register' && (
-                <label style={{ display: 'flex', alignItems: 'flex-start', gap: 10, cursor: 'pointer', fontSize: 13, color: '#667085' }}>
-                  <input type="checkbox" required style={{ marginTop: 2, accentColor: '#132A4F' }} />
+                <label style={{ display: 'flex', alignItems: 'flex-start', gap: 10, cursor: 'pointer', fontSize: 13, color: 'var(--muted-foreground)' }}>
+                  <input type="checkbox" required style={{ marginTop: 2, accentColor: 'var(--accent)' }} />
                   <span>
                     {t(
                       "J'accepte les conditions d'utilisation et la politique de confidentialité.",
@@ -214,8 +214,8 @@ export function AuthPage({ lang, navigate, mode: initialMode }: Props) {
                 type="submit"
                 disabled={loading}
                 style={{
-                  backgroundColor: loading ? '#E4E9F0' : '#132A4F',
-                  color: loading ? '#667085' : '#FFFFFF',
+                  backgroundColor: loading ? 'var(--border)' : 'var(--accent)',
+                  color: loading ? 'var(--muted-foreground)' : 'var(--accent-foreground)',
                   border: 'none', cursor: loading ? 'default' : 'pointer',
                   padding: '13px', borderRadius: 12,
                   fontSize: 15, fontWeight: 700, marginTop: 4,
@@ -226,7 +226,7 @@ export function AuthPage({ lang, navigate, mode: initialMode }: Props) {
                 {loading ? (
                   <>
                     <span style={{
-                      width: 16, height: 16, border: '2px solid #667085',
+                      width: 16, height: 16, border: '2px solid var(--muted-foreground)',
                       borderTopColor: 'transparent', borderRadius: '50%',
                       display: 'inline-block',
                       animation: 'spin 0.6s linear infinite',
@@ -241,18 +241,18 @@ export function AuthPage({ lang, navigate, mode: initialMode }: Props) {
               </button>
             </form>
 
-            <div style={{ textAlign: 'center', marginTop: 24, fontSize: 14, color: '#667085' }}>
+            <div style={{ textAlign: 'center', marginTop: 24, fontSize: 14, color: 'var(--muted-foreground)' }}>
               {mode === 'login' ? (
                 <>
                   {t("Pas encore de compte ?", "ليس لديك حساب؟", lang)}{' '}
-                  <button onClick={() => setMode('register')} style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#132A4F', fontWeight: 700, fontSize: 14 }}>
+                  <button onClick={() => setMode('register')} style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--accent)', fontWeight: 700, fontSize: 14 }}>
                     {t("S'inscrire", 'سجل الآن', lang)}
                   </button>
                 </>
               ) : (
                 <>
                   {t("Déjà un compte ?", "لديك حساب؟", lang)}{' '}
-                  <button onClick={() => setMode('login')} style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#132A4F', fontWeight: 700, fontSize: 14 }}>
+                  <button onClick={() => setMode('login')} style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--accent)', fontWeight: 700, fontSize: 14 }}>
                     {t("Se connecter", 'تسجيل الدخول', lang)}
                   </button>
                 </>

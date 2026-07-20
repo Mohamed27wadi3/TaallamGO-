@@ -10,11 +10,7 @@ function getInitialTheme(): Theme {
 }
 
 export function useTheme() {
-  const [theme, setTheme] = useState<Theme>('light')
-
-  useEffect(() => {
-    setTheme(getInitialTheme())
-  }, [])
+  const [theme, setTheme] = useState<Theme>(getInitialTheme)
 
   useEffect(() => {
     document.documentElement.dataset.theme = theme

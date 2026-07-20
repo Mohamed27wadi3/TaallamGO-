@@ -46,7 +46,7 @@ export function CourseCard({ course, lang, onClick }: Props) {
       onMouseEnter={e => {
         e.currentTarget.style.boxShadow = '0 8px 24px rgba(19,42,79,0.1)'
         e.currentTarget.style.transform = 'translateY(-2px)'
-        e.currentTarget.style.borderColor = 'rgba(47,128,237,0.35)'
+        e.currentTarget.style.borderColor = 'rgba(59,130,246,0.35)'
       }}
       onMouseLeave={e => {
         e.currentTarget.style.boxShadow = 'none'
@@ -64,8 +64,8 @@ export function CourseCard({ course, lang, onClick }: Props) {
         {course.tag && (
           <span style={{
             position: 'absolute', top: 10, left: 10,
-            backgroundColor: course.tagColor || '#132A4F',
-            color: '#FFFFFF',
+            backgroundColor: course.tagColor || 'var(--accent)',
+            color: 'var(--accent-foreground)',
             fontSize: 11, fontWeight: 700,
             padding: '3px 8px', borderRadius: 6,
             letterSpacing: '0.03em',
@@ -76,7 +76,7 @@ export function CourseCard({ course, lang, onClick }: Props) {
         {course.certificate && (
           <span style={{
             position: 'absolute', top: 10, right: 10,
-            backgroundColor: 'rgba(255,255,255,0.92)',
+            backgroundColor: 'var(--surface)',
             color: 'var(--primary)',
             fontSize: 11, fontWeight: 600,
             padding: '3px 7px', borderRadius: 6,

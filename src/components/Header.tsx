@@ -132,7 +132,7 @@ export function Header({ lang, onLangToggle, currentPage, navigate, dir, theme, 
               borderRadius: 8,
               fontSize: 14,
               fontWeight: 600,
-              color: '#FFFFFF',
+              color: 'var(--accent-foreground)',
               transition: 'all 0.15s',
             }}
           >
@@ -143,7 +143,7 @@ export function Header({ lang, onLangToggle, currentPage, navigate, dir, theme, 
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
             className="md:hidden"
-            style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 4, color: '#132A4F' }}
+            style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 4, color: 'var(--accent)' }}
             aria-label="Menu"
           >
             <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
@@ -166,7 +166,7 @@ export function Header({ lang, onLangToggle, currentPage, navigate, dir, theme, 
 
       {/* Mobile menu */}
       {mobileOpen && (
-        <div style={{ borderTop: '1px solid #E4E9F0', backgroundColor: '#FFFFFF', padding: '12px 24px 20px' }} className="md:hidden">
+        <div style={{ borderTop: '1px solid var(--border)', backgroundColor: 'var(--surface)', padding: '12px 24px 20px' }} className="md:hidden">
           {navLinks.map(link => (
             <button
               key={link.key}
@@ -181,8 +181,8 @@ export function Header({ lang, onLangToggle, currentPage, navigate, dir, theme, 
                 padding: '10px 0',
                 fontSize: 15,
                 fontWeight: 500,
-                color: '#172033',
-                borderBottom: '1px solid #F0F3F8',
+                color: 'var(--foreground)',
+                borderBottom: '1px solid var(--surface-secondary)',
               }}
             >
               {lang === 'ar' ? link.ar : link.fr}
@@ -190,13 +190,13 @@ export function Header({ lang, onLangToggle, currentPage, navigate, dir, theme, 
           ))}
           <button
             onClick={() => { navigate('auth-login'); setMobileOpen(false) }}
-            style={{ display: 'block', width: '100%', textAlign: dir === 'rtl' ? 'right' : 'left', background: 'none', border: 'none', cursor: 'pointer', padding: '10px 0', fontSize: 15, fontWeight: 600, color: '#132A4F' }}
+            style={{ display: 'block', width: '100%', textAlign: dir === 'rtl' ? 'right' : 'left', background: 'none', border: 'none', cursor: 'pointer', padding: '10px 0', fontSize: 15, fontWeight: 600, color: 'var(--accent)' }}
           >
             {t('Connexion', 'تسجيل الدخول', lang)}
           </button>
           <button
             onClick={() => { navigate('catalog'); setMobileOpen(false) }}
-            style={{ display: 'block', width: '100%', background: '#132A4F', border: 'none', cursor: 'pointer', padding: '11px 14px', borderRadius: 8, fontSize: 15, fontWeight: 700, color: '#FFFFFF', marginTop: 8 }}
+            style={{ display: 'block', width: '100%', background: 'var(--accent)', border: 'none', cursor: 'pointer', padding: '11px 14px', borderRadius: 8, fontSize: 15, fontWeight: 700, color: 'var(--accent-foreground)', marginTop: 8 }}
           >
             {t('Explorer les formations', 'استكشف الدورات', lang)}
           </button>

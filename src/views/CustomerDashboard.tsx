@@ -56,30 +56,30 @@ export function CustomerDashboard({ lang, navigate }: Props) {
         <div>
           <button
             onClick={() => setTab('orders')}
-            style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#667085', fontSize: 14, marginBottom: 20, display: 'flex', alignItems: 'center', gap: 6 }}
+            style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--muted-foreground)', fontSize: 14, marginBottom: 20, display: 'flex', alignItems: 'center', gap: 6 }}
           >
             ← {t('Retour aux commandes', 'العودة للطلبات', lang)}
           </button>
 
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 24, flexWrap: 'wrap', gap: 12 }}>
             <div>
-              <h2 style={{ fontSize: 22, fontWeight: 800, color: '#172033', margin: '0 0 4px' }}>
+              <h2 style={{ fontSize: 22, fontWeight: 800, color: 'var(--foreground)', margin: '0 0 4px' }}>
                 {t('Commande', 'طلب', lang)} {selectedOrder.id}
               </h2>
-              <p style={{ fontSize: 14, color: '#667085', margin: 0 }}>{selectedOrder.date}</p>
+              <p style={{ fontSize: 14, color: 'var(--muted-foreground)', margin: 0 }}>{selectedOrder.date}</p>
             </div>
             <StatusBadge statusKey={selectedOrder.status} lang={lang} />
           </div>
 
           {/* Order timeline */}
-          <div style={{ backgroundColor: '#FFFFFF', border: '1px solid #E4E9F0', borderRadius: 16, padding: 24, marginBottom: 24 }}>
-            <h3 style={{ fontSize: 16, fontWeight: 700, color: '#172033', margin: '0 0 24px' }}>
+          <div style={{ backgroundColor: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 16, padding: 24, marginBottom: 24 }}>
+            <h3 style={{ fontSize: 16, fontWeight: 700, color: 'var(--foreground)', margin: '0 0 24px' }}>
               {t('Suivi de commande', 'تتبع الطلب', lang)}
             </h3>
             <div style={{ position: 'relative', paddingLeft: 24 }}>
               <div style={{
                 position: 'absolute', left: 10, top: 0, bottom: 0, width: 2,
-                background: 'linear-gradient(to bottom, #2F80ED 60%, #E4E9F0 60%)',
+                background: 'linear-gradient(to bottom, var(--accent) 60%, var(--border) 60%)',
               }} />
               {orderTimelineSteps.map((step, i) => {
                 const s = orderStatuses.find(x => x.key === step.key)!
@@ -87,19 +87,19 @@ export function CustomerDashboard({ lang, navigate }: Props) {
                   <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 14, marginBottom: 20, position: 'relative' }}>
                     <div style={{
                       width: 20, height: 20, borderRadius: '50%', flexShrink: 0,
-                      backgroundColor: step.done ? '#2F80ED' : step.active ? '#132A4F' : '#E4E9F0',
-                      border: step.active ? '2px solid #132A4F' : 'none',
+                      backgroundColor: step.done ? 'var(--accent)' : step.active ? 'var(--accent)' : 'var(--border)',
+                      border: step.active ? '2px solid var(--accent)' : 'none',
                       marginLeft: -10, marginTop: 2,
                       display: 'flex', alignItems: 'center', justifyContent: 'center',
                     }}>
-                      {step.done && <span style={{ color: '#FFFFFF', fontSize: 10 }}>✓</span>}
+                      {step.done && <span style={{ color: 'var(--accent-foreground)', fontSize: 10 }}>✓</span>}
                     </div>
                     <div>
-                      <div style={{ fontSize: 14, fontWeight: step.active ? 700 : 500, color: step.done || step.active ? '#172033' : '#667085' }}>
+                      <div style={{ fontSize: 14, fontWeight: step.active ? 700 : 500, color: step.done || step.active ? 'var(--foreground)' : 'var(--muted-foreground)' }}>
                         {lang === 'ar' ? s.labelAr : s.label}
                       </div>
                       {step.active && (
-                        <div style={{ fontSize: 12, color: '#2F80ED', marginTop: 2 }}>
+                        <div style={{ fontSize: 12, color: 'var(--accent)', marginTop: 2 }}>
                           {t('En cours...', 'جاري...', lang)}
                         </div>
                       )}
@@ -111,8 +111,8 @@ export function CustomerDashboard({ lang, navigate }: Props) {
           </div>
 
           {/* Order summary */}
-          <div style={{ backgroundColor: '#FFFFFF', border: '1px solid #E4E9F0', borderRadius: 16, padding: 24 }}>
-            <h3 style={{ fontSize: 16, fontWeight: 700, color: '#172033', margin: '0 0 16px' }}>
+          <div style={{ backgroundColor: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 16, padding: 24 }}>
+            <h3 style={{ fontSize: 16, fontWeight: 700, color: 'var(--foreground)', margin: '0 0 16px' }}>
               {t('Détails de la commande', 'تفاصيل الطلب', lang)}
             </h3>
             {[
@@ -123,11 +123,11 @@ export function CustomerDashboard({ lang, navigate }: Props) {
             ].map((row, i) => (
               <div key={i} style={{
                 display: 'flex', justifyContent: 'space-between',
-                padding: '10px 0', borderBottom: '1px solid #F0F3F8',
+                padding: '10px 0', borderBottom: '1px solid var(--surface-secondary)',
                 fontSize: 14,
               }}>
-                <span style={{ color: '#667085' }}>{row.label}</span>
-                <span style={{ fontWeight: 600, color: '#172033' }}>{row.value}</span>
+                <span style={{ color: 'var(--muted-foreground)' }}>{row.label}</span>
+                <span style={{ fontWeight: 600, color: 'var(--foreground)' }}>{row.value}</span>
               </div>
             ))}
           </div>
@@ -138,7 +138,7 @@ export function CustomerDashboard({ lang, navigate }: Props) {
     if (tab === 'orders') {
       return (
         <div>
-          <h2 style={{ fontSize: 22, fontWeight: 800, color: '#172033', margin: '0 0 24px' }}>
+          <h2 style={{ fontSize: 22, fontWeight: 800, color: 'var(--foreground)', margin: '0 0 24px' }}>
             {t('Mes commandes', 'طلباتي', lang)}
           </h2>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
@@ -147,26 +147,26 @@ export function CustomerDashboard({ lang, navigate }: Props) {
                 key={order.id}
                 onClick={() => { setSelectedOrder(order); setTab('order-detail') }}
                 style={{
-                  backgroundColor: '#FFFFFF', border: '1px solid #E4E9F0', borderRadius: 14,
+                  backgroundColor: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 14,
                   padding: '18px 20px', cursor: 'pointer', transition: 'all 0.15s',
                   display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 12,
                 }}
-                onMouseEnter={e => (e.currentTarget.style.borderColor = '#132A4F')}
-                onMouseLeave={e => (e.currentTarget.style.borderColor = '#E4E9F0')}
+                onMouseEnter={e => (e.currentTarget.style.borderColor = 'var(--accent)')}
+                onMouseLeave={e => (e.currentTarget.style.borderColor = 'var(--border)')}
               >
                 <div style={{ flex: 1 }}>
-                  <div style={{ fontSize: 15, fontWeight: 700, color: '#172033', marginBottom: 4 }}>{order.course}</div>
-                  <div style={{ fontSize: 13, color: '#667085' }}>
+                  <div style={{ fontSize: 15, fontWeight: 700, color: 'var(--foreground)', marginBottom: 4 }}>{order.course}</div>
+                  <div style={{ fontSize: 13, color: 'var(--muted-foreground)' }}>
                     {order.id} · {order.platform} · {order.date}
                   </div>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
-                  <span style={{ fontSize: 15, fontWeight: 700, color: '#132A4F' }}>
+                  <span style={{ fontSize: 15, fontWeight: 700, color: 'var(--accent)' }}>
                     {formatDzd(order.amount)} DZD
                   </span>
                   <StatusBadge statusKey={order.status} lang={lang} />
                   <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                    <polyline points="5,3 11,8 5,13" stroke="#667085" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                    <polyline points="5,3 11,8 5,13" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                 </div>
               </div>
@@ -179,19 +179,19 @@ export function CustomerDashboard({ lang, navigate }: Props) {
     if (tab === 'profile') {
       return (
         <div>
-          <h2 style={{ fontSize: 22, fontWeight: 800, color: '#172033', margin: '0 0 24px' }}>
+          <h2 style={{ fontSize: 22, fontWeight: 800, color: 'var(--foreground)', margin: '0 0 24px' }}>
             {t('Profil & sécurité', 'الملف الشخصي والأمان', lang)}
           </h2>
-          <div style={{ backgroundColor: '#FFFFFF', border: '1px solid #E4E9F0', borderRadius: 16, padding: 24, marginBottom: 20 }}>
+          <div style={{ backgroundColor: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 16, padding: 24, marginBottom: 20 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 24 }}>
               <div style={{
                 width: 60, height: 60, borderRadius: '50%',
-                backgroundColor: '#132A4F', display: 'flex', alignItems: 'center', justifyContent: 'center',
-                fontSize: 22, color: '#FFFFFF', fontWeight: 700,
+                backgroundColor: 'var(--accent)', display: 'flex', alignItems: 'center', justifyContent: 'center',
+                fontSize: 22, color: 'var(--accent-foreground)', fontWeight: 700,
               }}>A</div>
               <div>
-                <div style={{ fontSize: 17, fontWeight: 700, color: '#172033' }}>Ahmed Bensalem</div>
-                <div style={{ fontSize: 14, color: '#667085' }}>ahmed.bensalem@email.com</div>
+                <div style={{ fontSize: 17, fontWeight: 700, color: 'var(--foreground)' }}>Ahmed Bensalem</div>
+                <div style={{ fontSize: 14, color: 'var(--muted-foreground)' }}>ahmed.bensalem@email.com</div>
               </div>
             </div>
             <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: 16 }}>
@@ -202,21 +202,21 @@ export function CustomerDashboard({ lang, navigate }: Props) {
                 { label: t('Téléphone', 'الهاتف', lang), value: '+213 654 321 987' },
               ].map((field, i) => (
                 <div key={i}>
-                  <label style={{ fontSize: 12, fontWeight: 700, color: '#667085', display: 'block', marginBottom: 6, textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+                  <label style={{ fontSize: 12, fontWeight: 700, color: 'var(--muted-foreground)', display: 'block', marginBottom: 6, textTransform: 'uppercase', letterSpacing: '0.04em' }}>
                     {field.label}
                   </label>
                   <input
                     defaultValue={field.value}
                     style={{
-                      width: '100%', height: 42, border: '1.5px solid #E4E9F0', borderRadius: 10,
-                      padding: '0 12px', fontSize: 14, color: '#172033', outline: 'none',
+                      width: '100%', height: 42, border: '1.5px solid var(--border)', borderRadius: 10,
+                      padding: '0 12px', fontSize: 14, color: 'var(--foreground)', outline: 'none',
                     }}
                   />
                 </div>
               ))}
             </div>
             <button style={{
-              marginTop: 20, backgroundColor: '#132A4F', color: '#FFFFFF',
+              marginTop: 20, backgroundColor: 'var(--accent)', color: 'var(--accent-foreground)',
               border: 'none', cursor: 'pointer', padding: '11px 24px', borderRadius: 10, fontSize: 14, fontWeight: 700,
             }}>
               {t('Enregistrer', 'حفظ', lang)}
@@ -229,23 +229,23 @@ export function CustomerDashboard({ lang, navigate }: Props) {
     if (tab === 'support') {
       return (
         <div>
-          <h2 style={{ fontSize: 22, fontWeight: 800, color: '#172033', margin: '0 0 24px' }}>
+          <h2 style={{ fontSize: 22, fontWeight: 800, color: 'var(--foreground)', margin: '0 0 24px' }}>
             {t('Support', 'الدعم', lang)}
           </h2>
-          <div style={{ backgroundColor: '#FFFFFF', border: '1px solid #E4E9F0', borderRadius: 16, padding: 24, marginBottom: 16 }}>
-            <div style={{ fontSize: 14, color: '#667085', marginBottom: 16 }}>
+          <div style={{ backgroundColor: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 16, padding: 24, marginBottom: 16 }}>
+            <div style={{ fontSize: 14, color: 'var(--muted-foreground)', marginBottom: 16 }}>
               {t('Ticket #TKT-2025-0041', 'تذكرة #TKT-2025-0041', lang)} · {t('En attente de réponse', 'في انتظار الرد', lang)}
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 12, marginBottom: 16 }}>
-              <div style={{ backgroundColor: '#F0F3F8', borderRadius: 10, padding: '12px 14px', maxWidth: '80%' }}>
-                <div style={{ fontSize: 12, color: '#667085', marginBottom: 4 }}>Ahmed · 20 Jan 2025</div>
-                <div style={{ fontSize: 14, color: '#172033' }}>
+              <div style={{ backgroundColor: 'var(--surface-secondary)', borderRadius: 10, padding: '12px 14px', maxWidth: '80%' }}>
+                <div style={{ fontSize: 12, color: 'var(--muted-foreground)', marginBottom: 4 }}>Ahmed · 20 Jan 2025</div>
+                <div style={{ fontSize: 14, color: 'var(--foreground)' }}>
                   {t("Bonjour, ma commande TGO-2025-0031 est en traitement depuis 2 jours. Pouvez-vous me donner une mise à jour ?", 'مرحباً، طلبي TGO-2025-0031 في المعالجة منذ يومين. هل يمكنكم تقديم تحديث؟', lang)}
                 </div>
               </div>
-              <div style={{ backgroundColor: '#E8EDF5', borderRadius: 10, padding: '12px 14px', maxWidth: '80%', marginLeft: 'auto' }}>
-                <div style={{ fontSize: 12, color: '#667085', marginBottom: 4 }}>TaallamGo Support · 20 Jan 2025</div>
-                <div style={{ fontSize: 14, color: '#172033' }}>
+              <div style={{ backgroundColor: 'var(--surface-secondary)', borderRadius: 10, padding: '12px 14px', maxWidth: '80%', marginLeft: 'auto' }}>
+                <div style={{ fontSize: 12, color: 'var(--muted-foreground)', marginBottom: 4 }}>TaallamGo Support · 20 Jan 2025</div>
+                <div style={{ fontSize: 14, color: 'var(--foreground)' }}>
                   {t("Bonjour Ahmed, votre commande est en cours de traitement. Nous vous répondrons dans les 24h. Merci de votre patience.", 'مرحباً أحمد، طلبك قيد المعالجة. سنرد عليك خلال 24 ساعة. شكراً لصبرك.', lang)}
                 </div>
               </div>
@@ -255,12 +255,12 @@ export function CustomerDashboard({ lang, navigate }: Props) {
                 type="text"
                 placeholder={t('Votre message...', 'رسالتك...', lang)}
                 style={{
-                  flex: 1, height: 42, border: '1.5px solid #E4E9F0', borderRadius: 10,
-                  padding: '0 14px', fontSize: 14, color: '#172033', outline: 'none',
+                  flex: 1, height: 42, border: '1.5px solid var(--border)', borderRadius: 10,
+                  padding: '0 14px', fontSize: 14, color: 'var(--foreground)', outline: 'none',
                 }}
               />
               <button style={{
-                backgroundColor: '#132A4F', color: '#FFFFFF', border: 'none', cursor: 'pointer',
+                backgroundColor: 'var(--accent)', color: 'var(--accent-foreground)', border: 'none', cursor: 'pointer',
                 padding: '0 18px', borderRadius: 10, fontSize: 14, fontWeight: 600,
               }}>
                 {t('Envoyer', 'إرسال', lang)}
@@ -275,10 +275,10 @@ export function CustomerDashboard({ lang, navigate }: Props) {
     return (
       <div>
         <div style={{ marginBottom: 24 }}>
-          <h2 style={{ fontSize: 22, fontWeight: 800, color: '#172033', margin: '0 0 4px' }}>
+          <h2 style={{ fontSize: 22, fontWeight: 800, color: 'var(--foreground)', margin: '0 0 4px' }}>
             {t('Bonjour, Ahmed 👋', 'مرحباً، أحمد 👋', lang)}
           </h2>
-          <p style={{ fontSize: 15, color: '#667085', margin: 0 }}>
+          <p style={{ fontSize: 15, color: 'var(--muted-foreground)', margin: 0 }}>
             {t('Voici un aperçu de vos formations et commandes.', 'إليك نظرة عامة على دوراتك وطلباتك.', lang)}
           </p>
         </div>
@@ -286,28 +286,28 @@ export function CustomerDashboard({ lang, navigate }: Props) {
         {/* KPI cards */}
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(160px, 1fr))', gap: 16, marginBottom: 28 }}>
           {[
-            { label: t('Commandes', 'الطلبات', lang), value: '3', icon: '📦', color: '#132A4F' },
-            { label: t('Livrées', 'المسلّمة', lang), value: '1', icon: '✅', color: '#2F80ED' },
-            { label: t('En cours', 'قيد المعالجة', lang), value: '2', icon: '⚙️', color: '#F59E0B' },
-            { label: t('Total dépensé', 'إجمالي الإنفاق', lang), value: '10 400 DZD', icon: '💰', color: '#667085' },
+            { label: t('Commandes', 'الطلبات', lang), value: '3', icon: '📦', color: 'var(--accent)' },
+            { label: t('Livrées', 'المسلّمة', lang), value: '1', icon: '✅', color: 'var(--accent)' },
+            { label: t('En cours', 'قيد المعالجة', lang), value: '2', icon: '⚙️', color: 'var(--warning)' },
+            { label: t('Total dépensé', 'إجمالي الإنفاق', lang), value: '10 400 DZD', icon: '💰', color: 'var(--muted-foreground)' },
           ].map((kpi, i) => (
-            <div key={i} style={{ backgroundColor: '#FFFFFF', border: '1px solid #E4E9F0', borderRadius: 14, padding: '18px 16px' }}>
+            <div key={i} style={{ backgroundColor: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 14, padding: '18px 16px' }}>
               <div style={{ fontSize: 24, marginBottom: 8 }}>{kpi.icon}</div>
               <div style={{ fontSize: 20, fontWeight: 800, color: kpi.color }}>{kpi.value}</div>
-              <div style={{ fontSize: 13, color: '#667085', marginTop: 2 }}>{kpi.label}</div>
+              <div style={{ fontSize: 13, color: 'var(--muted-foreground)', marginTop: 2 }}>{kpi.label}</div>
             </div>
           ))}
         </div>
 
         {/* Recent orders */}
-        <div style={{ backgroundColor: '#FFFFFF', border: '1px solid #E4E9F0', borderRadius: 16, padding: 24 }}>
+        <div style={{ backgroundColor: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 16, padding: 24 }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }}>
-            <h3 style={{ fontSize: 16, fontWeight: 700, color: '#172033', margin: 0 }}>
+            <h3 style={{ fontSize: 16, fontWeight: 700, color: 'var(--foreground)', margin: 0 }}>
               {t('Commandes récentes', 'الطلبات الأخيرة', lang)}
             </h3>
             <button
               onClick={() => setTab('orders')}
-              style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: 13, color: '#2F80ED', fontWeight: 600 }}
+              style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: 13, color: 'var(--accent)', fontWeight: 600 }}
             >
               {t('Voir tout', 'عرض الكل', lang)}
             </button>
@@ -319,15 +319,15 @@ export function CustomerDashboard({ lang, navigate }: Props) {
                 onClick={() => { setSelectedOrder(order); setTab('order-detail') }}
                 style={{
                   display: 'flex', justifyContent: 'space-between', alignItems: 'center',
-                  padding: '12px 0', borderBottom: '1px solid #F0F3F8', cursor: 'pointer', flexWrap: 'wrap', gap: 8,
+                  padding: '12px 0', borderBottom: '1px solid var(--surface-secondary)', cursor: 'pointer', flexWrap: 'wrap', gap: 8,
                 }}
               >
                 <div>
-                  <div style={{ fontSize: 14, fontWeight: 600, color: '#172033' }}>{order.course}</div>
-                  <div style={{ fontSize: 12, color: '#667085' }}>{order.id} · {order.date}</div>
+                  <div style={{ fontSize: 14, fontWeight: 600, color: 'var(--foreground)' }}>{order.course}</div>
+                  <div style={{ fontSize: 12, color: 'var(--muted-foreground)' }}>{order.id} · {order.date}</div>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-                  <span style={{ fontSize: 14, fontWeight: 700, color: '#132A4F' }}>{formatDzd(order.amount)} DZD</span>
+                  <span style={{ fontSize: 14, fontWeight: 700, color: 'var(--accent)' }}>{formatDzd(order.amount)} DZD</span>
                   <StatusBadge statusKey={order.status} lang={lang} />
                 </div>
               </div>
@@ -339,11 +339,11 @@ export function CustomerDashboard({ lang, navigate }: Props) {
   }
 
   return (
-    <div style={{ minHeight: '100vh', backgroundColor: '#EEF6FF', display: 'flex', flexDirection: isMobile ? 'column' : 'row' }}>
+    <div style={{ minHeight: '100vh', backgroundColor: 'var(--background)', display: 'flex', flexDirection: isMobile ? 'column' : 'row' }}>
       {/* Sidebar */}
       <aside style={{
         width: isMobile ? '100%' : 240, flexShrink: 0,
-        backgroundColor: '#FFFFFF', borderRight: '1px solid #E4E9F0',
+        backgroundColor: 'var(--surface)', borderRight: '1px solid var(--border)',
         padding: isMobile ? '10px 12px' : '24px 0',
         display: 'flex', flexDirection: isMobile ? 'row' : 'column',
         overflowX: isMobile ? 'auto' : 'visible',
@@ -366,8 +366,8 @@ export function CustomerDashboard({ lang, navigate }: Props) {
                 whiteSpace: 'nowrap',
                 padding: '10px 12px', borderRadius: 10, border: 'none', cursor: 'pointer',
                 fontSize: 14, fontWeight: 500,
-                backgroundColor: tab === link.key || (tab === 'order-detail' && link.key === 'orders') ? '#E8EDF5' : 'transparent',
-                color: tab === link.key || (tab === 'order-detail' && link.key === 'orders') ? '#132A4F' : '#667085',
+                backgroundColor: tab === link.key || (tab === 'order-detail' && link.key === 'orders') ? 'var(--surface-secondary)' : 'transparent',
+                color: tab === link.key || (tab === 'order-detail' && link.key === 'orders') ? 'var(--accent)' : 'var(--muted-foreground)',
                 textAlign: 'left',
                 transition: 'all 0.15s',
                 marginBottom: 2,
@@ -379,12 +379,12 @@ export function CustomerDashboard({ lang, navigate }: Props) {
           ))}
         </nav>
 
-        <div style={{ display: isMobile ? 'none' : 'block', padding: '16px 20px', borderTop: '1px solid #E4E9F0', marginTop: 'auto' }}>
+        <div style={{ display: isMobile ? 'none' : 'block', padding: '16px 20px', borderTop: '1px solid var(--border)', marginTop: 'auto' }}>
           <button
             onClick={() => navigate('home')}
             style={{
               display: 'flex', alignItems: 'center', gap: 8, background: 'none',
-              border: 'none', cursor: 'pointer', fontSize: 14, color: '#667085', fontWeight: 500,
+              border: 'none', cursor: 'pointer', fontSize: 14, color: 'var(--muted-foreground)', fontWeight: 500,
             }}
           >
             ← {t('Retour au site', 'العودة للموقع', lang)}

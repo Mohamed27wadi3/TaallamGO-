@@ -9,18 +9,18 @@ interface Props {
 
 export function PlatformsPage({ lang, navigate }: Props) {
   const statusConfig = {
-    available: { fr: 'Disponible', ar: 'متاح', color: '#2F80ED', bg: '#EAF3FF' },
-    'on-request': { fr: 'Sur demande', ar: 'عند الطلب', color: '#F59E0B', bg: '#FFFBEB' },
-    'coming-soon': { fr: 'Bientôt', ar: 'قريباً', color: '#667085', bg: '#F0F3F8' },
+    available: { fr: 'Disponible', ar: 'متاح', color: 'var(--accent)', bg: 'var(--surface-secondary)' },
+    'on-request': { fr: 'Sur demande', ar: 'عند الطلب', color: 'var(--warning)', bg: '#FFFBEB' },
+    'coming-soon': { fr: 'Bientôt', ar: 'قريباً', color: 'var(--muted-foreground)', bg: 'var(--surface-secondary)' },
   }
 
   return (
-    <div style={{ minHeight: '100vh', backgroundColor: '#EEF6FF' }}>
-      <div style={{ backgroundColor: '#132A4F', padding: '56px 24px', textAlign: 'center' }}>
-        <h1 style={{ fontSize: 36, fontWeight: 800, color: '#FFFFFF', margin: '0 0 12px' }}>
+    <div style={{ minHeight: '100vh', backgroundColor: 'var(--background)' }}>
+      <div style={{ backgroundColor: 'var(--surface-secondary)', padding: '56px 24px', textAlign: 'center' }}>
+        <h1 style={{ fontSize: 36, fontWeight: 800, color: 'var(--foreground)', margin: '0 0 12px' }}>
           {t('Plateformes disponibles', 'المنصات المتاحة', lang)}
         </h1>
-        <p style={{ fontSize: 17, color: 'rgba(255,255,255,0.7)', margin: 0, maxWidth: 540, marginLeft: 'auto', marginRight: 'auto' }}>
+        <p style={{ fontSize: 17, color: 'var(--muted-foreground)', margin: 0, maxWidth: 540, marginLeft: 'auto', marginRight: 'auto' }}>
           {t(
             'Accédez aux formations des meilleures plateformes mondiales depuis l\'Algérie.',
             'الوصول إلى دورات أفضل المنصات العالمية من الجزائر.',
@@ -38,7 +38,7 @@ export function PlatformsPage({ lang, navigate }: Props) {
               <div
                 key={platform.id}
                 style={{
-                  backgroundColor: '#FFFFFF', border: '1px solid #E4E9F0', borderRadius: 16,
+                  backgroundColor: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 16,
                   padding: '24px', transition: 'all 0.2s',
                 }}
                 onMouseEnter={e => (e.currentTarget.style.boxShadow = '0 6px 20px rgba(19,42,79,0.08)')}
@@ -63,11 +63,11 @@ export function PlatformsPage({ lang, navigate }: Props) {
                   </span>
                 </div>
 
-                <h3 style={{ fontSize: 17, fontWeight: 700, color: '#172033', margin: '0 0 8px' }}>
+                <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--foreground)', margin: '0 0 8px' }}>
                   {platform.name}
                 </h3>
 
-                <p style={{ fontSize: 14, color: '#667085', margin: '0 0 16px', lineHeight: 1.6 }}>
+                <p style={{ fontSize: 14, color: 'var(--muted-foreground)', margin: '0 0 16px', lineHeight: 1.6 }}>
                   {t(
                     `Accédez aux formations ${platform.name} payées en dinars.`,
                     `الوصول إلى دورات ${platform.name} مدفوعة بالدينار.`,
@@ -79,7 +79,7 @@ export function PlatformsPage({ lang, navigate }: Props) {
                   <button
                     onClick={() => navigate('catalog')}
                     style={{
-                      backgroundColor: '#132A4F', color: '#FFFFFF',
+                      backgroundColor: 'var(--accent)', color: 'var(--accent-foreground)',
                       border: 'none', cursor: 'pointer',
                       padding: '9px 18px', borderRadius: 8,
                       fontSize: 13, fontWeight: 700, width: '100%',
@@ -92,7 +92,7 @@ export function PlatformsPage({ lang, navigate }: Props) {
                   <button
                     onClick={() => navigate('custom-request')}
                     style={{
-                      backgroundColor: '#FFFBEB', color: '#F59E0B',
+                      backgroundColor: 'rgba(245, 158, 11, 0.14)', color: 'var(--warning)',
                       border: '1.5px solid #FDE68A', cursor: 'pointer',
                       padding: '9px 18px', borderRadius: 8,
                       fontSize: 13, fontWeight: 700, width: '100%',
@@ -103,9 +103,9 @@ export function PlatformsPage({ lang, navigate }: Props) {
                 )}
                 {platform.status === 'coming-soon' && (
                   <div style={{
-                    backgroundColor: '#F0F3F8', borderRadius: 8,
+                    backgroundColor: 'var(--surface-secondary)', borderRadius: 8,
                     padding: '9px', textAlign: 'center',
-                    fontSize: 13, fontWeight: 600, color: '#667085',
+                    fontSize: 13, fontWeight: 600, color: 'var(--muted-foreground)',
                   }}>
                     {t('Bientôt disponible', 'قريباً', lang)}
                   </div>

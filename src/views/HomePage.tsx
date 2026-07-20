@@ -105,7 +105,7 @@ export function HomePage({ lang, navigate, dir }: Props) {
 
       {/* Hero Section */}
       <section style={{
-        background: 'linear-gradient(135deg, #DCEEFF 0%, #F8FBFF 48%, #EAF3FF 100%)',
+        background: 'var(--background)',
         padding: isMobile ? '48px 14px 62px' : '80px 24px 96px',
         position: 'relative',
         overflow: 'hidden',
@@ -149,7 +149,7 @@ export function HomePage({ lang, navigate, dir }: Props) {
             <h1 className="tg-hero-title" style={{
               fontSize: 'clamp(28px, 4vw, 52px)',
               fontWeight: 800,
-              color: '#071A33',
+              color: 'var(--foreground)',
               lineHeight: 1.15,
               margin: '0 0 20px',
               letterSpacing: 0,
@@ -163,7 +163,7 @@ export function HomePage({ lang, navigate, dir }: Props) {
 
             <p className="tg-hero-copy" style={{
               fontSize: 'clamp(15px, 1.5vw, 18px)',
-              color: '#172033',
+              color: 'var(--foreground)',
               lineHeight: 1.7,
               margin: '0 0 36px',
               maxWidth: 560,
@@ -186,10 +186,10 @@ export function HomePage({ lang, navigate, dir }: Props) {
                   fontSize: 16, fontWeight: 700,
                   width: isMobile ? '100%' : 'auto',
                   transition: 'all 0.15s',
-                  boxShadow: '0 4px 16px rgba(47,128,237,0.35)',
+                  boxShadow: '0 4px 16px rgba(59,130,246,0.35)',
                 }}
-                onMouseEnter={e => (e.currentTarget.style.backgroundColor = '#256EDB')}
-                onMouseLeave={e => (e.currentTarget.style.backgroundColor = '#2F80ED')}
+                onMouseEnter={e => (e.currentTarget.style.backgroundColor = 'var(--accent-hover)')}
+                onMouseLeave={e => (e.currentTarget.style.backgroundColor = 'var(--accent)')}
               >
                 {t('Explorer les formations', 'استكشف الدورات', lang)} →
               </button>
@@ -217,8 +217,8 @@ export function HomePage({ lang, navigate, dir }: Props) {
                   style={{ position: 'absolute', left: 14, top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none' }}
                   width="18" height="18" viewBox="0 0 18 18" fill="none"
                 >
-                  <circle cx="7.5" cy="7.5" r="5" stroke="#667085" strokeWidth="1.8" />
-                  <line x1="11" y1="11" x2="15" y2="15" stroke="#667085" strokeWidth="1.8" strokeLinecap="round" />
+                  <circle cx="7.5" cy="7.5" r="5" stroke="currentColor" strokeWidth="1.8" />
+                  <line x1="11" y1="11" x2="15" y2="15" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
                 </svg>
                 <input
                   type="text"
@@ -326,19 +326,19 @@ export function HomePage({ lang, navigate, dir }: Props) {
       <section style={{ padding: '16px 24px 64px', maxWidth: 1200, margin: '0 auto' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: 32 }}>
           <div>
-            <h2 style={{ fontSize: 28, fontWeight: 800, color: '#172033', margin: '0 0 8px' }}>
+            <h2 style={{ fontSize: 28, fontWeight: 800, color: 'var(--foreground)', margin: '0 0 8px' }}>
               {t('Offres populaires', 'العروض الشائعة', lang)}
             </h2>
-            <p style={{ fontSize: 15, color: '#667085', margin: 0 }}>
+            <p style={{ fontSize: 15, color: 'var(--muted-foreground)', margin: 0 }}>
               {t('Les formations les plus demandées par nos clients.', 'الدورات الأكثر طلباً لدى عملائنا.', lang)}
             </p>
           </div>
           <button
             onClick={() => navigate('catalog')}
             style={{
-              background: 'none', border: '1.5px solid #132A4F',
+              background: 'none', border: '1.5px solid var(--accent)',
               cursor: 'pointer', padding: '8px 18px', borderRadius: 10,
-              fontSize: 14, fontWeight: 600, color: '#132A4F',
+              fontSize: 14, fontWeight: 600, color: 'var(--accent)',
               whiteSpace: 'nowrap',
             }}
           >
@@ -360,13 +360,13 @@ export function HomePage({ lang, navigate, dir }: Props) {
       </section>
 
       {/* How it works */}
-      <section style={{ backgroundColor: '#132A4F', padding: '72px 24px' }}>
+      <section style={{ backgroundColor: 'var(--surface-secondary)', padding: '72px 24px' }}>
         <div style={{ maxWidth: 1200, margin: '0 auto' }}>
           <div style={{ textAlign: 'center', marginBottom: 56 }}>
-            <h2 style={{ fontSize: 32, fontWeight: 800, color: '#FFFFFF', margin: '0 0 12px' }}>
+            <h2 style={{ fontSize: 32, fontWeight: 800, color: 'var(--foreground)', margin: '0 0 12px' }}>
               {t('Comment ça marche ?', 'كيف يعمل؟', lang)}
             </h2>
-            <p style={{ fontSize: 16, color: 'rgba(255,255,255,0.65)', margin: 0 }}>
+            <p style={{ fontSize: 16, color: 'var(--muted-foreground)', margin: 0 }}>
               {t('Simple, transparent et sécurisé en 4 étapes.', 'بسيط وشفاف وآمن في 4 خطوات.', lang)}
             </p>
           </div>
@@ -376,28 +376,28 @@ export function HomePage({ lang, navigate, dir }: Props) {
               <div
                 key={i}
                 style={{
-                  backgroundColor: 'rgba(255,255,255,0.06)',
-                  border: '1px solid rgba(255,255,255,0.1)',
+                  backgroundColor: 'var(--surface)',
+                  border: '1px solid var(--border)',
                   borderRadius: 16, padding: '28px 24px',
                   position: 'relative',
                 }}
               >
                 <div style={{
                   width: 40, height: 40, borderRadius: 12,
-                  backgroundColor: 'rgba(47,128,237,0.15)',
-                  border: '1.5px solid rgba(47,128,237,0.3)',
+                  backgroundColor: 'rgba(59,130,246,0.15)',
+                  border: '1.5px solid rgba(59,130,246,0.3)',
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
                   fontSize: 20, marginBottom: 16,
                 }}>
                   {step.icon}
                 </div>
-                <div style={{ fontSize: 12, fontWeight: 700, color: '#2F80ED', marginBottom: 8, letterSpacing: '0.06em' }}>
+                <div style={{ fontSize: 12, fontWeight: 700, color: 'var(--accent)', marginBottom: 8, letterSpacing: '0.06em' }}>
                   {t('ÉTAPE', 'خطوة', lang)} {step.num}
                 </div>
-                <h3 style={{ fontSize: 16, fontWeight: 700, color: '#FFFFFF', margin: '0 0 10px', lineHeight: 1.4 }}>
+                <h3 style={{ fontSize: 16, fontWeight: 700, color: 'var(--foreground)', margin: '0 0 10px', lineHeight: 1.4 }}>
                   {lang === 'ar' ? step.ar : step.fr}
                 </h3>
-                <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.6)', margin: 0, lineHeight: 1.65 }}>
+                <p style={{ fontSize: 14, color: 'var(--muted-foreground)', margin: 0, lineHeight: 1.65 }}>
                   {lang === 'ar' ? step.descAr : step.descFr}
                 </p>
               </div>
@@ -408,8 +408,8 @@ export function HomePage({ lang, navigate, dir }: Props) {
             <button
               onClick={() => navigate('how-it-works')}
               style={{
-                backgroundColor: 'transparent', border: '1.5px solid rgba(255,255,255,0.35)',
-                color: '#FFFFFF', cursor: 'pointer',
+                backgroundColor: 'var(--surface)', border: '1.5px solid var(--border)',
+                color: 'var(--accent)', cursor: 'pointer',
                 padding: '12px 28px', borderRadius: 12,
                 fontSize: 15, fontWeight: 600,
               }}
@@ -423,10 +423,10 @@ export function HomePage({ lang, navigate, dir }: Props) {
       {/* Trust block */}
       <section style={{ padding: '72px 24px', maxWidth: 1200, margin: '0 auto' }}>
         <div style={{ textAlign: 'center', marginBottom: 48 }}>
-          <h2 style={{ fontSize: 32, fontWeight: 800, color: '#172033', margin: '0 0 12px' }}>
+          <h2 style={{ fontSize: 32, fontWeight: 800, color: 'var(--foreground)', margin: '0 0 12px' }}>
             {t('Pourquoi nous faire confiance ?', 'لماذا تثق بنا؟', lang)}
           </h2>
-          <p style={{ fontSize: 16, color: '#667085', margin: 0, maxWidth: 480, marginLeft: 'auto', marginRight: 'auto' }}>
+          <p style={{ fontSize: 16, color: 'var(--muted-foreground)', margin: 0, maxWidth: 480, marginLeft: 'auto', marginRight: 'auto' }}>
             {t('Votre sécurité et votre satisfaction sont notre priorité absolue.', 'أمانك ورضاك هو أولويتنا المطلقة.', lang)}
           </p>
         </div>
@@ -436,8 +436,8 @@ export function HomePage({ lang, navigate, dir }: Props) {
             <div
               key={i}
               style={{
-                backgroundColor: '#FFFFFF',
-                border: '1px solid #E4E9F0',
+                backgroundColor: 'var(--surface)',
+                border: '1px solid var(--border)',
                 borderRadius: 16, padding: '28px 24px',
                 transition: 'box-shadow 0.2s',
               }}
@@ -445,10 +445,10 @@ export function HomePage({ lang, navigate, dir }: Props) {
               onMouseLeave={e => (e.currentTarget.style.boxShadow = 'none')}
             >
               <div style={{ fontSize: 36, marginBottom: 16 }}>{point.icon}</div>
-              <h3 style={{ fontSize: 17, fontWeight: 700, color: '#172033', margin: '0 0 10px' }}>
+              <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--foreground)', margin: '0 0 10px' }}>
                 {lang === 'ar' ? point.ar : point.fr}
               </h3>
-              <p style={{ fontSize: 14, color: '#667085', margin: 0, lineHeight: 1.65 }}>
+              <p style={{ fontSize: 14, color: 'var(--muted-foreground)', margin: 0, lineHeight: 1.65 }}>
                 {lang === 'ar' ? point.descAr : point.descFr}
               </p>
             </div>
@@ -459,15 +459,16 @@ export function HomePage({ lang, navigate, dir }: Props) {
       {/* Organizations CTA */}
       <section style={{ padding: '0 24px 72px', maxWidth: 1200, margin: '0 auto' }}>
         <div style={{
-          background: 'linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%)',
+          background: 'var(--surface-secondary)',
+          border: '1px solid var(--border)',
           borderRadius: 20, padding: '48px 56px',
           display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 24,
         }}>
           <div>
-            <h2 style={{ fontSize: 26, fontWeight: 800, color: '#FFFFFF', margin: '0 0 10px' }}>
+            <h2 style={{ fontSize: 26, fontWeight: 800, color: 'var(--foreground)', margin: '0 0 10px' }}>
               {t('Une offre pour les organisations', 'عرض للمؤسسات', lang)}
             </h2>
-            <p style={{ fontSize: 15, color: 'rgba(255,255,255,0.7)', margin: 0, maxWidth: 440 }}>
+            <p style={{ fontSize: 15, color: 'var(--muted-foreground)', margin: 0, maxWidth: 440 }}>
               {t(
                 'Universités, entreprises, clubs et établissements — bénéficiez de tarifs groupés et de factures.',
                 'الجامعات والشركات والنوادي - استفد من أسعار الجملة والفواتير.',
@@ -482,7 +483,7 @@ export function HomePage({ lang, navigate, dir }: Props) {
               border: 'none', cursor: 'pointer',
               padding: '13px 28px', borderRadius: 12,
               fontSize: 15, fontWeight: 700,
-              boxShadow: '0 4px 14px rgba(47,128,237,0.35)',
+              boxShadow: '0 4px 14px rgba(59,130,246,0.35)',
               flexShrink: 0,
             }}
           >
@@ -530,21 +531,21 @@ export function HomePage({ lang, navigate, dir }: Props) {
 
       {/* Final CTA */}
       <section style={{
-        background: 'linear-gradient(135deg, var(--accent) 0%, var(--primary) 100%)',
+        background: 'var(--surface-secondary)',
         padding: '64px 24px', textAlign: 'center',
       }}>
-        <h2 style={{ fontSize: 32, fontWeight: 800, color: '#FFFFFF', margin: '0 0 16px' }}>
+        <h2 style={{ fontSize: 32, fontWeight: 800, color: 'var(--foreground)', margin: '0 0 16px' }}>
           {t('Prêt à commencer ?', 'مستعد للبدء؟', lang)}
         </h2>
-        <p style={{ fontSize: 17, color: 'rgba(255,255,255,0.85)', margin: '0 0 36px' }}>
+        <p style={{ fontSize: 17, color: 'var(--muted-foreground)', margin: '0 0 36px' }}>
           {t('Rejoignez des milliers d\'Algériens qui apprennent sans frontières.', 'انضم إلى آلاف الجزائريين الذين يتعلمون بلا حدود.', lang)}
         </p>
         <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
           <button
             onClick={() => navigate('catalog')}
             style={{
-              backgroundColor: '#FFFFFF', color: '#2F80ED',
-              border: 'none', cursor: 'pointer',
+              backgroundColor: 'var(--surface)', color: 'var(--accent)',
+              border: '1px solid var(--border)', cursor: 'pointer',
               padding: '13px 32px', borderRadius: 12,
               fontSize: 16, fontWeight: 800,
             }}
@@ -554,8 +555,8 @@ export function HomePage({ lang, navigate, dir }: Props) {
           <button
             onClick={() => navigate('auth-register')}
             style={{
-              backgroundColor: 'transparent', color: '#FFFFFF',
-              border: '1.5px solid rgba(255,255,255,0.5)',
+              backgroundColor: 'var(--surface)', color: 'var(--accent)',
+              border: '1.5px solid var(--border)',
               cursor: 'pointer',
               padding: '13px 32px', borderRadius: 12,
               fontSize: 16, fontWeight: 600,
@@ -572,7 +573,7 @@ export function HomePage({ lang, navigate, dir }: Props) {
 function FaqItem({ q, a }: { q: string; a: string }) {
   const [open, setOpen] = useState(false)
   return (
-    <div style={{ borderBottom: '1px solid #E4E9F0', padding: '18px 0' }}>
+    <div style={{ borderBottom: '1px solid var(--border)', padding: '18px 0' }}>
       <button
         onClick={() => setOpen(!open)}
         style={{
@@ -581,16 +582,16 @@ function FaqItem({ q, a }: { q: string; a: string }) {
           padding: 0, textAlign: 'left',
         }}
       >
-        <span style={{ fontSize: 15, fontWeight: 600, color: '#172033' }}>{q}</span>
+        <span style={{ fontSize: 15, fontWeight: 600, color: 'var(--foreground)' }}>{q}</span>
         <svg
           width="20" height="20" viewBox="0 0 20 20" fill="none"
           style={{ flexShrink: 0, marginLeft: 16, transition: 'transform 0.2s', transform: open ? 'rotate(180deg)' : 'none' }}
         >
-          <polyline points="5,8 10,13 15,8" stroke="#667085" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+          <polyline points="5,8 10,13 15,8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
       </button>
       {open && (
-        <p style={{ margin: '12px 0 0', fontSize: 14, color: '#667085', lineHeight: 1.7 }}>{a}</p>
+        <p style={{ margin: '12px 0 0', fontSize: 14, color: 'var(--muted-foreground)', lineHeight: 1.7 }}>{a}</p>
       )}
     </div>
   )

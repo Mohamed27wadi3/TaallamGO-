@@ -2,26 +2,52 @@
 @import 'tailwindcss';
 
 :root {
-  --background: #EEF6FF;
-  --foreground: #172033;
+  --background: #F8FAFC;
+  --foreground: #1E293B;
+  --surface: #FFFFFF;
+  --surface-secondary: #F1F5F9;
   --card: #FFFFFF;
-  --card-foreground: #172033;
-  --primary: #132A4F;
+  --card-foreground: #1E293B;
+  --primary: #3B82F6;
   --primary-foreground: #FFFFFF;
-  --secondary: #E8EDF5;
-  --secondary-foreground: #172033;
-  --muted: #F0F3F8;
-  --muted-foreground: #667085;
-  --accent: #2F80ED;
+  --secondary: #F1F5F9;
+  --secondary-foreground: #1E293B;
+  --muted: #F1F5F9;
+  --muted-foreground: #64748B;
+  --accent: #3B82F6;
+  --accent-hover: #2563EB;
   --accent-foreground: #FFFFFF;
-  --border: #E4E9F0;
-  --ring: #2F80ED;
+  --border: #E2E8F0;
+  --ring: #3B82F6;
   --radius: 12px;
-  --success: #2F80ED;
+  --success: #3B82F6;
   --warning: #F59E0B;
   --error: #DC3545;
   --font-sans: 'Plus Jakarta Sans', sans-serif;
   --font-arabic: 'IBM Plex Sans Arabic', sans-serif;
+}
+
+:root[data-theme="dark"] {
+  --background: #111827;
+  --foreground: #F8FAFC;
+  --surface: #1F2937;
+  --surface-secondary: #273449;
+  --card: #1F2937;
+  --card-foreground: #F8FAFC;
+  --primary: #60A5FA;
+  --primary-foreground: #111827;
+  --secondary: #273449;
+  --secondary-foreground: #F8FAFC;
+  --muted: #273449;
+  --muted-foreground: #CBD5E1;
+  --accent: #60A5FA;
+  --accent-hover: #3B82F6;
+  --accent-foreground: #111827;
+  --border: #374151;
+  --ring: #60A5FA;
+  --success: #60A5FA;
+  --warning: #F59E0B;
+  --error: #F87171;
 }
 
 * {
@@ -77,7 +103,7 @@ body {
 .animate-fade-in { animation: fadeIn 0.4s ease forwards; }
 
 .skeleton {
-  background: linear-gradient(90deg, #E4E9F0 25%, #F0F3F8 50%, #E4E9F0 75%);
+  background: linear-gradient(90deg, var(--border) 25%, var(--surface-secondary) 50%, var(--border) 75%);
   background-size: 200% 100%;
   animation: shimmer 1.5s infinite;
   border-radius: 6px;

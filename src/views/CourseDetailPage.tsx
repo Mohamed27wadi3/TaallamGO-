@@ -75,7 +75,7 @@ export function CourseDetailPage({ lang, navigate, course: propCourse, dir }: Pr
         <div style={{ textAlign: 'center', maxWidth: 480 }}>
           <div style={{
             width: 80, height: 80, borderRadius: '50%',
-            backgroundColor: '#EAF3FF', display: 'flex', alignItems: 'center', justifyContent: 'center',
+            backgroundColor: 'var(--surface-secondary)', display: 'flex', alignItems: 'center', justifyContent: 'center',
             margin: '0 auto 24px', fontSize: 36,
           }}>
             ✅
@@ -96,7 +96,7 @@ export function CourseDetailPage({ lang, navigate, course: propCourse, dir }: Pr
           <button
             onClick={() => navigate('dashboard')}
             style={{
-              backgroundColor: '#132A4F', color: '#FFFFFF',
+              backgroundColor: 'var(--accent)', color: 'var(--accent-foreground)',
               border: 'none', cursor: 'pointer',
               padding: '13px 32px', borderRadius: 12,
               fontSize: 15, fontWeight: 700,
@@ -110,9 +110,9 @@ export function CourseDetailPage({ lang, navigate, course: propCourse, dir }: Pr
   }
 
   return (
-    <div style={{ minHeight: '100vh', backgroundColor: '#EEF6FF' }}>
+    <div style={{ minHeight: '100vh', backgroundColor: 'var(--background)' }}>
       {/* Breadcrumb */}
-      <div style={{ backgroundColor: 'var(--surface)', borderBottom: '1px solid #E4E9F0', padding: '12px 24px' }}>
+      <div style={{ backgroundColor: 'var(--surface)', borderBottom: '1px solid var(--border)', padding: '12px 24px' }}>
         <div style={{ maxWidth: 1200, margin: '0 auto', display: 'flex', alignItems: 'center', gap: 8, fontSize: 13, color: 'var(--muted-foreground)' }}>
           <button onClick={() => navigate('home')} style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--muted-foreground)', fontSize: 13 }}>
             {t('Accueil', 'الرئيسية', lang)}
@@ -146,7 +146,7 @@ export function CourseDetailPage({ lang, navigate, course: propCourse, dir }: Pr
             <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 14, flexWrap: 'wrap' }}>
               <span style={{
                 fontSize: 12, fontWeight: 700, padding: '3px 10px', borderRadius: 6,
-                backgroundColor: '#E8EDF5', color: 'var(--primary)',
+                backgroundColor: 'var(--surface-secondary)', color: 'var(--primary)',
               }}>
                 {course.platform}
               </span>
@@ -154,7 +154,7 @@ export function CourseDetailPage({ lang, navigate, course: propCourse, dir }: Pr
                 {lang === 'ar' ? course.levelAr : course.level}
               </span>
               {course.certificate && (
-                <span style={{ fontSize: 13, color: '#2F80ED', fontWeight: 600, display: 'flex', alignItems: 'center', gap: 4 }}>
+                <span style={{ fontSize: 13, color: 'var(--accent)', fontWeight: 600, display: 'flex', alignItems: 'center', gap: 4 }}>
                   🎓 {t('Certificat inclus', 'شهادة مرفقة', lang)}
                 </span>
               )}
@@ -170,10 +170,10 @@ export function CourseDetailPage({ lang, navigate, course: propCourse, dir }: Pr
 
             {/* Rating */}
             <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 24 }}>
-              <span style={{ fontSize: 16, fontWeight: 800, color: '#F59E0B' }}>{course.rating}</span>
+              <span style={{ fontSize: 16, fontWeight: 800, color: 'var(--warning)' }}>{course.rating}</span>
               <div style={{ display: 'flex', gap: 2 }}>
                 {[1,2,3,4,5].map(i => (
-                  <svg key={i} width="14" height="14" viewBox="0 0 12 12" fill={i <= Math.round(course.rating) ? '#F59E0B' : '#E4E9F0'}>
+                  <svg key={i} width="14" height="14" viewBox="0 0 12 12" fill={i <= Math.round(course.rating) ? '#F59E0B' : 'var(--border)'}>
                     <polygon points="6,1 7.5,4.5 11,4.9 8.5,7.2 9.2,11 6,9.1 2.8,11 3.5,7.2 1,4.9 4.5,4.5" />
                   </svg>
                 ))}
@@ -211,7 +211,7 @@ export function CourseDetailPage({ lang, navigate, course: propCourse, dir }: Pr
                   t('Support communauté', 'دعم مجتمعي', lang),
                 ].filter(Boolean).map((item, i) => (
                   <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 14, color: 'var(--foreground)' }}>
-                    <span style={{ color: '#2F80ED', fontSize: 16, flexShrink: 0 }}>✓</span>
+                    <span style={{ color: 'var(--accent)', fontSize: 16, flexShrink: 0 }}>✓</span>
                     {item}
                   </div>
                 ))}
@@ -228,7 +228,7 @@ export function CourseDetailPage({ lang, navigate, course: propCourse, dir }: Pr
                 t('Mot de passe externe — TaallamGo ne le demandera jamais', 'كلمة مرور خارجية — لن يطلبها TaallamGo أبداً', lang),
               ].map((item, i) => (
                 <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 14, color: 'var(--muted-foreground)', marginBottom: 6 }}>
-                  <span style={{ color: '#DC3545', fontSize: 16, flexShrink: 0 }}>✗</span>
+                  <span style={{ color: 'var(--error)', fontSize: 16, flexShrink: 0 }}>✗</span>
                   {item}
                 </div>
               ))}
@@ -236,7 +236,7 @@ export function CourseDetailPage({ lang, navigate, course: propCourse, dir }: Pr
 
             {/* Lien officiel */}
             <div style={{
-              backgroundColor: '#F0F3F8', borderRadius: 12,
+              backgroundColor: 'var(--surface-secondary)', borderRadius: 12,
               padding: '16px 20px', display: 'flex', alignItems: 'center', justifyContent: 'space-between',
               flexWrap: 'wrap', gap: 12,
             }}>
@@ -308,11 +308,11 @@ export function CourseDetailPage({ lang, navigate, course: propCourse, dir }: Pr
                   <button
                     onClick={() => setOrderStep(1)}
                     style={{
-                      backgroundColor: '#2F80ED', color: '#FFFFFF',
+                      backgroundColor: 'var(--accent)', color: 'var(--accent-foreground)',
                       border: 'none', cursor: 'pointer',
                       padding: '14px', borderRadius: 12,
                       fontSize: 16, fontWeight: 700, width: '100%',
-                      boxShadow: '0 4px 14px rgba(47,128,237,0.3)',
+                      boxShadow: '0 4px 14px rgba(59,130,246,0.3)',
                     }}
                   >
                     {t('Commander', 'اطلب الآن', lang)}
@@ -320,7 +320,7 @@ export function CourseDetailPage({ lang, navigate, course: propCourse, dir }: Pr
                   <button
                     onClick={() => navigate('help')}
                     style={{
-                      backgroundColor: '#F0F3F8', color: 'var(--foreground)',
+                      backgroundColor: 'var(--surface-secondary)', color: 'var(--foreground)',
                       border: 'none', cursor: 'pointer',
                       padding: '12px', borderRadius: 12,
                       fontSize: 14, fontWeight: 600, width: '100%',
@@ -335,15 +335,15 @@ export function CourseDetailPage({ lang, navigate, course: propCourse, dir }: Pr
               {orderStep === 1 && (
                 <div style={{ padding: '0 24px 24px' }}>
                   <div style={{
-                    backgroundColor: '#EAF3FF', border: '1px solid #BFD8FF',
-                    borderRadius: 10, padding: '14px', marginBottom: 16, fontSize: 13, color: '#132A4F',
+                    backgroundColor: 'var(--surface-secondary)', border: '1px solid var(--border)',
+                    borderRadius: 10, padding: '14px', marginBottom: 16, fontSize: 13, color: 'var(--accent)',
                   }}>
                     ✅ {t('Votre devis est valide 48h. Total confirmé avant commande.', 'عرض السعر صالح 48 ساعة. يتم تأكيد الإجمالي قبل الطلب.', lang)}
                   </div>
                   <button
                     onClick={() => setOrderStep(2)}
                     style={{
-                      backgroundColor: '#132A4F', color: '#FFFFFF',
+                      backgroundColor: 'var(--accent)', color: 'var(--accent-foreground)',
                       border: 'none', cursor: 'pointer',
                       padding: '14px', borderRadius: 12,
                       fontSize: 15, fontWeight: 700, width: '100%',
@@ -368,8 +368,8 @@ export function CourseDetailPage({ lang, navigate, course: propCourse, dir }: Pr
                         style={{
                           display: 'flex', alignItems: 'center', gap: 10,
                           padding: '10px 14px', borderRadius: 10,
-                          border: `1.5px solid ${paymentMethod === pm.id ? '#132A4F' : '#E4E9F0'}`,
-                          backgroundColor: paymentMethod === pm.id ? '#E8EDF5' : '#FFFFFF',
+                          border: `1.5px solid ${paymentMethod === pm.id ? 'var(--accent)' : 'var(--border)'}`,
+                          backgroundColor: paymentMethod === pm.id ? 'var(--surface-secondary)' : 'var(--surface)',
                           cursor: 'pointer', fontSize: 14, fontWeight: 500, color: 'var(--foreground)',
                           textAlign: dir === 'rtl' ? 'right' : 'left',
                         }}
@@ -383,8 +383,8 @@ export function CourseDetailPage({ lang, navigate, course: propCourse, dir }: Pr
                     disabled={!paymentMethod}
                     onClick={() => setOrderStep(3)}
                     style={{
-                      backgroundColor: paymentMethod ? '#2F80ED' : '#E4E9F0',
-                      color: paymentMethod ? '#FFFFFF' : '#667085',
+                      backgroundColor: paymentMethod ? 'var(--accent)' : 'var(--border)',
+                      color: paymentMethod ? 'var(--accent-foreground)' : 'var(--muted-foreground)',
                       border: 'none', cursor: paymentMethod ? 'pointer' : 'default',
                       padding: '14px', borderRadius: 12,
                       fontSize: 15, fontWeight: 700, width: '100%',
@@ -399,7 +399,7 @@ export function CourseDetailPage({ lang, navigate, course: propCourse, dir }: Pr
               {orderStep === 3 && (
                 <div style={{ padding: '0 24px 24px' }}>
                   <div style={{
-                    backgroundColor: '#FFFBEB', border: '1px solid #FDE68A',
+                    backgroundColor: 'rgba(245, 158, 11, 0.14)', border: '1px solid #FDE68A',
                     borderRadius: 10, padding: '12px 14px', marginBottom: 16, fontSize: 13, color: '#92400E',
                   }}>
                     ⚠️ {t('Paiement de démonstration — aucune somme ne sera débitée.', 'دفع تجريبي — لن يُخصم أي مبلغ.', lang)}
@@ -407,7 +407,7 @@ export function CourseDetailPage({ lang, navigate, course: propCourse, dir }: Pr
                   <button
                     onClick={() => setOrderStep(4)}
                     style={{
-                      backgroundColor: '#2F80ED', color: '#FFFFFF',
+                      backgroundColor: 'var(--accent)', color: 'var(--accent-foreground)',
                       border: 'none', cursor: 'pointer',
                       padding: '14px', borderRadius: 12,
                       fontSize: 15, fontWeight: 700, width: '100%',

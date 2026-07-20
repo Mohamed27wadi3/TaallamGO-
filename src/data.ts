@@ -19,7 +19,7 @@ export const platforms = [
   { id: 'htb', name: 'Hack The Box', status: 'available', statusAr: 'متاح', color: '#9FEF00', dark: true },
   { id: 'pluralsight', name: 'Pluralsight', status: 'on-request', statusAr: 'عند الطلب', color: '#F15B2A' },
   { id: 'linkedin', name: 'LinkedIn Learning', status: 'available', statusAr: 'متاح', color: '#0A66C2' },
-  { id: 'datacamp', name: 'DataCamp', status: 'on-request', statusAr: 'عند الطلب', color: '#2F80ED', dark: true },
+  { id: 'datacamp', name: 'DataCamp', status: 'on-request', statusAr: 'عند الطلب', color: '#3B82F6', dark: true },
   { id: 'edx', name: 'edX', status: 'coming-soon', statusAr: 'قريباً', color: '#02262B' },
   { id: 'skillshare', name: 'Skillshare', status: 'coming-soon', statusAr: 'قريباً', color: '#00A88B' },
 ]
@@ -61,7 +61,7 @@ export const courses = [
     image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=400&h=220&fit=crop&auto=format',
     certificate: true,
     tag: 'Populaire',
-    tagColor: '#2F80ED',
+    tagColor: '#3B82F6',
   },
   {
     id: '3',
@@ -80,7 +80,7 @@ export const courses = [
     image: 'https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=400&h=220&fit=crop&auto=format',
     certificate: true,
     tag: 'Certifiant',
-    tagColor: '#132A4F',
+    tagColor: '#3B82F6',
   },
   {
     id: '4',
@@ -99,7 +99,7 @@ export const courses = [
     image: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=400&h=220&fit=crop&auto=format',
     certificate: true,
     tag: 'Certifiant',
-    tagColor: '#132A4F',
+    tagColor: '#3B82F6',
   },
   {
     id: '5',
@@ -137,20 +137,20 @@ export const courses = [
     image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=220&fit=crop&auto=format',
     certificate: true,
     tag: 'Nouveau',
-    tagColor: '#2F80ED',
+    tagColor: '#3B82F6',
   },
 ]
 
 export const orderStatuses = [
   { key: 'pending_payment', label: 'En attente de paiement', labelAr: 'في انتظار الدفع', color: '#F59E0B' },
-  { key: 'payment_verif', label: 'Paiement en vérification', labelAr: 'التحقق من الدفع', color: '#667085' },
-  { key: 'payment_confirmed', label: 'Paiement confirmé', labelAr: 'تأكيد الدفع', color: '#132A4F' },
-  { key: 'processing', label: 'Traitement en cours', labelAr: 'جاري المعالجة', color: '#132A4F' },
+  { key: 'payment_verif', label: 'Paiement en vérification', labelAr: 'التحقق من الدفع', color: 'var(--muted-foreground)' },
+  { key: 'payment_confirmed', label: 'Paiement confirmé', labelAr: 'تأكيد الدفع', color: '#3B82F6' },
+  { key: 'processing', label: 'Traitement en cours', labelAr: 'جاري المعالجة', color: '#3B82F6' },
   { key: 'action_required', label: 'Action client requise', labelAr: 'إجراء مطلوب من العميل', color: '#F59E0B' },
-  { key: 'delivered', label: 'Livrée', labelAr: 'تم التسليم', color: '#2F80ED' },
+  { key: 'delivered', label: 'Livrée', labelAr: 'تم التسليم', color: '#3B82F6' },
   { key: 'cancelled', label: 'Annulée', labelAr: 'ملغاة', color: '#DC3545' },
-  { key: 'refund_pending', label: 'Remboursement en cours', labelAr: 'استرداد جاري', color: '#667085' },
-  { key: 'refunded', label: 'Remboursée', labelAr: 'تم الاسترداد', color: '#667085' },
+  { key: 'refund_pending', label: 'Remboursement en cours', labelAr: 'استرداد جاري', color: 'var(--muted-foreground)' },
+  { key: 'refunded', label: 'Remboursée', labelAr: 'تم الاسترداد', color: 'var(--muted-foreground)' },
   { key: 'dispute', label: 'Litige', labelAr: 'نزاع', color: '#DC3545' },
 ]
 

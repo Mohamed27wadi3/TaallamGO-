@@ -81,13 +81,13 @@ export function HowItWorksPage({ lang, navigate }: Props) {
   ]
 
   return (
-    <div style={{ minHeight: '100vh', backgroundColor: '#EEF6FF' }}>
+    <div style={{ minHeight: '100vh', backgroundColor: 'var(--background)' }}>
       {/* Header */}
-      <div style={{ backgroundColor: '#132A4F', padding: '56px 24px', textAlign: 'center' }}>
-        <h1 style={{ fontSize: 36, fontWeight: 800, color: '#FFFFFF', margin: '0 0 12px' }}>
+      <div style={{ backgroundColor: 'var(--surface-secondary)', padding: '56px 24px', textAlign: 'center' }}>
+        <h1 style={{ fontSize: 36, fontWeight: 800, color: 'var(--foreground)', margin: '0 0 12px' }}>
           {t('Comment ça marche ?', 'كيف يعمل؟', lang)}
         </h1>
-        <p style={{ fontSize: 17, color: 'rgba(255,255,255,0.7)', margin: 0, maxWidth: 540, marginLeft: 'auto', marginRight: 'auto' }}>
+        <p style={{ fontSize: 17, color: 'var(--muted-foreground)', margin: 0, maxWidth: 540, marginLeft: 'auto', marginRight: 'auto' }}>
           {t(
             'Un processus simple, transparent et sécurisé pour accéder aux formations mondiales depuis l\'Algérie.',
             'عملية بسيطة وشفافة وآمنة للوصول إلى الدورات العالمية من الجزائر.',
@@ -103,7 +103,7 @@ export function HowItWorksPage({ lang, navigate }: Props) {
             <div style={{ flexShrink: 0 }}>
               <div style={{
                 width: 56, height: 56, borderRadius: 16,
-                backgroundColor: '#132A4F',
+                backgroundColor: 'var(--accent)',
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
                 fontSize: 24,
               }}>
@@ -111,36 +111,36 @@ export function HowItWorksPage({ lang, navigate }: Props) {
               </div>
               {i < sections.length - 1 && (
                 <div style={{
-                  width: 2, height: 40, backgroundColor: '#E4E9F0',
+                  width: 2, height: 40, backgroundColor: 'var(--border)',
                   margin: '8px auto 0',
                 }} />
               )}
             </div>
             <div style={{ paddingTop: 8 }}>
-              <div style={{ fontSize: 12, fontWeight: 700, color: '#2F80ED', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 8 }}>
+              <div style={{ fontSize: 12, fontWeight: 700, color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 8 }}>
                 {t('ÉTAPE', 'خطوة', lang)} 0{i + 1}
               </div>
-              <h2 style={{ fontSize: 20, fontWeight: 800, color: '#172033', margin: '0 0 10px' }}>{section.title}</h2>
-              <p style={{ fontSize: 15, color: '#667085', margin: 0, lineHeight: 1.75 }}>{section.content}</p>
+              <h2 style={{ fontSize: 20, fontWeight: 800, color: 'var(--foreground)', margin: '0 0 10px' }}>{section.title}</h2>
+              <p style={{ fontSize: 15, color: 'var(--muted-foreground)', margin: 0, lineHeight: 1.75 }}>{section.content}</p>
             </div>
           </div>
         ))}
       </div>
 
       {/* Details grid */}
-      <div style={{ backgroundColor: '#FFFFFF', padding: '60px 24px' }}>
+      <div style={{ backgroundColor: 'var(--surface)', padding: '60px 24px' }}>
         <div style={{ maxWidth: 1200, margin: '0 auto' }}>
-          <h2 style={{ fontSize: 28, fontWeight: 800, color: '#172033', margin: '0 0 40px', textAlign: 'center' }}>
+          <h2 style={{ fontSize: 28, fontWeight: 800, color: 'var(--foreground)', margin: '0 0 40px', textAlign: 'center' }}>
             {t('Tout ce que vous devez savoir', 'كل ما تحتاج أن تعرفه', lang)}
           </h2>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: 24 }}>
             {details.map((detail, i) => (
               <div key={i} style={{
-                backgroundColor: '#EEF6FF', border: '1px solid #E4E9F0', borderRadius: 16, padding: 24,
+                backgroundColor: 'var(--background)', border: '1px solid var(--border)', borderRadius: 16, padding: 24,
               }}>
                 <div style={{ fontSize: 28, marginBottom: 12 }}>{detail.icon}</div>
-                <h3 style={{ fontSize: 16, fontWeight: 700, color: '#172033', margin: '0 0 10px' }}>{detail.title}</h3>
-                <p style={{ fontSize: 14, color: '#667085', margin: 0, lineHeight: 1.7 }}>{detail.content}</p>
+                <h3 style={{ fontSize: 16, fontWeight: 700, color: 'var(--foreground)', margin: '0 0 10px' }}>{detail.title}</h3>
+                <p style={{ fontSize: 14, color: 'var(--muted-foreground)', margin: 0, lineHeight: 1.7 }}>{detail.content}</p>
               </div>
             ))}
           </div>
@@ -149,14 +149,14 @@ export function HowItWorksPage({ lang, navigate }: Props) {
 
       {/* CTA */}
       <div style={{ padding: '60px 24px', textAlign: 'center' }}>
-        <h2 style={{ fontSize: 26, fontWeight: 800, color: '#172033', margin: '0 0 16px' }}>
+        <h2 style={{ fontSize: 26, fontWeight: 800, color: 'var(--foreground)', margin: '0 0 16px' }}>
           {t('Prêt à commencer ?', 'مستعد للبدء؟', lang)}
         </h2>
         <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
           <button
             onClick={() => navigate('catalog')}
             style={{
-              backgroundColor: '#132A4F', color: '#FFFFFF',
+              backgroundColor: 'var(--accent)', color: 'var(--accent-foreground)',
               border: 'none', cursor: 'pointer',
               padding: '13px 32px', borderRadius: 12,
               fontSize: 15, fontWeight: 700,
@@ -167,8 +167,8 @@ export function HowItWorksPage({ lang, navigate }: Props) {
           <button
             onClick={() => navigate('custom-request')}
             style={{
-              backgroundColor: '#FFFFFF', color: '#132A4F',
-              border: '1.5px solid #E4E9F0', cursor: 'pointer',
+              backgroundColor: 'var(--surface)', color: 'var(--accent)',
+              border: '1.5px solid var(--border)', cursor: 'pointer',
               padding: '13px 32px', borderRadius: 12,
               fontSize: 15, fontWeight: 600,
             }}
