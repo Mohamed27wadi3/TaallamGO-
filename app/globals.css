@@ -656,29 +656,64 @@ select:focus {
 }
 
 @media (max-width: 767px) {
+  .tg-hero-shell {
+    position: relative;
+  }
+
   .tg-hero-layout {
     grid-template-columns: 1fr;
-    gap: 30px;
+    gap: 0;
+    position: relative;
   }
 
   .tg-hero-content,
   [dir="rtl"] .tg-hero-content {
     grid-column: 1;
     grid-row: 1;
+    position: relative;
+    z-index: 2;
   }
 
   .tg-hero-visual,
   [dir="rtl"] .tg-hero-visual {
+    position: absolute;
+    inset: 0;
     grid-column: 1;
-    grid-row: 2;
-    min-height: 230px;
+    grid-row: 1;
+    min-height: 0;
+    height: auto;
     padding-top: 0;
-    justify-content: center;
+    display: block;
+    z-index: 0;
+    pointer-events: none;
+    overflow: visible;
   }
 
   .tg-learning-path {
-    width: min(100%, 360px);
-    opacity: 0.5;
+    position: absolute;
+    top: 34px;
+    left: 50%;
+    width: 470px;
+    max-width: none;
+    opacity: 0.18;
+    filter: blur(0.2px);
+    transform: translateX(-45%) scale(0.94);
+  }
+
+  [dir="rtl"] .tg-learning-path {
+    transform: translateX(-55%) scale(0.94);
+  }
+
+  .tg-learning-path svg {
+    filter: none;
+  }
+
+  .tg-learning-node circle {
+    fill: color-mix(in srgb, var(--surface) 78%, transparent);
+  }
+
+  :root[data-theme="dark"] .tg-learning-path {
+    opacity: 0.24;
   }
 
   .tg-study-chip {
