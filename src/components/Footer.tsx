@@ -42,7 +42,7 @@ export function Footer({ lang, navigate, dir }: Props) {
   return (
     <footer style={{ backgroundColor: 'var(--surface-secondary)', color: 'var(--foreground)', borderTop: '1px solid var(--border)', marginTop: 'auto' }}>
       <div style={{ maxWidth: 1200, margin: '0 auto', padding: '56px 24px 32px' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: 40, marginBottom: 48 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 180px), 1fr))', gap: 40, marginBottom: 48 }}>
           {/* Brand */}
           <div>
             <img src={taallamGoLogoSrc} alt="TaallamGo" style={{ height: 36, width: 'auto', marginBottom: 16 }} />

@@ -105,8 +105,8 @@ export function Header({ lang, onLangToggle, currentPage, navigate, dir, theme, 
 
           <button
             onClick={() => navigate('auth-login')}
-            className="hidden sm:block"
             style={{
+              display: isMobile ? 'none' : 'block',
               background: 'none',
               border: '1px solid var(--border)',
               cursor: 'pointer',
@@ -123,8 +123,8 @@ export function Header({ lang, onLangToggle, currentPage, navigate, dir, theme, 
 
           <button
             onClick={() => navigate('catalog')}
-            className="hidden sm:block"
             style={{
+              display: isMobile ? 'none' : 'block',
               background: 'var(--primary)',
               border: 'none',
               cursor: 'pointer',
@@ -142,8 +142,19 @@ export function Header({ lang, onLangToggle, currentPage, navigate, dir, theme, 
           {/* Mobile hamburger */}
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="md:hidden"
-            style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 4, color: 'var(--accent)' }}
+            style={{
+              display: isMobile ? 'inline-flex' : 'none',
+              alignItems: 'center',
+              justifyContent: 'center',
+              width: 34,
+              height: 34,
+              background: 'none',
+              border: 'none',
+              cursor: 'pointer',
+              padding: 4,
+              color: 'var(--accent)',
+              flexShrink: 0,
+            }}
             aria-label="Menu"
           >
             <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
@@ -166,7 +177,7 @@ export function Header({ lang, onLangToggle, currentPage, navigate, dir, theme, 
 
       {/* Mobile menu */}
       {mobileOpen && (
-        <div style={{ borderTop: '1px solid var(--border)', backgroundColor: 'var(--surface)', padding: '12px 24px 20px' }} className="md:hidden">
+        <div style={{ display: isMobile ? 'block' : 'none', borderTop: '1px solid var(--border)', backgroundColor: 'var(--surface)', padding: '12px 20px 20px' }}>
           {navLinks.map(link => (
             <button
               key={link.key}

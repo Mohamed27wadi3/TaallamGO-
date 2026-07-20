@@ -31,7 +31,7 @@ export function PlatformsPage({ lang, navigate }: Props) {
 
       <div style={{ maxWidth: 1200, margin: '0 auto', padding: '48px 24px' }}>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: 20 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 280px), 1fr))', gap: 20 }}>
           {platforms.map(platform => {
             const sc = statusConfig[platform.status as keyof typeof statusConfig]
             return (

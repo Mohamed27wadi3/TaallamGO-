@@ -243,7 +243,7 @@ export function CatalogPage({ lang, navigate }: Props) {
             </p>
           </div>
         ) : (
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))', gap: 20 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 260px), 1fr))', gap: 20 }}>
             {filtered.map((course, index) => (
               <Reveal key={course.id} delay={(index % 8) * 55}>
                 <CourseCard

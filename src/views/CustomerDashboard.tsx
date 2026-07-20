@@ -284,7 +284,7 @@ export function CustomerDashboard({ lang, navigate }: Props) {
         </div>
 
         {/* KPI cards */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(160px, 1fr))', gap: 16, marginBottom: 28 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 160px), 1fr))', gap: 16, marginBottom: 28 }}>
           {[
             { label: t('Commandes', 'الطلبات', lang), value: '3', icon: '📦', color: 'var(--accent)' },
             { label: t('Livrées', 'المسلّمة', lang), value: '1', icon: '✅', color: 'var(--accent)' },

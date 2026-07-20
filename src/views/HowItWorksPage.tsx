@@ -133,7 +133,7 @@ export function HowItWorksPage({ lang, navigate }: Props) {
           <h2 style={{ fontSize: 28, fontWeight: 800, color: 'var(--foreground)', margin: '0 0 40px', textAlign: 'center' }}>
             {t('Tout ce que vous devez savoir', 'كل ما تحتاج أن تعرفه', lang)}
           </h2>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: 24 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 300px), 1fr))', gap: 24 }}>
             {details.map((detail, i) => (
               <div key={i} style={{
                 backgroundColor: 'var(--background)', border: '1px solid var(--border)', borderRadius: 16, padding: 24,

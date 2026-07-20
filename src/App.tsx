@@ -5,6 +5,7 @@ import { Footer } from './components/Footer'
 import { CustomCursor } from './components/CustomCursor'
 import { DynamicBackButton } from './components/DynamicBackButton'
 import { useTheme } from './hooks/useTheme'
+import { useIsMobile } from './hooks/useIsMobile'
 import { HomePage } from './views/HomePage'
 import { CatalogPage } from './views/CatalogPage'
 import { CourseDetailPage } from './views/CourseDetailPage'
@@ -172,6 +173,7 @@ type InlineProps = { lang: Lang; navigate: (p: string) => void; dir: 'ltr' | 'rt
 
 function OrganizationsPage({ lang }: InlineProps) {
   const t = (fr: string, ar: string, _?: unknown) => lang === 'ar' ? ar : fr
+  const isMobile = useIsMobile()
   const [submitted, setSubmitted] = useState(false)
   const inputStyle = { width: '100%', height: 44, border: '1.5px solid var(--border)', borderRadius: 10, padding: '0 14px', fontSize: 14, color: 'var(--foreground)', outline: 'none', backgroundColor: 'var(--surface)', fontFamily: lang === 'ar' ? "'IBM Plex Sans Arabic'" : "'Plus Jakarta Sans'" }
 
@@ -186,7 +188,7 @@ function OrganizationsPage({ lang }: InlineProps) {
         </p>
       </div>
       <div style={{ maxWidth: 800, margin: '0 auto', padding: '56px 24px' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))', gap: 20, marginBottom: 48 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 220px), 1fr))', gap: 20, marginBottom: 48 }}>
           {[
             { icon: '🎓', title: t('Universités & écoles', 'الجامعات والمدارس', lang), desc: t('Certifications pour les étudiants en bloc.', 'شهادات للطلاب بشكل جماعي.', lang) },
             { icon: '🏢', title: t('Entreprises', 'الشركات', lang), desc: t('Formation des équipes avec facture officielle.', 'تدريب الفرق مع فاتورة رسمية.', lang) },
@@ -210,7 +212,7 @@ function OrganizationsPage({ lang }: InlineProps) {
         ) : (
           <div style={{ backgroundColor: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 20, padding: 32 }}>
             <h2 style={{ fontSize: 20, fontWeight: 800, color: 'var(--foreground)', margin: '0 0 24px' }}>{t('Demande de devis groupé', 'طلب عرض سعر جماعي', lang)}</h2>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 16 }}>
+            <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: 16, marginBottom: 16 }}>
               {[
                 { label: t('Organisation', 'المؤسسة', lang), ph: t('Nom de votre organisation', 'اسم مؤسستكم', lang) },
                 { label: t('Responsable', 'المسؤول', lang), ph: t('Votre nom', 'اسمكم', lang) },

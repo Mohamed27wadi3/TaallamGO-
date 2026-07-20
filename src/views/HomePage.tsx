@@ -346,7 +346,7 @@ export function HomePage({ lang, navigate, dir }: Props) {
           </button>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))', gap: 20 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 260px), 1fr))', gap: 20 }}>
             {featuredCourses.map((course, index) => (
               <Reveal key={course.id} delay={index * 70}>
                 <CourseCard
@@ -371,7 +371,7 @@ export function HomePage({ lang, navigate, dir }: Props) {
             </p>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 24 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 220px), 1fr))', gap: 24 }}>
             {steps.map((step, i) => (
               <div
                 key={i}
@@ -431,7 +431,7 @@ export function HomePage({ lang, navigate, dir }: Props) {
           </p>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: 24 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 240px), 1fr))', gap: 24 }}>
           {trustPoints.map((point, i) => (
             <div
               key={i}

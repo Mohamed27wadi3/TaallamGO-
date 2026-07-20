@@ -201,7 +201,7 @@ export function CourseDetailPage({ lang, navigate, course: propCourse, dir }: Pr
               <h2 style={{ fontSize: 18, fontWeight: 700, color: 'var(--foreground)', margin: '0 0 14px' }}>
                 {t('Ce qui est inclus', 'ما هو مرفق', lang)}
               </h2>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))', gap: 10 }}>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 220px), 1fr))', gap: 10 }}>
                 {[
                   t('Accès à vie', 'وصول مدى الحياة', lang),
                   t(`${course.duration} de contenu`, `${course.duration} من المحتوى`, lang),

@@ -230,7 +230,7 @@ export function AdminDashboard({ lang, navigate }: Props) {
         </div>
 
         {/* KPI grid */}
-        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? 'repeat(2, minmax(0, 1fr))' : 'repeat(auto-fill, minmax(180px, 1fr))', gap: isMobile ? 10 : 16, marginBottom: 28 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? 'repeat(2, minmax(0, 1fr))' : 'repeat(auto-fill, minmax(min(100%, 180px), 1fr))', gap: isMobile ? 10 : 16, marginBottom: 28 }}>
           {kpis.map((kpi, i) => (
             <div key={i} style={{
               backgroundColor: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 14,
