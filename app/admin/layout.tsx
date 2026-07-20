@@ -18,5 +18,5 @@ export default async function AdminLayout({
   //   redirect('/dashboard')
   // }
 
-  return <div className="min-h-screen bg-gray-900 text-white">{children}</div>
+  return <div className="min-h-screen" style={{ backgroundColor: 'var(--background)', color: 'var(--foreground)' }}>{children}</div>
 }

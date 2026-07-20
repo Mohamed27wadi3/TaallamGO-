@@ -17,6 +17,7 @@
   --accent: #3B82F6;
   --accent-hover: #2563EB;
   --accent-foreground: #FFFFFF;
+  --soft-accent: #DBEAFE;
   --border: #E2E8F0;
   --ring: #3B82F6;
   --radius: 12px;
@@ -41,8 +42,9 @@
   --muted: #273449;
   --muted-foreground: #CBD5E1;
   --accent: #60A5FA;
-  --accent-hover: #3B82F6;
+  --accent-hover: #93C5FD;
   --accent-foreground: #111827;
+  --soft-accent: rgba(96, 165, 250, 0.16);
   --border: #374151;
   --ring: #60A5FA;
   --success: #60A5FA;
@@ -79,7 +81,7 @@ body {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: #C8D0DC;
+  background: var(--border);
   border-radius: 3px;
 }
 :hover::-webkit-scrollbar {

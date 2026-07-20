@@ -10,7 +10,7 @@ interface Props {
 export function PlatformsPage({ lang, navigate }: Props) {
   const statusConfig = {
     available: { fr: 'Disponible', ar: 'متاح', color: 'var(--accent)', bg: 'var(--surface-secondary)' },
-    'on-request': { fr: 'Sur demande', ar: 'عند الطلب', color: 'var(--warning)', bg: '#FFFBEB' },
+    'on-request': { fr: 'Sur demande', ar: 'عند الطلب', color: 'var(--warning)', bg: 'var(--surface-secondary)' },
     'coming-soon': { fr: 'Bientôt', ar: 'قريباً', color: 'var(--muted-foreground)', bg: 'var(--surface-secondary)' },
   }
 
@@ -47,10 +47,10 @@ export function PlatformsPage({ lang, navigate }: Props) {
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 16 }}>
                   <div style={{
                     width: 48, height: 48, borderRadius: 12,
-                    backgroundColor: platform.dark ? '#1A1A2E' : platform.color + '15',
+                    backgroundColor: 'var(--soft-accent)',
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
                   }}>
-                    <span style={{ fontSize: 20, fontWeight: 800, color: platform.dark ? platform.color : platform.color }}>
+                    <span style={{ fontSize: 20, fontWeight: 800, color: 'var(--accent)' }}>
                       {platform.name.charAt(0)}
                     </span>
                   </div>
@@ -93,7 +93,7 @@ export function PlatformsPage({ lang, navigate }: Props) {
                     onClick={() => navigate('custom-request')}
                     style={{
                       backgroundColor: 'rgba(245, 158, 11, 0.14)', color: 'var(--warning)',
-                      border: '1.5px solid #FDE68A', cursor: 'pointer',
+                      border: '1.5px solid var(--warning)', cursor: 'pointer',
                       padding: '9px 18px', borderRadius: 8,
                       fontSize: 13, fontWeight: 700, width: '100%',
                     }}

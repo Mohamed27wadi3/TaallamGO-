@@ -121,10 +121,10 @@ export function CourseCard({ course, lang, onClick }: Props) {
 
         {/* Rating */}
         <div style={{ display: 'flex', alignItems: 'center', gap: 4, marginBottom: 12 }}>
-          <span style={{ fontSize: 13, fontWeight: 700, color: '#F59E0B' }}>{course.rating}</span>
+          <span style={{ fontSize: 13, fontWeight: 700, color: 'var(--warning)' }}>{course.rating}</span>
           <div style={{ display: 'flex', gap: 1 }}>
             {[1,2,3,4,5].map(i => (
-              <svg key={i} width="12" height="12" viewBox="0 0 12 12" fill={i <= Math.round(course.rating) ? '#F59E0B' : 'var(--border)'}>
+              <svg key={i} width="12" height="12" viewBox="0 0 12 12" fill={i <= Math.round(course.rating) ? 'var(--warning)' : 'var(--border)'}>
                 <polygon points="6,1 7.5,4.5 11,4.9 8.5,7.2 9.2,11 6,9.1 2.8,11 3.5,7.2 1,4.9 4.5,4.5" />
               </svg>
             ))}

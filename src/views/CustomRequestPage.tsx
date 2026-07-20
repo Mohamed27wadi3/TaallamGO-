@@ -44,9 +44,9 @@ export function CustomRequestPage({ lang, navigate }: Props) {
             )}
           </p>
           <div style={{
-            backgroundColor: '#FFF8F0', border: '1px solid #FDDCB5',
+            backgroundColor: 'var(--surface-secondary)', border: '1px solid var(--warning)',
             borderRadius: 12, padding: '14px 18px', marginBottom: 28,
-            fontSize: 13, color: '#92400E', textAlign: lang === 'ar' ? 'right' : 'left',
+            fontSize: 13, color: 'var(--warning)', textAlign: lang === 'ar' ? 'right' : 'left',
           }}>
             🔒 {t('TaallamGo ne vous demandera jamais votre mot de passe sur une plateforme externe.', 'لن يطلب منك TaallamGo أبداً كلمة مرورك على منصة خارجية.', lang)}
           </div>
@@ -232,9 +232,9 @@ export function CustomRequestPage({ lang, navigate }: Props) {
               ))}
 
               <div style={{
-                backgroundColor: '#FFF8F0', border: '1px solid #FDDCB5',
+                backgroundColor: 'var(--surface-secondary)', border: '1px solid var(--warning)',
                 borderRadius: 10, padding: '12px 14px', margin: '20px 0',
-                fontSize: 13, color: '#92400E',
+                fontSize: 13, color: 'var(--warning)',
               }}>
                 🔒 {t('TaallamGo ne vous demandera jamais votre mot de passe sur une plateforme externe.', 'لن يطلب منك TaallamGo أبداً كلمة مرورك على منصة خارجية.', lang)}
               </div>

@@ -1,47 +1,50 @@
 export default function LoginPage() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100">
-      <div className="bg-white rounded-lg shadow-lg p-8 max-w-md w-full">
-        <h1 className="text-2xl font-bold mb-6 text-center">Se connecter à TaallamGo</h1>
-        
+    <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: 'var(--background)', color: 'var(--foreground)' }}>
+      <div className="rounded-lg shadow-lg p-8 max-w-md w-full" style={{ backgroundColor: 'var(--surface)', border: '1px solid var(--border)' }}>
+        <h1 className="text-2xl font-bold mb-6 text-center" style={{ color: 'var(--foreground)' }}>Se connecter à TaallamGo</h1>
+
         <form className="space-y-4">
           <div>
-            <label className="block text-sm font-medium mb-2">Email</label>
+            <label className="block text-sm font-medium mb-2" style={{ color: 'var(--foreground)' }}>Email</label>
             <input
               type="email"
               placeholder="votre@email.dz"
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-600"
+              className="w-full px-4 py-2 rounded-lg"
+              style={{ backgroundColor: 'var(--surface)', color: 'var(--foreground)', border: '1px solid var(--border)' }}
               defaultValue="demo@taallamgo.dz"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium mb-2">Mot de passe</label>
+            <label className="block text-sm font-medium mb-2" style={{ color: 'var(--foreground)' }}>Mot de passe</label>
             <input
               type="password"
               placeholder="••••••••"
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-600"
+              className="w-full px-4 py-2 rounded-lg"
+              style={{ backgroundColor: 'var(--surface)', color: 'var(--foreground)', border: '1px solid var(--border)' }}
               defaultValue="demo123456"
             />
           </div>
 
           <button
             type="submit"
-            className="w-full bg-indigo-600 text-white py-2 rounded-lg font-semibold hover:bg-indigo-700"
+            className="w-full py-2 rounded-lg font-semibold"
+            style={{ backgroundColor: 'var(--accent)', color: 'var(--accent-foreground)' }}
           >
             Se connecter
           </button>
         </form>
 
-        <p className="text-center text-sm text-gray-600 mt-6">
+        <p className="text-center text-sm mt-6" style={{ color: 'var(--muted-foreground)' }}>
           Pas encore inscrit?{' '}
-          <a href="/auth/register" className="text-indigo-600 hover:underline">
+          <a href="/auth/register" className="hover:underline" style={{ color: 'var(--accent)' }}>
             Créer un compte
           </a>
         </p>
 
-        <div className="mt-6 pt-6 border-t border-gray-300">
-          <p className="text-xs text-gray-500 text-center">
+        <div className="mt-6 pt-6" style={{ borderTop: '1px solid var(--border)' }}>
+          <p className="text-xs text-center" style={{ color: 'var(--muted-foreground)' }}>
             <strong>Démo:</strong> demo@taallamgo.dz / demo123456
           </p>
         </div>

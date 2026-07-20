@@ -149,8 +149,8 @@ export function AdminDashboard({ lang, navigate }: Props) {
             {t('Paiements & remboursements', 'المدفوعات والاستردادات', lang)}
           </h2>
           <div style={{
-            backgroundColor: 'rgba(245, 158, 11, 0.14)', border: '1px solid #FDE68A',
-            borderRadius: 12, padding: '14px 18px', marginBottom: 20, fontSize: 14, color: '#92400E',
+            backgroundColor: 'rgba(245, 158, 11, 0.14)', border: '1px solid var(--warning)',
+            borderRadius: 12, padding: '14px 18px', marginBottom: 20, fontSize: 14, color: 'var(--warning)',
           }}>
             ⚠️ {t('Note de sécurité : la modification, la confirmation et le remboursement d\'une même transaction nécessitent deux validateurs différents.', 'ملاحظة أمان: تعديل وتأكيد واسترداد نفس المعاملة يتطلب مدققين مختلفين.', lang)}
           </div>
@@ -241,8 +241,8 @@ export function AdminDashboard({ lang, navigate }: Props) {
                 {kpi.delta && (
                   <span style={{
                     fontSize: 11, fontWeight: 600, padding: '2px 7px', borderRadius: 20,
-                    backgroundColor: kpi.delta.startsWith('+') ? 'var(--surface-secondary)' : '#FEE2E2',
-                    color: kpi.delta.startsWith('+') ? 'var(--accent)' : '#DC3545',
+                    backgroundColor: kpi.delta.startsWith('+') ? 'var(--surface-secondary)' : 'var(--surface-secondary)',
+                    color: kpi.delta.startsWith('+') ? 'var(--accent)' : 'var(--error)',
                   }}>
                     {kpi.delta}
                   </span>

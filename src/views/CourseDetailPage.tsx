@@ -56,7 +56,7 @@ export function CourseDetailPage({ lang, navigate, course: propCourse, dir }: Pr
     image: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=800&h=400&fit=crop&auto=format',
     certificate: true,
     tag: 'Bestseller',
-    tagColor: '#F59E0B',
+    tagColor: 'var(--warning)',
   }
 
   const totalAdjustment = Math.round(course.price_dzd * TOTAL_ADJUSTMENT_RATE)
@@ -173,7 +173,7 @@ export function CourseDetailPage({ lang, navigate, course: propCourse, dir }: Pr
               <span style={{ fontSize: 16, fontWeight: 800, color: 'var(--warning)' }}>{course.rating}</span>
               <div style={{ display: 'flex', gap: 2 }}>
                 {[1,2,3,4,5].map(i => (
-                  <svg key={i} width="14" height="14" viewBox="0 0 12 12" fill={i <= Math.round(course.rating) ? '#F59E0B' : 'var(--border)'}>
+                  <svg key={i} width="14" height="14" viewBox="0 0 12 12" fill={i <= Math.round(course.rating) ? 'var(--warning)' : 'var(--border)'}>
                     <polygon points="6,1 7.5,4.5 11,4.9 8.5,7.2 9.2,11 6,9.1 2.8,11 3.5,7.2 1,4.9 4.5,4.5" />
                   </svg>
                 ))}
@@ -399,8 +399,8 @@ export function CourseDetailPage({ lang, navigate, course: propCourse, dir }: Pr
               {orderStep === 3 && (
                 <div style={{ padding: '0 24px 24px' }}>
                   <div style={{
-                    backgroundColor: 'rgba(245, 158, 11, 0.14)', border: '1px solid #FDE68A',
-                    borderRadius: 10, padding: '12px 14px', marginBottom: 16, fontSize: 13, color: '#92400E',
+                    backgroundColor: 'rgba(245, 158, 11, 0.14)', border: '1px solid var(--warning)',
+                    borderRadius: 10, padding: '12px 14px', marginBottom: 16, fontSize: 13, color: 'var(--warning)',
                   }}>
                     ⚠️ {t('Paiement de démonstration — aucune somme ne sera débitée.', 'دفع تجريبي — لن يُخصم أي مبلغ.', lang)}
                   </div>
