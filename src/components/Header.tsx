@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react'
 import type { Lang } from '../data'
 import { t } from '../data'
 import { useIsMobile } from '../hooks/useIsMobile'
-import { taallamGoLogoSrc } from '../logo'
 import type { Theme } from '../hooks/useTheme'
+import { ThemeLogo } from './ThemeLogo'
 import { ThemeToggle } from './ThemeToggle'
 
 type Page = string
@@ -46,9 +46,9 @@ export function Header({ lang, onLangToggle, currentPage, navigate, dir, theme, 
         {/* Logo */}
         <button
           onClick={() => navigate('home')}
-          style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0, display: 'flex', alignItems: 'center' }}
+          style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0, display: 'flex', alignItems: 'center', flexShrink: 0 }}
         >
-          <img src={taallamGoLogoSrc} alt="TaallamGo" style={{ height: isMobile ? 30 : 36, width: 'auto', maxWidth: isMobile ? 150 : 190 }} />
+          <ThemeLogo />
         </button>
 
         {/* Desktop nav */}
