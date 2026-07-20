@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import type { Lang } from '../data'
 import { t } from '../data'
 import { useIsMobile } from '../hooks/useIsMobile'
@@ -23,10 +23,21 @@ const navLinks = [
 
 export function Header({ lang, onLangToggle, currentPage, navigate, dir }: Props) {
   const [mobileOpen, setMobileOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
   const isMobile = useIsMobile()
 
+  useEffect(() => {
+    const update = () => setScrolled(window.scrollY > 12)
+    update()
+    window.addEventListener('scroll', update, { passive: true })
+    return () => window.removeEventListener('scroll', update)
+  }, [])
+
   return (
-    <header style={{ backgroundColor: '#FFFFFF', borderBottom: '1px solid #E4E9F0', position: 'sticky', top: 0, zIndex: 50 }}>
+    <header
+      className={`tg-header${scrolled ? ' is-scrolled' : ''}`}
+      style={{ backgroundColor: scrolled ? 'rgba(255,255,255,0.86)' : '#FFFFFF', borderBottom: '1px solid #E4E9F0', position: 'sticky', top: 0, zIndex: 50 }}
+    >
       <div style={{ maxWidth: 1200, margin: '0 auto', padding: isMobile ? '0 14px' : '0 24px', height: 64, display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 10 }}>
         {/* Logo */}
         <button
@@ -54,7 +65,9 @@ export function Header({ lang, onLangToggle, currentPage, navigate, dir }: Props
                 backgroundColor: currentPage === link.key ? '#E8EDF5' : 'transparent',
                 transition: 'all 0.15s',
                 fontFamily: lang === 'ar' ? "'IBM Plex Sans Arabic'" : "'Plus Jakarta Sans'",
+                position: 'relative',
               }}
+              className={currentPage === link.key ? 'tg-nav-link is-active' : 'tg-nav-link'}
             >
               {lang === 'ar' ? link.ar : link.fr}
             </button>

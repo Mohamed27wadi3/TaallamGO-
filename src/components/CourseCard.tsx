@@ -1,6 +1,7 @@
 import type { Lang } from '../data'
 import { t } from '../data'
 import { ImageWithFallback } from './ImageWithFallback'
+import { formatDzd } from '../format'
 
 interface Course {
   id: string
@@ -31,23 +32,26 @@ export function CourseCard({ course, lang, onClick }: Props) {
   return (
     <div
       onClick={onClick}
+      className="tg-card tg-lift"
       style={{
         backgroundColor: '#FFFFFF',
         border: '1px solid #E4E9F0',
         borderRadius: 16,
         overflow: 'hidden',
         cursor: 'pointer',
-        transition: 'all 0.2s ease',
+        transition: 'transform 0.24s ease, box-shadow 0.24s ease, border-color 0.24s ease',
         display: 'flex',
         flexDirection: 'column',
       }}
       onMouseEnter={e => {
         e.currentTarget.style.boxShadow = '0 8px 24px rgba(19,42,79,0.1)'
         e.currentTarget.style.transform = 'translateY(-2px)'
+        e.currentTarget.style.borderColor = 'rgba(24,169,121,0.35)'
       }}
       onMouseLeave={e => {
         e.currentTarget.style.boxShadow = 'none'
         e.currentTarget.style.transform = 'translateY(0)'
+        e.currentTarget.style.borderColor = '#E4E9F0'
       }}
     >
       {/* Image */}
@@ -125,14 +129,14 @@ export function CourseCard({ course, lang, onClick }: Props) {
               </svg>
             ))}
           </div>
-          <span style={{ fontSize: 12, color: '#667085' }}>({course.reviews.toLocaleString()})</span>
+          <span style={{ fontSize: 12, color: '#667085' }}>({formatDzd(course.reviews)})</span>
         </div>
 
         {/* Price + duration */}
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderTop: '1px solid #E4E9F0', paddingTop: 12 }}>
           <div>
             <span style={{ fontSize: 18, fontWeight: 800, color: '#132A4F' }}>
-              {course.price_dzd.toLocaleString()}
+              {formatDzd(course.price_dzd)}
             </span>
             <span style={{ fontSize: 13, color: '#667085', marginLeft: 4 }}>DZD</span>
           </div>

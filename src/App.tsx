@@ -2,6 +2,7 @@ import { useState } from 'react'
 import type { Lang } from './data'
 import { Header } from './components/Header'
 import { Footer } from './components/Footer'
+import { CustomCursor } from './components/CustomCursor'
 import { HomePage } from './views/HomePage'
 import { CatalogPage } from './views/CatalogPage'
 import { CourseDetailPage } from './views/CourseDetailPage'
@@ -77,6 +78,7 @@ export default function App() {
 
   return (
     <div dir={dir} style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+      <CustomCursor />
       {showHeader && (
         <Header
           lang={lang}

@@ -5,6 +5,7 @@ html,
 body {
   margin: 0;
   min-height: 100%;
+  overflow-x: hidden;
 }
 
 * {
@@ -32,6 +33,10 @@ body {
   --error: #DC3545;
   --font-sans: 'Plus Jakarta Sans', sans-serif;
   --font-arabic: 'IBM Plex Sans Arabic', sans-serif;
+  --motion-fast: 160ms;
+  --motion-base: 260ms;
+  --motion-slow: 520ms;
+  --ease-premium: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 html {
@@ -87,11 +92,11 @@ html[dir="rtl"] [dir="ltr"] {
 }
 
 .gradient-primary {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #132A4F 0%, #18A979 100%);
 }
 
 .text-gradient {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #132A4F 0%, #18A979 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -99,13 +104,211 @@ html[dir="rtl"] [dir="ltr"] {
 
 /* Smooth transitions */
 button, a {
-  transition: all 0.3s ease;
+  transition:
+    transform var(--motion-fast) var(--ease-premium),
+    box-shadow var(--motion-base) var(--ease-premium),
+    border-color var(--motion-base) var(--ease-premium),
+    background-color var(--motion-base) var(--ease-premium),
+    color var(--motion-base) var(--ease-premium);
 }
 
 /* Focus styles */
 button:focus, a:focus, input:focus, select:focus {
-  outline: 2px solid #667eea;
+  outline: 2px solid #18A979;
   outline-offset: 2px;
+}
+
+button:active,
+a:active {
+  transform: translateY(1px) scale(0.99);
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: #18A979 !important;
+  box-shadow: 0 0 0 4px rgba(24, 169, 121, 0.12);
+}
+
+.tg-header {
+  transition:
+    background-color var(--motion-base) var(--ease-premium),
+    box-shadow var(--motion-base) var(--ease-premium),
+    backdrop-filter var(--motion-base) var(--ease-premium);
+}
+
+.tg-header.is-scrolled {
+  backdrop-filter: blur(14px);
+  box-shadow: 0 10px 30px rgba(19, 42, 79, 0.07);
+}
+
+.tg-nav-link::after {
+  position: absolute;
+  right: 12px;
+  bottom: 2px;
+  left: 12px;
+  height: 2px;
+  content: "";
+  background: #18A979;
+  border-radius: 999px;
+  opacity: 0;
+  transform: scaleX(0.2);
+  transition: opacity var(--motion-base) var(--ease-premium), transform var(--motion-base) var(--ease-premium);
+}
+
+.tg-nav-link.is-active::after,
+.tg-nav-link:hover::after {
+  opacity: 1;
+  transform: scaleX(1);
+}
+
+.tg-card,
+.tg-lift {
+  will-change: transform;
+}
+
+.tg-reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity var(--motion-slow) var(--ease-premium), transform var(--motion-slow) var(--ease-premium);
+}
+
+.tg-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.tg-animated-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.tg-blob {
+  position: absolute;
+  display: block;
+  border-radius: 999px;
+  filter: blur(42px);
+  opacity: 0.16;
+  transform: translate3d(0, 0, 0);
+  will-change: transform, opacity;
+}
+
+.tg-blob--one {
+  top: -12%;
+  right: -6%;
+  width: 420px;
+  height: 420px;
+  background: #18A979;
+  animation: tgFloatOne 18s var(--ease-premium) infinite alternate;
+}
+
+.tg-blob--two {
+  bottom: -18%;
+  left: 4%;
+  width: 360px;
+  height: 360px;
+  background: #132A4F;
+  opacity: 0.1;
+  animation: tgFloatTwo 22s var(--ease-premium) infinite alternate;
+}
+
+.tg-blob--three {
+  top: 28%;
+  left: 42%;
+  width: 260px;
+  height: 260px;
+  background: #18A979;
+  opacity: 0.08;
+  animation: tgFloatThree 24s var(--ease-premium) infinite alternate;
+}
+
+.tg-network {
+  position: absolute;
+  right: max(24px, 7vw);
+  bottom: 10%;
+  width: min(48vw, 620px);
+  max-width: 620px;
+  opacity: 0.2;
+}
+
+.tg-network path {
+  fill: none;
+  stroke: #132A4F;
+  stroke-width: 1.4;
+  stroke-dasharray: 5 10;
+  animation: tgDash 24s linear infinite;
+}
+
+.tg-network circle {
+  fill: #18A979;
+}
+
+.tg-cursor-dot,
+.tg-cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2147483647;
+  pointer-events: none;
+  opacity: 0;
+  transform: translate3d(-100px, -100px, 0);
+  transition: opacity var(--motion-fast) ease, width var(--motion-base) var(--ease-premium), height var(--motion-base) var(--ease-premium), border-color var(--motion-base) var(--ease-premium);
+}
+
+.tg-cursor-dot {
+  width: 6px;
+  height: 6px;
+  margin: -3px 0 0 -3px;
+  background: #132A4F;
+  border-radius: 999px;
+}
+
+.tg-cursor-ring {
+  width: 30px;
+  height: 30px;
+  margin: -15px 0 0 -15px;
+  border: 1.5px solid rgba(19, 42, 79, 0.34);
+  border-radius: 999px;
+}
+
+.tg-cursor-dot.is-visible,
+.tg-cursor-ring.is-visible {
+  opacity: 1;
+}
+
+.tg-cursor-dot.is-interactive {
+  background: #18A979;
+}
+
+.tg-cursor-ring.is-interactive {
+  width: 44px;
+  height: 44px;
+  margin: -22px 0 0 -22px;
+  border-color: rgba(24, 169, 121, 0.52);
+  background: rgba(24, 169, 121, 0.05);
+}
+
+.tg-cursor-ring.is-pressed {
+  width: 24px;
+  height: 24px;
+  margin: -12px 0 0 -12px;
+}
+
+.tg-custom-cursor-active,
+.tg-custom-cursor-active a,
+.tg-custom-cursor-active button,
+.tg-custom-cursor-active [role="button"] {
+  cursor: none;
+}
+
+.tg-custom-cursor-active input,
+.tg-custom-cursor-active textarea,
+.tg-custom-cursor-active select,
+.tg-custom-cursor-active [contenteditable="true"] {
+  cursor: auto;
 }
 
 @keyframes fadeInUp {
@@ -123,6 +326,25 @@ button:focus, a:focus, input:focus, select:focus {
   to { background-position: 200% 0; }
 }
 
+@keyframes tgFloatOne {
+  from { transform: translate3d(0, 0, 0) scale(1); }
+  to { transform: translate3d(-36px, 28px, 0) scale(1.08); }
+}
+
+@keyframes tgFloatTwo {
+  from { transform: translate3d(0, 0, 0) scale(1); }
+  to { transform: translate3d(42px, -22px, 0) scale(1.05); }
+}
+
+@keyframes tgFloatThree {
+  from { transform: translate3d(0, 0, 0) scale(0.98); }
+  to { transform: translate3d(24px, 34px, 0) scale(1.04); }
+}
+
+@keyframes tgDash {
+  to { stroke-dashoffset: -180; }
+}
+
 .animate-fade-in-up { animation: fadeInUp 0.5s ease forwards; }
 .animate-fade-in { animation: fadeIn 0.4s ease forwards; }
 
@@ -131,4 +353,44 @@ button:focus, a:focus, input:focus, select:focus {
   background-size: 200% 100%;
   animation: shimmer 1.5s infinite;
   border-radius: 6px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .tg-lift:hover {
+    transform: translateY(-2px);
+  }
+}
+
+@media (max-width: 767px) {
+  .tg-network {
+    right: -28%;
+    bottom: 8%;
+    width: 92vw;
+    opacity: 0.12;
+  }
+
+  .tg-blob {
+    filter: blur(34px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+
+  .tg-reveal {
+    opacity: 1;
+    transform: none;
+  }
+
+  .tg-cursor-dot,
+  .tg-cursor-ring {
+    display: none;
+  }
 }

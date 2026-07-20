@@ -2,6 +2,7 @@ import { useState, useMemo } from 'react'
 import type { Lang } from '../data'
 import { t, categories, courses, platforms } from '../data'
 import { CourseCard } from '../components/CourseCard'
+import { Reveal } from '../components/Reveal'
 
 interface Props {
   lang: Lang
@@ -243,13 +244,14 @@ export function CatalogPage({ lang, navigate }: Props) {
           </div>
         ) : (
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))', gap: 20 }}>
-            {filtered.map(course => (
-              <CourseCard
-                key={course.id}
-                course={course}
-                lang={lang}
-                onClick={() => navigate('course', course)}
-              />
+            {filtered.map((course, index) => (
+              <Reveal key={course.id} delay={(index % 8) * 55}>
+                <CourseCard
+                  course={course}
+                  lang={lang}
+                  onClick={() => navigate('course', course)}
+                />
+              </Reveal>
             ))}
           </div>
         )}

@@ -3,6 +3,7 @@ import type { Lang } from '../data'
 import { t, mockOrders, orderStatuses } from '../data'
 import { useIsMobile } from '../hooks/useIsMobile'
 import { taallamGoLogoSrc } from '../logo'
+import { formatDzd } from '../format'
 
 interface Props {
   lang: Lang
@@ -117,7 +118,7 @@ export function CustomerDashboard({ lang, navigate }: Props) {
             {[
               { label: t('Formation', 'الدورة', lang), value: selectedOrder.course },
               { label: t('Plateforme', 'المنصة', lang), value: selectedOrder.platform },
-              { label: t('Montant', 'المبلغ', lang), value: `${selectedOrder.amount.toLocaleString()} DZD` },
+              { label: t('Montant', 'المبلغ', lang), value: `${formatDzd(selectedOrder.amount)} DZD` },
               { label: t('Méthode de livraison', 'طريقة التسليم', lang), value: selectedOrder.deliveryMethod },
             ].map((row, i) => (
               <div key={i} style={{
@@ -161,7 +162,7 @@ export function CustomerDashboard({ lang, navigate }: Props) {
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
                   <span style={{ fontSize: 15, fontWeight: 700, color: '#132A4F' }}>
-                    {order.amount.toLocaleString()} DZD
+                    {formatDzd(order.amount)} DZD
                   </span>
                   <StatusBadge statusKey={order.status} lang={lang} />
                   <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
@@ -326,7 +327,7 @@ export function CustomerDashboard({ lang, navigate }: Props) {
                   <div style={{ fontSize: 12, color: '#667085' }}>{order.id} · {order.date}</div>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-                  <span style={{ fontSize: 14, fontWeight: 700, color: '#132A4F' }}>{order.amount.toLocaleString()} DZD</span>
+                  <span style={{ fontSize: 14, fontWeight: 700, color: '#132A4F' }}>{formatDzd(order.amount)} DZD</span>
                   <StatusBadge statusKey={order.status} lang={lang} />
                 </div>
               </div>

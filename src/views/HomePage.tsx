@@ -3,6 +3,8 @@ import type { Lang } from '../data'
 import { t, categories, courses } from '../data'
 import { CourseCard } from '../components/CourseCard'
 import { useIsMobile } from '../hooks/useIsMobile'
+import { AnimatedBackground } from '../components/AnimatedBackground'
+import { Reveal } from '../components/Reveal'
 
 interface Props {
   lang: Lang
@@ -92,29 +94,15 @@ export function HomePage({ lang, navigate, dir }: Props) {
 
       {/* Hero Section */}
       <section style={{
-        background: 'linear-gradient(135deg, #132A4F 0%, #1B3A6B 60%, #132A4F 100%)',
+        background: 'linear-gradient(135deg, #F7F9FC 0%, #FFFFFF 48%, #EFF8F4 100%)',
         padding: isMobile ? '48px 14px 62px' : '80px 24px 96px',
         position: 'relative',
         overflow: 'hidden',
       }}>
-        {/* Decorative background shapes */}
-        <div style={{
-          position: 'absolute', top: -60, right: -60,
-          width: 400, height: 400,
-          background: 'radial-gradient(circle, rgba(24,169,121,0.15) 0%, transparent 70%)',
-          borderRadius: '50%',
-          pointerEvents: 'none',
-        }} />
-        <div style={{
-          position: 'absolute', bottom: -80, left: '10%',
-          width: 300, height: 300,
-          background: 'radial-gradient(circle, rgba(24,169,121,0.08) 0%, transparent 70%)',
-          borderRadius: '50%',
-          pointerEvents: 'none',
-        }} />
+        <AnimatedBackground variant="hero" />
 
         <div style={{ maxWidth: 1200, margin: '0 auto', position: 'relative' }}>
-          <div style={{ maxWidth: 680, animation: 'fadeInUp 0.6s ease forwards' }}>
+          <Reveal style={{ maxWidth: 680 }}>
             {/* Eyebrow */}
             <div style={{
               display: 'inline-flex', alignItems: 'center', gap: 8,
@@ -123,7 +111,7 @@ export function HomePage({ lang, navigate, dir }: Props) {
               borderRadius: 100, padding: '6px 14px', marginBottom: 24,
             }}>
               <span style={{ width: 8, height: 8, borderRadius: '50%', backgroundColor: '#18A979', display: 'inline-block' }} />
-              <span style={{ fontSize: 13, fontWeight: 600, color: '#18A979' }}>
+              <span style={{ fontSize: 13, fontWeight: 600, color: '#132A4F' }}>
                 {t('Plateforme algérienne EdTech', 'منصة جزائرية للتعليم', lang)}
               </span>
             </div>
@@ -131,7 +119,7 @@ export function HomePage({ lang, navigate, dir }: Props) {
             <h1 style={{
               fontSize: 'clamp(28px, 4vw, 52px)',
               fontWeight: 800,
-              color: '#FFFFFF',
+              color: '#132A4F',
               lineHeight: 1.15,
               margin: '0 0 20px',
               letterSpacing: 0,
@@ -145,7 +133,7 @@ export function HomePage({ lang, navigate, dir }: Props) {
 
             <p style={{
               fontSize: 'clamp(15px, 1.5vw, 18px)',
-              color: 'rgba(255,255,255,0.75)',
+              color: '#667085',
               lineHeight: 1.7,
               margin: '0 0 36px',
               maxWidth: 560,
@@ -178,15 +166,15 @@ export function HomePage({ lang, navigate, dir }: Props) {
               <button
                 onClick={() => navigate('custom-request')}
                 style={{
-                  backgroundColor: 'transparent', color: '#FFFFFF',
-                  border: '1.5px solid rgba(255,255,255,0.35)', cursor: 'pointer',
+                  backgroundColor: '#FFFFFF', color: '#132A4F',
+                  border: '1.5px solid #E4E9F0', cursor: 'pointer',
                   padding: '13px 20px', borderRadius: 12,
                   fontSize: 16, fontWeight: 600,
                   width: isMobile ? '100%' : 'auto',
                   transition: 'all 0.15s',
                 }}
-                onMouseEnter={e => (e.currentTarget.style.borderColor = 'rgba(255,255,255,0.6)')}
-                onMouseLeave={e => (e.currentTarget.style.borderColor = 'rgba(255,255,255,0.35)')}
+                onMouseEnter={e => (e.currentTarget.style.borderColor = '#18A979')}
+                onMouseLeave={e => (e.currentTarget.style.borderColor = '#E4E9F0')}
               >
                 {t('Demander une formation', 'اطلب دورة', lang)}
               </button>
@@ -199,8 +187,8 @@ export function HomePage({ lang, navigate, dir }: Props) {
                   style={{ position: 'absolute', left: 14, top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none' }}
                   width="18" height="18" viewBox="0 0 18 18" fill="none"
                 >
-                  <circle cx="7.5" cy="7.5" r="5" stroke="rgba(255,255,255,0.5)" strokeWidth="1.8" />
-                  <line x1="11" y1="11" x2="15" y2="15" stroke="rgba(255,255,255,0.5)" strokeWidth="1.8" strokeLinecap="round" />
+                  <circle cx="7.5" cy="7.5" r="5" stroke="#667085" strokeWidth="1.8" />
+                  <line x1="11" y1="11" x2="15" y2="15" stroke="#667085" strokeWidth="1.8" strokeLinecap="round" />
                 </svg>
                 <input
                   type="text"
@@ -209,12 +197,12 @@ export function HomePage({ lang, navigate, dir }: Props) {
                   placeholder={t('Rechercher Python, AWS, Figma...', 'ابحث عن Python, AWS, Figma...', lang)}
                   style={{
                     width: '100%', height: 50,
-                    backgroundColor: 'rgba(255,255,255,0.1)',
-                    border: '1.5px solid rgba(255,255,255,0.2)',
-                    borderRight: isMobile ? '1.5px solid rgba(255,255,255,0.2)' : 'none',
+                    backgroundColor: '#FFFFFF',
+                    border: '1.5px solid #E4E9F0',
+                    borderRight: isMobile ? '1.5px solid #E4E9F0' : 'none',
                     borderRadius: isMobile ? 12 : '12px 0 0 12px',
                     padding: '0 16px 0 42px',
-                    fontSize: 15, color: '#FFFFFF',
+                    fontSize: 15, color: '#172033',
                     outline: 'none',
                     fontFamily: lang === 'ar' ? "'IBM Plex Sans Arabic'" : "'Plus Jakarta Sans'",
                   }}
@@ -234,7 +222,7 @@ export function HomePage({ lang, navigate, dir }: Props) {
                 {t('Rechercher', 'بحث', lang)}
               </button>
             </form>
-          </div>
+          </Reveal>
 
           {/* Stats row */}
           <div style={{ display: 'flex', gap: 32, marginTop: 56, flexWrap: 'wrap' }}>
@@ -326,14 +314,15 @@ export function HomePage({ lang, navigate, dir }: Props) {
         </div>
 
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))', gap: 20 }}>
-          {featuredCourses.map(course => (
-            <CourseCard
-              key={course.id}
-              course={course}
-              lang={lang}
-              onClick={() => navigate('course', course)}
-            />
-          ))}
+            {featuredCourses.map((course, index) => (
+              <Reveal key={course.id} delay={index * 70}>
+                <CourseCard
+                  course={course}
+                  lang={lang}
+                  onClick={() => navigate('course', course)}
+                />
+              </Reveal>
+            ))}
         </div>
       </section>
 

@@ -3,6 +3,7 @@ import type { Lang } from '../data'
 import { t } from '../data'
 import { ImageWithFallback } from '../components/ImageWithFallback'
 import { useIsMobile } from '../hooks/useIsMobile'
+import { formatDzd } from '../format'
 
 interface Course {
   id: string
@@ -178,7 +179,7 @@ export function CourseDetailPage({ lang, navigate, course: propCourse, dir }: Pr
                   </svg>
                 ))}
               </div>
-              <span style={{ fontSize: 13, color: '#667085' }}>({course.reviews.toLocaleString()} {t('avis', 'تقييم', lang)})</span>
+              <span style={{ fontSize: 13, color: '#667085' }}>({formatDzd(course.reviews)} {t('avis', 'تقييم', lang)})</span>
               <span style={{ fontSize: 13, color: '#667085' }}>• {course.duration}</span>
             </div>
 
@@ -270,9 +271,9 @@ export function CourseDetailPage({ lang, navigate, course: propCourse, dir }: Pr
                 </div>
 
                 {[
-                  { label: t('Prix de la formation', 'سعر الدورة', lang), value: `${course.price_dzd.toLocaleString()} DZD` },
+                  { label: t('Prix de la formation', 'سعر الدورة', lang), value: `${formatDzd(course.price_dzd)} DZD` },
                   { label: t('Conversion USD → DZD', 'تحويل USD → DZD', lang), value: `1$ ≈ ${EXCHANGE_RATE} DZD` },
-                  { label: t('Frais de service (12%)', 'رسوم الخدمة (12%)', lang), value: `+${serviceFee.toLocaleString()} DZD` },
+                  { label: t('Frais de service (12%)', 'رسوم الخدمة (12%)', lang), value: `+${formatDzd(serviceFee)} DZD` },
                   { label: t('Réduction', 'تخفيض', lang), value: t('Aucune', 'لا يوجد', lang), subtle: true },
                 ].map((row, i) => (
                   <div key={i} style={{
@@ -294,7 +295,7 @@ export function CourseDetailPage({ lang, navigate, course: propCourse, dir }: Pr
                   </span>
                   <div style={{ textAlign: 'right' }}>
                     <div style={{ fontSize: 24, fontWeight: 800, color: '#132A4F' }}>
-                      {total.toLocaleString()} DZD
+                      {formatDzd(total)} DZD
                     </div>
                   </div>
                 </div>

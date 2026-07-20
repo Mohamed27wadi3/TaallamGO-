@@ -3,6 +3,7 @@ import type { Lang } from '../data'
 import { t, mockOrders, orderStatuses } from '../data'
 import { useIsMobile } from '../hooks/useIsMobile'
 import { taallamGoLogoSrc } from '../logo'
+import { formatDzd } from '../format'
 
 interface Props {
   lang: Lang
@@ -108,7 +109,7 @@ export function AdminDashboard({ lang, navigate }: Props) {
                         {order.course}
                       </div>
                     </td>
-                    <td style={{ padding: '14px 16px', fontWeight: 600, color: '#172033' }}>{order.amount.toLocaleString()} DZD</td>
+                    <td style={{ padding: '14px 16px', fontWeight: 600, color: '#172033' }}>{formatDzd(order.amount)} DZD</td>
                     <td style={{ padding: '14px 16px' }}><StatusBadge statusKey={order.status} lang={lang} /></td>
                     <td style={{ padding: '14px 16px', color: '#667085' }}>{order.date}</td>
                     <td style={{ padding: '14px 16px' }}>
@@ -169,7 +170,7 @@ export function AdminDashboard({ lang, navigate }: Props) {
                   <tr key={order.id} style={{ borderBottom: '1px solid #F0F3F8' }}>
                     <td style={{ padding: '14px 16px', fontWeight: 600, color: '#132A4F' }}>{order.id}</td>
                     <td style={{ padding: '14px 16px' }}>Ahmed Bensalem</td>
-                    <td style={{ padding: '14px 16px', fontWeight: 600 }}>{order.amount.toLocaleString()} DZD</td>
+                    <td style={{ padding: '14px 16px', fontWeight: 600 }}>{formatDzd(order.amount)} DZD</td>
                     <td style={{ padding: '14px 16px', color: '#667085' }}>BaridiMob</td>
                     <td style={{ padding: '14px 16px' }}><StatusBadge statusKey={order.status} lang={lang} /></td>
                     <td style={{ padding: '14px 16px' }}>
@@ -286,7 +287,7 @@ export function AdminDashboard({ lang, navigate }: Props) {
                       {order.course}
                     </div>
                   </td>
-                  <td style={{ padding: '12px 16px', fontWeight: 600 }}>{order.amount.toLocaleString()} DZD</td>
+                  <td style={{ padding: '12px 16px', fontWeight: 600 }}>{formatDzd(order.amount)} DZD</td>
                   <td style={{ padding: '12px 16px' }}><StatusBadge statusKey={order.status} lang={lang} /></td>
                 </tr>
               ))}
