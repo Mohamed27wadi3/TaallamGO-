@@ -33,6 +33,12 @@ export function AuthPage({ lang, navigate, mode: initialMode }: Props) {
         return
       }
 
+      const statusResponse = await fetch('/api/auth/status')
+      const statusPayload = await statusResponse.json()
+      if (!statusResponse.ok || !statusPayload.success) {
+        throw new Error(statusPayload.database?.error || t('Base de données indisponible.', 'قاعدة البيانات غير متاحة.', lang))
+      }
+
       if (mode === 'register') {
         const response = await fetch('/api/auth/register', {
           method: 'POST',

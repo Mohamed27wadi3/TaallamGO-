@@ -3,6 +3,7 @@ import bcrypt from 'bcryptjs'
 import { z } from 'zod'
 import { db } from '@/lib/db'
 import { registerSchema } from '@/lib/validators'
+import { checkDatabaseReady, isDatabaseConnectionError } from '@/lib/database-health'
 
 const registerRequestSchema = registerSchema.extend({
   name: z.string().trim().min(2).max(120).optional(),
@@ -12,6 +13,14 @@ const registerRequestSchema = registerSchema.extend({
 
 export async function POST(request: NextRequest) {
   try {
+    const database = await checkDatabaseReady()
+    if (!database.ok) {
+      return NextResponse.json(
+        { success: false, error: database.error },
+        { status: 503 },
+      )
+    }
+
     const input = registerRequestSchema.parse(await request.json())
     const email = input.email.toLowerCase()
 
@@ -57,6 +66,16 @@ export async function POST(request: NextRequest) {
       return NextResponse.json(
         { success: false, error: error.issues[0]?.message || 'Données invalides.' },
         { status: 400 },
+      )
+    }
+
+    if (isDatabaseConnectionError(error)) {
+      return NextResponse.json(
+        {
+          success: false,
+          error: 'Impossible de joindre la base de données. Vérifie DATABASE_URL et que PostgreSQL est actif.',
+        },
+        { status: 503 },
       )
     }
 

@@ -29,6 +29,14 @@ export default function RegisterPage() {
     setLoading(true)
     setError('')
 
+    const statusResponse = await fetch('/api/auth/status')
+    const statusPayload = await statusResponse.json()
+    if (!statusResponse.ok || !statusPayload.success) {
+      setLoading(false)
+      setError(statusPayload.database?.error || 'Base de données indisponible.')
+      return
+    }
+
     const response = await fetch('/api/auth/register', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
