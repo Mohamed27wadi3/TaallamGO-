@@ -1,5 +1,5 @@
 import taallamGoLogo from './tout les image de projet/TaallamGO - logo.png'
-import taallamGoDarkLogo from './tout les image de projet/logo dark mode  sans background.PNG'
+import taallamGoDarkLogo from './tout les image de projet/logo dark mode transparent.png'
 import taallamGoLightLogo from './tout les image de projet/Logo light mode sans background.PNG'
 
 type ImportedImage = string | { src: string }
