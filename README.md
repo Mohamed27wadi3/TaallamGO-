@@ -18,4 +18,12 @@ npx prisma migrate deploy
 npx prisma db seed
 ```
 
+Sur Vercel, dans **Settings → Build and Development Settings**, utilise :
+
+```bash
+npm run vercel-build
+```
+
+Cette commande applique les migrations Prisma avant le build Next.js.
+
 Pour le développement local, démarre PostgreSQL localement ou remplace `DATABASE_URL` par une URL PostgreSQL distante.

@@ -3,7 +3,7 @@ import bcrypt from 'bcryptjs'
 import { z } from 'zod'
 import { db } from '@/lib/db'
 import { registerSchema } from '@/lib/validators'
-import { checkDatabaseReady, isDatabaseConnectionError } from '@/lib/database-health'
+import { checkDatabaseReady, isDatabaseConnectionError, isDatabaseSchemaMissingError } from '@/lib/database-health'
 
 const registerRequestSchema = registerSchema.extend({
   name: z.string().trim().min(2).max(120).optional(),
@@ -74,6 +74,16 @@ export async function POST(request: NextRequest) {
         {
           success: false,
           error: 'Impossible de joindre la base de données. Vérifie DATABASE_URL et que PostgreSQL est actif.',
+        },
+        { status: 503 },
+      )
+    }
+
+    if (isDatabaseSchemaMissingError(error)) {
+      return NextResponse.json(
+        {
+          success: false,
+          error: 'La base est connectée, mais les tables Prisma ne sont pas créées. Lance prisma migrate deploy puis redéploie.',
         },
         { status: 503 },
       )

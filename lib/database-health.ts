@@ -41,6 +41,20 @@ export function isDatabaseConnectionError(error: unknown) {
   )
 }
 
+export function isDatabaseSchemaMissingError(error: unknown) {
+  if (!error || typeof error !== 'object') return false
+
+  const maybeError = error as { code?: unknown; message?: unknown }
+  return (
+    maybeError.code === 'P2021' ||
+    maybeError.code === 'P2022' ||
+    (typeof maybeError.message === 'string' &&
+      (maybeError.message.includes('does not exist') ||
+        maybeError.message.includes('relation') ||
+        maybeError.message.includes('table')))
+  )
+}
+
 export async function checkDatabaseReady() {
   const configurationError = getDatabaseConfigurationError()
   if (configurationError) {
@@ -49,13 +63,20 @@ export async function checkDatabaseReady() {
 
   try {
     const { db } = await import('./db')
-    await db.$queryRaw`SELECT 1`
+    await db.user.findFirst({ select: { id: true }, take: 1 })
     return { ok: true, error: null }
   } catch (error) {
     if (isDatabaseConnectionError(error)) {
       return {
         ok: false,
         error: 'Impossible de joindre la base de données. Vérifie DATABASE_URL et que PostgreSQL est actif.',
+      }
+    }
+
+    if (isDatabaseSchemaMissingError(error)) {
+      return {
+        ok: false,
+        error: 'La base est connectée, mais les tables Prisma ne sont pas créées. Lance prisma migrate deploy puis redéploie.',
       }
     }
 
