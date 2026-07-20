@@ -16,65 +16,65 @@ const steps = [
   {
     num: '01',
     fr: 'Choisissez votre formation',
-    ar: 'Ø§Ø®ØªØ± Ø¯ÙˆØ±ØªÙƒ',
-    descFr: 'Parcourez notre catalogue de formations internationales et trouvez celle qui correspond Ã  vos objectifs.',
-    descAr: 'ØªØµÙØ­ ÙƒØªØ§Ù„ÙˆØ¬ Ø§Ù„Ø¯ÙˆØ±Ø§Øª Ø§Ù„Ø¯ÙˆÙ„ÙŠØ© ÙˆØ§Ø¹Ø«Ø± Ø¹Ù„Ù‰ Ù…Ø§ ÙŠÙ†Ø§Ø³Ø¨ Ø£Ù‡Ø¯Ø§ÙÙƒ.',
-    icon: 'ðŸ”',
+    ar: 'اختر دورتك',
+    descFr: 'Parcourez notre catalogue de formations internationales et trouvez celle qui correspond à vos objectifs.',
+    descAr: 'تصفح كتالوج الدورات الدولية واعثر على ما يناسب أهدافك.',
+    icon: '🔍',
   },
   {
     num: '02',
     fr: 'Consultez le prix final en DZD',
-    ar: 'Ø§Ø³ØªØ´Ø± Ø§Ù„Ø³Ø¹Ø± Ø§Ù„Ù†Ù‡Ø§Ø¦ÙŠ Ø¨Ø§Ù„Ø¯ÙŠÙ†Ø§Ø±',
-    descFr: 'Consultez directement le total Ã  payer en dinars avant de confirmer votre commande.',
-    descAr: 'ØªØ­Ù‚Ù‚ Ù…Ù† Ø§Ù„Ø¥Ø¬Ù…Ø§Ù„ÙŠ Ø§Ù„Ù…Ø·Ù„ÙˆØ¨ Ø¨Ø§Ù„Ø¯ÙŠÙ†Ø§Ø± Ù‚Ø¨Ù„ ØªØ£ÙƒÙŠØ¯ Ø§Ù„Ø·Ù„Ø¨.',
-    icon: 'ðŸ’°',
+    ar: 'استشر السعر النهائي بالدينار',
+    descFr: 'Consultez directement le total à payer en dinars avant de confirmer votre commande.',
+    descAr: 'تحقق من الإجمالي المطلوب بالدينار قبل تأكيد الطلب.',
+    icon: '💰',
   },
   {
     num: '03',
     fr: 'Payez avec un moyen local disponible',
-    ar: 'Ø§Ø¯ÙØ¹ Ø¨ÙˆØ³ÙŠÙ„Ø© Ù…Ø­Ù„ÙŠØ© Ù…ØªØ§Ø­Ø©',
-    descFr: 'Choisissez parmi les mÃ©thodes de paiement autorisÃ©es en AlgÃ©rie : virement, CCP, mobile money.',
-    descAr: 'Ø§Ø®ØªØ± Ù…Ù† Ø·Ø±Ù‚ Ø§Ù„Ø¯ÙØ¹ Ø§Ù„Ù…ØªØ§Ø­Ø© ÙÙŠ Ø§Ù„Ø¬Ø²Ø§Ø¦Ø±: ØªØ­ÙˆÙŠÙ„ Ø¨Ù†ÙƒÙŠØŒ CCPØŒ Ù…ÙˆØ¨Ø§ÙŠÙ„ Ù…ÙˆÙ†ÙŠ.',
-    icon: 'ðŸ¦',
+    ar: 'ادفع بوسيلة محلية متاحة',
+    descFr: 'Choisissez parmi les méthodes de paiement autorisées en Algérie : virement, CCP, mobile money.',
+    descAr: 'اختر من طرق الدفع المتاحة في الجزائر: تحويل بنكي، CCP، موبايل موني.',
+    icon: '🏦',
   },
   {
     num: '04',
-    fr: 'Recevez et suivez votre accÃ¨s',
-    ar: 'Ø§Ø³ØªÙ„Ù… ÙˆØªØ§Ø¨Ø¹ ÙˆØµÙˆÙ„Ùƒ',
-    descFr: 'Votre accÃ¨s est livrÃ© sur votre propre compte. Suivez l\'avancement de votre commande en temps rÃ©el.',
-    descAr: 'ÙŠÙØ³Ù„ÙŽÙ‘Ù… Ø§Ù„ÙˆØµÙˆÙ„ Ø¥Ù„Ù‰ Ø­Ø³Ø§Ø¨Ùƒ Ø§Ù„Ø´Ø®ØµÙŠ. ØªØ§Ø¨Ø¹ ØªÙ‚Ø¯Ù… Ø·Ù„Ø¨Ùƒ ÙÙŠ Ø§Ù„ÙˆÙ‚Øª Ø§Ù„ÙØ¹Ù„ÙŠ.',
-    icon: 'âœ…',
+    fr: 'Recevez et suivez votre accès',
+    ar: 'استلم وتابع وصولك',
+    descFr: 'Votre accès est livré sur votre propre compte. Suivez l\'avancement de votre commande en temps réel.',
+    descAr: 'يُسلَّم الوصول إلى حسابك الشخصي. تابع تقدم طلبك في الوقت الفعلي.',
+    icon: '✅',
   },
 ]
 
 const trustPoints = [
   {
-    icon: 'ðŸ‘¤',
-    fr: 'AccÃ¨s personnel',
-    ar: 'ÙˆØµÙˆÙ„ Ø´Ø®ØµÙŠ',
-    descFr: 'Votre accÃ¨s est livrÃ© sur votre propre compte existant. Vos donnÃ©es restent les vÃ´tres.',
-    descAr: 'ÙŠÙØ³Ù„ÙŽÙ‘Ù… Ø§Ù„ÙˆØµÙˆÙ„ Ø¥Ù„Ù‰ Ø­Ø³Ø§Ø¨Ùƒ Ø§Ù„Ø´Ø®ØµÙŠ. Ø¨ÙŠØ§Ù†Ø§ØªÙƒ ØªØ¨Ù‚Ù‰ Ù…Ù„ÙƒÙƒ.',
+    icon: '👤',
+    fr: 'Accès personnel',
+    ar: 'وصول شخصي',
+    descFr: 'Votre accès est livré sur votre propre compte existant. Vos données restent les vôtres.',
+    descAr: 'يُسلَّم الوصول إلى حسابك الشخصي. بياناتك تبقى ملكك.',
   },
   {
-    icon: 'ðŸ’Ž',
+    icon: '💎',
     fr: 'Prix transparent',
-    ar: 'Ø³Ø¹Ø± Ø´ÙØ§Ù',
+    ar: 'سعر شفاف',
     descFr: 'Total clair avant tout engagement, sans surprise.',
-    descAr: 'Ø¥Ø¬Ù…Ø§Ù„ÙŠ ÙˆØ§Ø¶Ø­ Ù‚Ø¨Ù„ Ø£ÙŠ Ø§Ù„ØªØ²Ø§Ù…ØŒ Ø¨Ø¯ÙˆÙ† Ù…ÙØ§Ø¬Ø¢Øª.',
+    descAr: 'إجمالي واضح قبل أي التزام، بدون مفاجآت.',
   },
   {
-    icon: 'ðŸ”’',
-    fr: 'Paiement sÃ©curisÃ©',
-    ar: 'Ø¯ÙØ¹ Ø¢Ù…Ù†',
-    descFr: 'Moyens de paiement locaux autorisÃ©s. Votre argent est protÃ©gÃ© jusqu\'Ã  livraison.',
-    descAr: 'Ø·Ø±Ù‚ Ø¯ÙØ¹ Ù…Ø­Ù„ÙŠØ© Ù…Ø±Ø®ØµØ©. Ø£Ù…ÙˆØ§Ù„Ùƒ Ù…Ø­Ù…ÙŠØ© Ø­ØªÙ‰ Ø§Ù„ØªØ³Ù„ÙŠÙ….',
+    icon: '🔒',
+    fr: 'Paiement sécurisé',
+    ar: 'دفع آمن',
+    descFr: 'Moyens de paiement locaux autorisés. Votre argent est protégé jusqu\'à livraison.',
+    descAr: 'طرق دفع محلية مرخصة. أموالك محمية حتى التسليم.',
   },
   {
-    icon: 'ðŸ¤',
+    icon: '🤝',
     fr: 'Support local',
-    ar: 'Ø¯Ø¹Ù… Ù…Ø­Ù„ÙŠ',
-    descFr: 'Une Ã©quipe algÃ©rienne Ã  votre Ã©coute en franÃ§ais et en arabe.',
-    descAr: 'ÙØ±ÙŠÙ‚ Ø¬Ø²Ø§Ø¦Ø±ÙŠ ÙÙŠ Ø®Ø¯Ù…ØªÙƒ Ø¨Ø§Ù„Ø¹Ø±Ø¨ÙŠØ© ÙˆØ§Ù„ÙØ±Ù†Ø³ÙŠØ©.',
+    ar: 'دعم محلي',
+    descFr: 'Une équipe algérienne à votre écoute en français et en arabe.',
+    descAr: 'فريق جزائري في خدمتك بالعربية والفرنسية.',
   },
 ]
 
@@ -123,7 +123,7 @@ export function HomePage({ lang, navigate, dir }: Props) {
             }}>
               <span style={{ width: 8, height: 8, borderRadius: '50%', backgroundColor: 'var(--accent)', display: 'inline-block' }} />
               <span style={{ fontSize: 13, fontWeight: 600, color: 'var(--primary)' }}>
-                {t('Plateforme algÃ©rienne EdTech', 'Ù…Ù†ØµØ© Ø¬Ø²Ø§Ø¦Ø±ÙŠØ© Ù„Ù„ØªØ¹Ù„ÙŠÙ…', lang)}
+                {t('Plateforme algérienne EdTech', 'منصة جزائرية للتعليم', lang)}
               </span>
             </div>
 
@@ -136,8 +136,8 @@ export function HomePage({ lang, navigate, dir }: Props) {
               letterSpacing: 0,
             }}>
               {t(
-                'Les meilleures formations mondiales, accessibles depuis l\'AlgÃ©rie.',
-                'Ø£ÙØ¶Ù„ Ø§Ù„Ø¯ÙˆØ±Ø§Øª Ø§Ù„Ø¹Ø§Ù„Ù…ÙŠØ©ØŒ Ù…ØªØ§Ø­Ø© Ù…Ù† Ø§Ù„Ø¬Ø²Ø§Ø¦Ø±.',
+                'Les meilleures formations mondiales, accessibles depuis l\'Algérie.',
+                'أفضل الدورات العالمية، متاحة من الجزائر.',
                 lang
               )}
             </h1>
@@ -150,8 +150,8 @@ export function HomePage({ lang, navigate, dir }: Props) {
               maxWidth: 560,
             }}>
               {t(
-                'DÃ©couvrez des cours et certifications internationales, payez simplement en dinars et recevez votre accÃ¨s en toute sÃ©curitÃ©.',
-                'Ø§ÙƒØªØ´Ù Ø§Ù„Ø¯ÙˆØ±Ø§Øª ÙˆØ§Ù„Ø´Ù‡Ø§Ø¯Ø§Øª Ø§Ù„Ø¯ÙˆÙ„ÙŠØ©ØŒ Ø§Ø¯ÙØ¹ Ø¨Ø³Ù‡ÙˆÙ„Ø© Ø¨Ø§Ù„Ø¯ÙŠÙ†Ø§Ø± ÙˆØ§Ø³ØªÙ„Ù… ÙˆØµÙˆÙ„Ùƒ Ø¨Ø£Ù…Ø§Ù†.',
+                'Découvrez des cours et certifications internationales, payez simplement en dinars et recevez votre accès en toute sécurité.',
+                'اكتشف الدورات والشهادات الدولية، ادفع بسهولة بالدينار واستلم وصولك بأمان.',
                 lang
               )}
             </p>
@@ -172,7 +172,7 @@ export function HomePage({ lang, navigate, dir }: Props) {
                 onMouseEnter={e => (e.currentTarget.style.backgroundColor = '#15956A')}
                 onMouseLeave={e => (e.currentTarget.style.backgroundColor = '#18A979')}
               >
-                {t('Explorer les formations', 'Ø§Ø³ØªÙƒØ´Ù Ø§Ù„Ø¯ÙˆØ±Ø§Øª', lang)} â†’
+                {t('Explorer les formations', 'استكشف الدورات', lang)} →
               </button>
               <button
                 onClick={() => navigate('custom-request')}
@@ -187,7 +187,7 @@ export function HomePage({ lang, navigate, dir }: Props) {
                 onMouseEnter={e => (e.currentTarget.style.borderColor = 'var(--accent)')}
                 onMouseLeave={e => (e.currentTarget.style.borderColor = 'var(--border)')}
               >
-                {t('Demander une formation', 'Ø§Ø·Ù„Ø¨ Ø¯ÙˆØ±Ø©', lang)}
+                {t('Demander une formation', 'اطلب دورة', lang)}
               </button>
             </div>
 
@@ -205,7 +205,7 @@ export function HomePage({ lang, navigate, dir }: Props) {
                   type="text"
                   value={searchQuery}
                   onChange={e => setSearchQuery(e.target.value)}
-                  placeholder={t('Rechercher Python, AWS, Figma...', 'Ø§Ø¨Ø­Ø« Ø¹Ù† Python, AWS, Figma...', lang)}
+                  placeholder={t('Rechercher Python, AWS, Figma...', 'ابحث عن Python, AWS, Figma...', lang)}
                   style={{
                     width: '100%', height: 50,
                     backgroundColor: 'var(--surface)',
@@ -230,7 +230,7 @@ export function HomePage({ lang, navigate, dir }: Props) {
                   width: isMobile ? '100%' : 'auto',
                 }}
               >
-                {t('Rechercher', 'Ø¨Ø­Ø«', lang)}
+                {t('Rechercher', 'بحث', lang)}
               </button>
             </form>
           </Reveal>
@@ -238,10 +238,10 @@ export function HomePage({ lang, navigate, dir }: Props) {
           {/* Stats row */}
           <div style={{ display: 'flex', gap: 32, marginTop: 56, flexWrap: 'wrap' }}>
             {[
-              { num: '500+', label: t('Formations disponibles', 'Ø¯ÙˆØ±Ø© Ù…ØªØ§Ø­Ø©', lang) },
-              { num: '8', label: t('Plateformes intÃ©grÃ©es', 'Ù…Ù†ØµØ© Ù…ØªÙƒØ§Ù…Ù„Ø©', lang) },
-              { num: '100%', label: t('Paiement en DZD', 'Ø¯ÙØ¹ Ø¨Ø§Ù„Ø¯ÙŠÙ†Ø§Ø±', lang) },
-              { num: '24h', label: t('Support rÃ©actif', 'Ø¯Ø¹Ù… Ù…ØªØ¬Ø§ÙˆØ¨', lang) },
+              { num: '500+', label: t('Formations disponibles', 'دورة متاحة', lang) },
+              { num: '8', label: t('Plateformes intégrées', 'منصة متكاملة', lang) },
+              { num: '100%', label: t('Paiement en DZD', 'دفع بالدينار', lang) },
+              { num: '24h', label: t('Support réactif', 'دعم متجاوب', lang) },
             ].map(stat => (
               <div key={stat.num} style={{ textAlign: dir === 'rtl' ? 'right' : 'left' }}>
                 <div style={{ fontSize: 28, fontWeight: 800, color: '#18A979', lineHeight: 1 }}>{stat.num}</div>
@@ -308,10 +308,10 @@ export function HomePage({ lang, navigate, dir }: Props) {
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: 32 }}>
           <div>
             <h2 style={{ fontSize: 28, fontWeight: 800, color: '#172033', margin: '0 0 8px' }}>
-              {t('Offres populaires', 'Ø§Ù„Ø¹Ø±ÙˆØ¶ Ø§Ù„Ø´Ø§Ø¦Ø¹Ø©', lang)}
+              {t('Offres populaires', 'العروض الشائعة', lang)}
             </h2>
             <p style={{ fontSize: 15, color: '#667085', margin: 0 }}>
-              {t('Les formations les plus demandÃ©es par nos clients.', 'Ø§Ù„Ø¯ÙˆØ±Ø§Øª Ø§Ù„Ø£ÙƒØ«Ø± Ø·Ù„Ø¨Ø§Ù‹ Ù„Ø¯Ù‰ Ø¹Ù…Ù„Ø§Ø¦Ù†Ø§.', lang)}
+              {t('Les formations les plus demandées par nos clients.', 'الدورات الأكثر طلباً لدى عملائنا.', lang)}
             </p>
           </div>
           <button
@@ -323,7 +323,7 @@ export function HomePage({ lang, navigate, dir }: Props) {
               whiteSpace: 'nowrap',
             }}
           >
-            {t('Voir tout', 'Ø¹Ø±Ø¶ Ø§Ù„ÙƒÙ„', lang)} â†’
+            {t('Voir tout', 'عرض الكل', lang)} →
           </button>
         </div>
 
@@ -345,10 +345,10 @@ export function HomePage({ lang, navigate, dir }: Props) {
         <div style={{ maxWidth: 1200, margin: '0 auto' }}>
           <div style={{ textAlign: 'center', marginBottom: 56 }}>
             <h2 style={{ fontSize: 32, fontWeight: 800, color: '#FFFFFF', margin: '0 0 12px' }}>
-              {t('Comment Ã§a marche ?', 'ÙƒÙŠÙ ÙŠØ¹Ù…Ù„ØŸ', lang)}
+              {t('Comment ça marche ?', 'كيف يعمل؟', lang)}
             </h2>
             <p style={{ fontSize: 16, color: 'rgba(255,255,255,0.65)', margin: 0 }}>
-              {t('Simple, transparent et sÃ©curisÃ© en 4 Ã©tapes.', 'Ø¨Ø³ÙŠØ· ÙˆØ´ÙØ§Ù ÙˆØ¢Ù…Ù† ÙÙŠ 4 Ø®Ø·ÙˆØ§Øª.', lang)}
+              {t('Simple, transparent et sécurisé en 4 étapes.', 'بسيط وشفاف وآمن في 4 خطوات.', lang)}
             </p>
           </div>
 
@@ -373,7 +373,7 @@ export function HomePage({ lang, navigate, dir }: Props) {
                   {step.icon}
                 </div>
                 <div style={{ fontSize: 12, fontWeight: 700, color: '#18A979', marginBottom: 8, letterSpacing: '0.06em' }}>
-                  {t('Ã‰TAPE', 'Ø®Ø·ÙˆØ©', lang)} {step.num}
+                  {t('ÉTAPE', 'خطوة', lang)} {step.num}
                 </div>
                 <h3 style={{ fontSize: 16, fontWeight: 700, color: '#FFFFFF', margin: '0 0 10px', lineHeight: 1.4 }}>
                   {lang === 'ar' ? step.ar : step.fr}
@@ -395,7 +395,7 @@ export function HomePage({ lang, navigate, dir }: Props) {
                 fontSize: 15, fontWeight: 600,
               }}
             >
-              {t('En savoir plus', 'Ø§Ø¹Ø±Ù Ø£ÙƒØ«Ø±', lang)}
+              {t('En savoir plus', 'اعرف أكثر', lang)}
             </button>
           </div>
         </div>
@@ -405,10 +405,10 @@ export function HomePage({ lang, navigate, dir }: Props) {
       <section style={{ padding: '72px 24px', maxWidth: 1200, margin: '0 auto' }}>
         <div style={{ textAlign: 'center', marginBottom: 48 }}>
           <h2 style={{ fontSize: 32, fontWeight: 800, color: '#172033', margin: '0 0 12px' }}>
-            {t('Pourquoi nous faire confiance ?', 'Ù„Ù…Ø§Ø°Ø§ ØªØ«Ù‚ Ø¨Ù†Ø§ØŸ', lang)}
+            {t('Pourquoi nous faire confiance ?', 'لماذا تثق بنا؟', lang)}
           </h2>
           <p style={{ fontSize: 16, color: '#667085', margin: 0, maxWidth: 480, marginLeft: 'auto', marginRight: 'auto' }}>
-            {t('Votre sÃ©curitÃ© et votre satisfaction sont notre prioritÃ© absolue.', 'Ø£Ù…Ø§Ù†Ùƒ ÙˆØ±Ø¶Ø§Ùƒ Ù‡Ùˆ Ø£ÙˆÙ„ÙˆÙŠØªÙ†Ø§ Ø§Ù„Ù…Ø·Ù„Ù‚Ø©.', lang)}
+            {t('Votre sécurité et votre satisfaction sont notre priorité absolue.', 'أمانك ورضاك هو أولويتنا المطلقة.', lang)}
           </p>
         </div>
 
@@ -446,12 +446,12 @@ export function HomePage({ lang, navigate, dir }: Props) {
         }}>
           <div>
             <h2 style={{ fontSize: 26, fontWeight: 800, color: '#FFFFFF', margin: '0 0 10px' }}>
-              {t('Une offre pour les organisations', 'Ø¹Ø±Ø¶ Ù„Ù„Ù…Ø¤Ø³Ø³Ø§Øª', lang)}
+              {t('Une offre pour les organisations', 'عرض للمؤسسات', lang)}
             </h2>
             <p style={{ fontSize: 15, color: 'rgba(255,255,255,0.7)', margin: 0, maxWidth: 440 }}>
               {t(
-                'UniversitÃ©s, entreprises, clubs et Ã©tablissements â€” bÃ©nÃ©ficiez de tarifs groupÃ©s et de factures.',
-                'Ø§Ù„Ø¬Ø§Ù…Ø¹Ø§Øª ÙˆØ§Ù„Ø´Ø±ÙƒØ§Øª ÙˆØ§Ù„Ù†ÙˆØ§Ø¯ÙŠ - Ø§Ø³ØªÙØ¯ Ù…Ù† Ø£Ø³Ø¹Ø§Ø± Ø§Ù„Ø¬Ù…Ù„Ø© ÙˆØ§Ù„ÙÙˆØ§ØªÙŠØ±.',
+                'Universités, entreprises, clubs et établissements — bénéficiez de tarifs groupés et de factures.',
+                'الجامعات والشركات والنوادي - استفد من أسعار الجملة والفواتير.',
                 lang
               )}
             </p>
@@ -467,7 +467,7 @@ export function HomePage({ lang, navigate, dir }: Props) {
               flexShrink: 0,
             }}
           >
-            {t('Demander un devis', 'Ø·Ù„Ø¨ Ø¹Ø±Ø¶ Ø³Ø¹Ø±', lang)}
+            {t('Demander un devis', 'طلب عرض سعر', lang)}
           </button>
         </div>
       </section>
@@ -475,21 +475,21 @@ export function HomePage({ lang, navigate, dir }: Props) {
       {/* FAQ teaser */}
       <section style={{ padding: '0 24px 72px', maxWidth: 800, margin: '0 auto' }}>
         <h2 style={{ fontSize: 28, fontWeight: 800, color: 'var(--foreground)', margin: '0 0 32px', textAlign: 'center' }}>
-          {t('Questions frÃ©quentes', 'Ø§Ù„Ø£Ø³Ø¦Ù„Ø© Ø§Ù„Ø´Ø§Ø¦Ø¹Ø©', lang)}
+          {t('Questions fréquentes', 'الأسئلة الشائعة', lang)}
         </h2>
 
         {[
           {
-            q: t('TaallamGo est-il lÃ©gal en AlgÃ©rie ?', 'Ù‡Ù„ TaallamGo Ù‚Ø§Ù†ÙˆÙ†ÙŠ ÙÙŠ Ø§Ù„Ø¬Ø²Ø§Ø¦Ø±ØŸ', lang),
-            a: t('Oui. TaallamGo facilite l\'accÃ¨s lÃ©gal aux plateformes en utilisant uniquement des moyens de paiement autorisÃ©s par la rÃ©glementation algÃ©rienne.', 'Ù†Ø¹Ù…. ÙŠØ³Ù‡Ù‘Ù„ TaallamGo Ø§Ù„ÙˆØµÙˆÙ„ Ø§Ù„Ù‚Ø§Ù†ÙˆÙ†ÙŠ Ø¥Ù„Ù‰ Ø§Ù„Ù…Ù†ØµØ§Øª Ø¨Ø§Ø³ØªØ®Ø¯Ø§Ù… ÙˆØ³Ø§Ø¦Ù„ Ø§Ù„Ø¯ÙØ¹ Ø§Ù„Ù…Ø±Ø®ØµØ© Ø¨Ø§Ù„ØªÙ†Ø¸ÙŠÙ… Ø§Ù„Ø¬Ø²Ø§Ø¦Ø±ÙŠ ÙÙ‚Ø·.', lang),
+            q: t('TaallamGo est-il légal en Algérie ?', 'هل TaallamGo قانوني في الجزائر؟', lang),
+            a: t('Oui. TaallamGo facilite l\'accès légal aux plateformes en utilisant uniquement des moyens de paiement autorisés par la réglementation algérienne.', 'نعم. يسهّل TaallamGo الوصول القانوني إلى المنصات باستخدام وسائل الدفع المرخصة بالتنظيم الجزائري فقط.', lang),
           },
           {
-            q: t('TaallamGo me demandera-t-il mon mot de passe ?', 'Ù‡Ù„ Ø³ÙŠØ·Ù„Ø¨ TaallamGo ÙƒÙ„Ù…Ø© Ù…Ø±ÙˆØ±ÙŠØŸ', lang),
-            a: t('Non, jamais. Vous n\'avez Ã  fournir aucun mot de passe externe. Votre accÃ¨s vous est livrÃ© via des mÃ©thodes officielles.', 'Ù„Ø§ØŒ Ø£Ø¨Ø¯Ø§Ù‹. Ù„Ø§ ØªØ­ØªØ§Ø¬ Ø¥Ù„Ù‰ ØªÙ‚Ø¯ÙŠÙ… Ø£ÙŠ ÙƒÙ„Ù…Ø© Ù…Ø±ÙˆØ± Ø®Ø§Ø±Ø¬ÙŠØ©. ÙŠÙØ³Ù„ÙŽÙ‘Ù… ÙˆØµÙˆÙ„Ùƒ Ø¹Ø¨Ø± Ø·Ø±Ù‚ Ø±Ø³Ù…ÙŠØ©.', lang),
+            q: t('TaallamGo me demandera-t-il mon mot de passe ?', 'هل سيطلب TaallamGo كلمة مروري؟', lang),
+            a: t('Non, jamais. Vous n\'avez à fournir aucun mot de passe externe. Votre accès vous est livré via des méthodes officielles.', 'لا، أبداً. لا تحتاج إلى تقديم أي كلمة مرور خارجية. يُسلَّم وصولك عبر طرق رسمية.', lang),
           },
           {
-            q: t('Quels sont les dÃ©lais de livraison ?', 'Ù…Ø§ Ù‡ÙŠ Ù…ÙˆØ§Ø¹ÙŠØ¯ Ø§Ù„ØªØ³Ù„ÙŠÙ…ØŸ', lang),
-            a: t('En gÃ©nÃ©ral sous 24 Ã  72h ouvrables selon la plateforme et le type d\'offre. Un devis prÃ©cis est fourni avant commande.', 'Ø¹Ø§Ø¯Ø©Ù‹ Ø®Ù„Ø§Ù„ 24 Ø¥Ù„Ù‰ 72 Ø³Ø§Ø¹Ø© Ø¹Ù…Ù„ Ø­Ø³Ø¨ Ø§Ù„Ù…Ù†ØµØ© ÙˆÙ†ÙˆØ¹ Ø§Ù„Ø¹Ø±Ø¶. ÙŠÙÙ‚Ø¯ÙŽÙ‘Ù… Ø¹Ø±Ø¶ Ø³Ø¹Ø± Ø¯Ù‚ÙŠÙ‚ Ù‚Ø¨Ù„ Ø§Ù„Ø·Ù„Ø¨.', lang),
+            q: t('Quels sont les délais de livraison ?', 'ما هي مواعيد التسليم؟', lang),
+            a: t('En général sous 24 à 72h ouvrables selon la plateforme et le type d\'offre. Un devis précis est fourni avant commande.', 'عادةً خلال 24 إلى 72 ساعة عمل حسب المنصة ونوع العرض. يُقدَّم عرض سعر دقيق قبل الطلب.', lang),
           },
         ].map((faq, i) => (
           <FaqItem key={i} q={faq.q} a={faq.a} />
@@ -504,7 +504,7 @@ export function HomePage({ lang, navigate, dir }: Props) {
               textDecoration: 'underline', textUnderlineOffset: 3,
             }}
           >
-            {t('Voir toutes les questions â†’', 'Ø¹Ø±Ø¶ Ø¬Ù…ÙŠØ¹ Ø§Ù„Ø£Ø³Ø¦Ù„Ø© â†’', lang)}
+            {t('Voir toutes les questions →', 'عرض جميع الأسئلة →', lang)}
           </button>
         </div>
       </section>
@@ -515,10 +515,10 @@ export function HomePage({ lang, navigate, dir }: Props) {
         padding: '64px 24px', textAlign: 'center',
       }}>
         <h2 style={{ fontSize: 32, fontWeight: 800, color: '#FFFFFF', margin: '0 0 16px' }}>
-          {t('PrÃªt Ã  commencer ?', 'Ù…Ø³ØªØ¹Ø¯ Ù„Ù„Ø¨Ø¯Ø¡ØŸ', lang)}
+          {t('Prêt à commencer ?', 'مستعد للبدء؟', lang)}
         </h2>
         <p style={{ fontSize: 17, color: 'rgba(255,255,255,0.85)', margin: '0 0 36px' }}>
-          {t('Rejoignez des milliers d\'AlgÃ©riens qui apprennent sans frontiÃ¨res.', 'Ø§Ù†Ø¶Ù… Ø¥Ù„Ù‰ Ø¢Ù„Ø§Ù Ø§Ù„Ø¬Ø²Ø§Ø¦Ø±ÙŠÙŠÙ† Ø§Ù„Ø°ÙŠÙ† ÙŠØªØ¹Ù„Ù…ÙˆÙ† Ø¨Ù„Ø§ Ø­Ø¯ÙˆØ¯.', lang)}
+          {t('Rejoignez des milliers d\'Algériens qui apprennent sans frontières.', 'انضم إلى آلاف الجزائريين الذين يتعلمون بلا حدود.', lang)}
         </p>
         <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
           <button
@@ -530,7 +530,7 @@ export function HomePage({ lang, navigate, dir }: Props) {
               fontSize: 16, fontWeight: 800,
             }}
           >
-            {t('Explorer les formations', 'Ø§Ø³ØªÙƒØ´Ù Ø§Ù„Ø¯ÙˆØ±Ø§Øª', lang)}
+            {t('Explorer les formations', 'استكشف الدورات', lang)}
           </button>
           <button
             onClick={() => navigate('auth-register')}
@@ -542,7 +542,7 @@ export function HomePage({ lang, navigate, dir }: Props) {
               fontSize: 16, fontWeight: 600,
             }}
           >
-            {t('CrÃ©er un compte', 'Ø¥Ù†Ø´Ø§Ø¡ Ø­Ø³Ø§Ø¨', lang)}
+            {t('Créer un compte', 'إنشاء حساب', lang)}
           </button>
         </div>
       </section>

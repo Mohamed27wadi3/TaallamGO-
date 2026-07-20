@@ -192,13 +192,13 @@ export function Header({ lang, onLangToggle, currentPage, navigate, dir, theme, 
             onClick={() => { navigate('auth-login'); setMobileOpen(false) }}
             style={{ display: 'block', width: '100%', textAlign: dir === 'rtl' ? 'right' : 'left', background: 'none', border: 'none', cursor: 'pointer', padding: '10px 0', fontSize: 15, fontWeight: 600, color: '#132A4F' }}
           >
-            {t('Connexion', 'ØªØ³Ø¬ÙŠÙ„ Ø§Ù„Ø¯Ø®ÙˆÙ„', lang)}
+            {t('Connexion', 'تسجيل الدخول', lang)}
           </button>
           <button
             onClick={() => { navigate('catalog'); setMobileOpen(false) }}
             style={{ display: 'block', width: '100%', background: '#132A4F', border: 'none', cursor: 'pointer', padding: '11px 14px', borderRadius: 8, fontSize: 15, fontWeight: 700, color: '#FFFFFF', marginTop: 8 }}
           >
-            {t('Explorer les formations', 'Ø§Ø³ØªÙƒØ´Ù Ø§Ù„Ø¯ÙˆØ±Ø§Øª', lang)}
+            {t('Explorer les formations', 'استكشف الدورات', lang)}
           </button>
         </div>
       )}

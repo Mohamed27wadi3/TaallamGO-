@@ -1,8 +1,9 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import type { Lang } from './data'
 import { Header } from './components/Header'
 import { Footer } from './components/Footer'
 import { CustomCursor } from './components/CustomCursor'
+import { DynamicBackButton } from './components/DynamicBackButton'
 import { useTheme } from './hooks/useTheme'
 import { HomePage } from './views/HomePage'
 import { CatalogPage } from './views/CatalogPage'
@@ -35,17 +36,61 @@ type Page =
 const PAGES_NO_HEADER: Page[] = ['dashboard', 'admin']
 const PAGES_NO_FOOTER: Page[] = ['dashboard', 'admin', 'auth-login', 'auth-register', 'auth-forgot']
 
+type NavigationEntry = {
+  page: Page
+  data?: unknown
+}
+
+const BACK_FALLBACKS: Record<Page, Page> = {
+  home: 'home',
+  catalog: 'home',
+  course: 'catalog',
+  platforms: 'home',
+  'how-it-works': 'home',
+  help: 'home',
+  'auth-login': 'home',
+  'auth-register': 'home',
+  'auth-forgot': 'auth-login',
+  dashboard: 'home',
+  admin: 'home',
+  'custom-request': 'catalog',
+  organizations: 'home',
+  about: 'home',
+  trust: 'home',
+  contact: 'home',
+}
+
 export default function App() {
   const [page, setPage] = useState<Page>('home')
   const [lang, setLang] = useState<Lang>('fr')
   const [courseData, setCourseData] = useState<unknown>(null)
+  const [navigationHistory, setNavigationHistory] = useState<NavigationEntry[]>([])
   const { theme, toggleTheme } = useTheme()
 
   const dir = lang === 'ar' ? 'rtl' : 'ltr'
 
+  useEffect(() => {
+    document.documentElement.lang = lang
+    document.documentElement.dir = dir
+  }, [dir, lang])
+
   const navigate = (target: string, data?: unknown) => {
-    setPage(target as Page)
+    const nextPage = target as Page
+    if (nextPage === page && data === undefined) return
+
+    setNavigationHistory(prev => [...prev, { page, data: courseData }].slice(-12))
+    setPage(nextPage)
     if (data !== undefined) setCourseData(data)
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+
+  const goBack = () => {
+    const previous = navigationHistory[navigationHistory.length - 1]
+    const target = previous ?? { page: BACK_FALLBACKS[page] }
+
+    setNavigationHistory(prev => prev.slice(0, -1))
+    setPage(target.page)
+    setCourseData(target.data)
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
@@ -93,6 +138,13 @@ export default function App() {
         />
       )}
       <main style={{ flex: 1 }}>
+        <DynamicBackButton
+          lang={lang}
+          dir={dir as 'ltr' | 'rtl'}
+          currentPage={page}
+          canGoBack={navigationHistory.length > 0}
+          onBack={goBack}
+        />
         {renderPage()}
       </main>
       {showFooter && (
