@@ -46,7 +46,7 @@ export function CourseCard({ course, lang, onClick }: Props) {
       onMouseEnter={e => {
         e.currentTarget.style.boxShadow = '0 8px 24px rgba(19,42,79,0.1)'
         e.currentTarget.style.transform = 'translateY(-2px)'
-        e.currentTarget.style.borderColor = 'rgba(24,169,121,0.35)'
+        e.currentTarget.style.borderColor = 'rgba(47,128,237,0.35)'
       }}
       onMouseLeave={e => {
         e.currentTarget.style.boxShadow = 'none'

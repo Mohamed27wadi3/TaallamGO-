@@ -79,7 +79,7 @@ export function CustomerDashboard({ lang, navigate }: Props) {
             <div style={{ position: 'relative', paddingLeft: 24 }}>
               <div style={{
                 position: 'absolute', left: 10, top: 0, bottom: 0, width: 2,
-                background: 'linear-gradient(to bottom, #18A979 60%, #E4E9F0 60%)',
+                background: 'linear-gradient(to bottom, #2F80ED 60%, #E4E9F0 60%)',
               }} />
               {orderTimelineSteps.map((step, i) => {
                 const s = orderStatuses.find(x => x.key === step.key)!
@@ -87,7 +87,7 @@ export function CustomerDashboard({ lang, navigate }: Props) {
                   <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 14, marginBottom: 20, position: 'relative' }}>
                     <div style={{
                       width: 20, height: 20, borderRadius: '50%', flexShrink: 0,
-                      backgroundColor: step.done ? '#18A979' : step.active ? '#132A4F' : '#E4E9F0',
+                      backgroundColor: step.done ? '#2F80ED' : step.active ? '#132A4F' : '#E4E9F0',
                       border: step.active ? '2px solid #132A4F' : 'none',
                       marginLeft: -10, marginTop: 2,
                       display: 'flex', alignItems: 'center', justifyContent: 'center',
@@ -99,7 +99,7 @@ export function CustomerDashboard({ lang, navigate }: Props) {
                         {lang === 'ar' ? s.labelAr : s.label}
                       </div>
                       {step.active && (
-                        <div style={{ fontSize: 12, color: '#18A979', marginTop: 2 }}>
+                        <div style={{ fontSize: 12, color: '#2F80ED', marginTop: 2 }}>
                           {t('En cours...', 'جاري...', lang)}
                         </div>
                       )}
@@ -287,7 +287,7 @@ export function CustomerDashboard({ lang, navigate }: Props) {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(160px, 1fr))', gap: 16, marginBottom: 28 }}>
           {[
             { label: t('Commandes', 'الطلبات', lang), value: '3', icon: '📦', color: '#132A4F' },
-            { label: t('Livrées', 'المسلّمة', lang), value: '1', icon: '✅', color: '#18A979' },
+            { label: t('Livrées', 'المسلّمة', lang), value: '1', icon: '✅', color: '#2F80ED' },
             { label: t('En cours', 'قيد المعالجة', lang), value: '2', icon: '⚙️', color: '#F59E0B' },
             { label: t('Total dépensé', 'إجمالي الإنفاق', lang), value: '10 400 DZD', icon: '💰', color: '#667085' },
           ].map((kpi, i) => (
@@ -307,7 +307,7 @@ export function CustomerDashboard({ lang, navigate }: Props) {
             </h3>
             <button
               onClick={() => setTab('orders')}
-              style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: 13, color: '#18A979', fontWeight: 600 }}
+              style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: 13, color: '#2F80ED', fontWeight: 600 }}
             >
               {t('Voir tout', 'عرض الكل', lang)}
             </button>
@@ -339,7 +339,7 @@ export function CustomerDashboard({ lang, navigate }: Props) {
   }
 
   return (
-    <div style={{ minHeight: '100vh', backgroundColor: '#F7F9FC', display: 'flex', flexDirection: isMobile ? 'column' : 'row' }}>
+    <div style={{ minHeight: '100vh', backgroundColor: '#EEF6FF', display: 'flex', flexDirection: isMobile ? 'column' : 'row' }}>
       {/* Sidebar */}
       <aside style={{
         width: isMobile ? '100%' : 240, flexShrink: 0,

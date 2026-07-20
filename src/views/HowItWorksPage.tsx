@@ -81,7 +81,7 @@ export function HowItWorksPage({ lang, navigate }: Props) {
   ]
 
   return (
-    <div style={{ minHeight: '100vh', backgroundColor: '#F7F9FC' }}>
+    <div style={{ minHeight: '100vh', backgroundColor: '#EEF6FF' }}>
       {/* Header */}
       <div style={{ backgroundColor: '#132A4F', padding: '56px 24px', textAlign: 'center' }}>
         <h1 style={{ fontSize: 36, fontWeight: 800, color: '#FFFFFF', margin: '0 0 12px' }}>
@@ -117,7 +117,7 @@ export function HowItWorksPage({ lang, navigate }: Props) {
               )}
             </div>
             <div style={{ paddingTop: 8 }}>
-              <div style={{ fontSize: 12, fontWeight: 700, color: '#18A979', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 8 }}>
+              <div style={{ fontSize: 12, fontWeight: 700, color: '#2F80ED', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 8 }}>
                 {t('ÉTAPE', 'خطوة', lang)} 0{i + 1}
               </div>
               <h2 style={{ fontSize: 20, fontWeight: 800, color: '#172033', margin: '0 0 10px' }}>{section.title}</h2>
@@ -136,7 +136,7 @@ export function HowItWorksPage({ lang, navigate }: Props) {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: 24 }}>
             {details.map((detail, i) => (
               <div key={i} style={{
-                backgroundColor: '#F7F9FC', border: '1px solid #E4E9F0', borderRadius: 16, padding: 24,
+                backgroundColor: '#EEF6FF', border: '1px solid #E4E9F0', borderRadius: 16, padding: 24,
               }}>
                 <div style={{ fontSize: 28, marginBottom: 12 }}>{detail.icon}</div>
                 <h3 style={{ fontSize: 16, fontWeight: 700, color: '#172033', margin: '0 0 10px' }}>{detail.title}</h3>

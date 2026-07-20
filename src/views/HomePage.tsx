@@ -167,10 +167,10 @@ export function HomePage({ lang, navigate, dir }: Props) {
                   fontSize: 16, fontWeight: 700,
                   width: isMobile ? '100%' : 'auto',
                   transition: 'all 0.15s',
-                  boxShadow: '0 4px 16px rgba(24,169,121,0.35)',
+                  boxShadow: '0 4px 16px rgba(47,128,237,0.35)',
                 }}
-                onMouseEnter={e => (e.currentTarget.style.backgroundColor = '#15956A')}
-                onMouseLeave={e => (e.currentTarget.style.backgroundColor = '#18A979')}
+                onMouseEnter={e => (e.currentTarget.style.backgroundColor = '#256EDB')}
+                onMouseLeave={e => (e.currentTarget.style.backgroundColor = '#2F80ED')}
               >
                 {t('Explorer les formations', 'استكشف الدورات', lang)} →
               </button>
@@ -244,7 +244,7 @@ export function HomePage({ lang, navigate, dir }: Props) {
               { num: '24h', label: t('Support réactif', 'دعم متجاوب', lang) },
             ].map(stat => (
               <div key={stat.num} style={{ textAlign: dir === 'rtl' ? 'right' : 'left' }}>
-                <div style={{ fontSize: 28, fontWeight: 800, color: '#18A979', lineHeight: 1 }}>{stat.num}</div>
+                <div style={{ fontSize: 28, fontWeight: 800, color: '#2F80ED', lineHeight: 1 }}>{stat.num}</div>
                 <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.6)', marginTop: 4 }}>{stat.label}</div>
               </div>
             ))}
@@ -365,14 +365,14 @@ export function HomePage({ lang, navigate, dir }: Props) {
               >
                 <div style={{
                   width: 40, height: 40, borderRadius: 12,
-                  backgroundColor: 'rgba(24,169,121,0.15)',
-                  border: '1.5px solid rgba(24,169,121,0.3)',
+                  backgroundColor: 'rgba(47,128,237,0.15)',
+                  border: '1.5px solid rgba(47,128,237,0.3)',
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
                   fontSize: 20, marginBottom: 16,
                 }}>
                   {step.icon}
                 </div>
-                <div style={{ fontSize: 12, fontWeight: 700, color: '#18A979', marginBottom: 8, letterSpacing: '0.06em' }}>
+                <div style={{ fontSize: 12, fontWeight: 700, color: '#2F80ED', marginBottom: 8, letterSpacing: '0.06em' }}>
                   {t('ÉTAPE', 'خطوة', lang)} {step.num}
                 </div>
                 <h3 style={{ fontSize: 16, fontWeight: 700, color: '#FFFFFF', margin: '0 0 10px', lineHeight: 1.4 }}>
@@ -463,7 +463,7 @@ export function HomePage({ lang, navigate, dir }: Props) {
               border: 'none', cursor: 'pointer',
               padding: '13px 28px', borderRadius: 12,
               fontSize: 15, fontWeight: 700,
-              boxShadow: '0 4px 14px rgba(24,169,121,0.35)',
+              boxShadow: '0 4px 14px rgba(47,128,237,0.35)',
               flexShrink: 0,
             }}
           >
@@ -524,7 +524,7 @@ export function HomePage({ lang, navigate, dir }: Props) {
           <button
             onClick={() => navigate('catalog')}
             style={{
-              backgroundColor: '#FFFFFF', color: '#18A979',
+              backgroundColor: '#FFFFFF', color: '#2F80ED',
               border: 'none', cursor: 'pointer',
               padding: '13px 32px', borderRadius: 12,
               fontSize: 16, fontWeight: 800,

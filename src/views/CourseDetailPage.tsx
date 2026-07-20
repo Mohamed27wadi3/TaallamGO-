@@ -75,7 +75,7 @@ export function CourseDetailPage({ lang, navigate, course: propCourse, dir }: Pr
         <div style={{ textAlign: 'center', maxWidth: 480 }}>
           <div style={{
             width: 80, height: 80, borderRadius: '50%',
-            backgroundColor: '#E8FDF5', display: 'flex', alignItems: 'center', justifyContent: 'center',
+            backgroundColor: '#EAF3FF', display: 'flex', alignItems: 'center', justifyContent: 'center',
             margin: '0 auto 24px', fontSize: 36,
           }}>
             ✅
@@ -110,7 +110,7 @@ export function CourseDetailPage({ lang, navigate, course: propCourse, dir }: Pr
   }
 
   return (
-    <div style={{ minHeight: '100vh', backgroundColor: '#F7F9FC' }}>
+    <div style={{ minHeight: '100vh', backgroundColor: '#EEF6FF' }}>
       {/* Breadcrumb */}
       <div style={{ backgroundColor: 'var(--surface)', borderBottom: '1px solid #E4E9F0', padding: '12px 24px' }}>
         <div style={{ maxWidth: 1200, margin: '0 auto', display: 'flex', alignItems: 'center', gap: 8, fontSize: 13, color: 'var(--muted-foreground)' }}>
@@ -154,7 +154,7 @@ export function CourseDetailPage({ lang, navigate, course: propCourse, dir }: Pr
                 {lang === 'ar' ? course.levelAr : course.level}
               </span>
               {course.certificate && (
-                <span style={{ fontSize: 13, color: '#18A979', fontWeight: 600, display: 'flex', alignItems: 'center', gap: 4 }}>
+                <span style={{ fontSize: 13, color: '#2F80ED', fontWeight: 600, display: 'flex', alignItems: 'center', gap: 4 }}>
                   🎓 {t('Certificat inclus', 'شهادة مرفقة', lang)}
                 </span>
               )}
@@ -211,7 +211,7 @@ export function CourseDetailPage({ lang, navigate, course: propCourse, dir }: Pr
                   t('Support communauté', 'دعم مجتمعي', lang),
                 ].filter(Boolean).map((item, i) => (
                   <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 14, color: 'var(--foreground)' }}>
-                    <span style={{ color: '#18A979', fontSize: 16, flexShrink: 0 }}>✓</span>
+                    <span style={{ color: '#2F80ED', fontSize: 16, flexShrink: 0 }}>✓</span>
                     {item}
                   </div>
                 ))}
@@ -308,11 +308,11 @@ export function CourseDetailPage({ lang, navigate, course: propCourse, dir }: Pr
                   <button
                     onClick={() => setOrderStep(1)}
                     style={{
-                      backgroundColor: '#18A979', color: '#FFFFFF',
+                      backgroundColor: '#2F80ED', color: '#FFFFFF',
                       border: 'none', cursor: 'pointer',
                       padding: '14px', borderRadius: 12,
                       fontSize: 16, fontWeight: 700, width: '100%',
-                      boxShadow: '0 4px 14px rgba(24,169,121,0.3)',
+                      boxShadow: '0 4px 14px rgba(47,128,237,0.3)',
                     }}
                   >
                     {t('Commander', 'اطلب الآن', lang)}
@@ -335,8 +335,8 @@ export function CourseDetailPage({ lang, navigate, course: propCourse, dir }: Pr
               {orderStep === 1 && (
                 <div style={{ padding: '0 24px 24px' }}>
                   <div style={{
-                    backgroundColor: '#F0FDF9', border: '1px solid #A7F3D0',
-                    borderRadius: 10, padding: '14px', marginBottom: 16, fontSize: 13, color: '#065F46',
+                    backgroundColor: '#EAF3FF', border: '1px solid #BFD8FF',
+                    borderRadius: 10, padding: '14px', marginBottom: 16, fontSize: 13, color: '#132A4F',
                   }}>
                     ✅ {t('Votre devis est valide 48h. Total confirmé avant commande.', 'عرض السعر صالح 48 ساعة. يتم تأكيد الإجمالي قبل الطلب.', lang)}
                   </div>
@@ -383,7 +383,7 @@ export function CourseDetailPage({ lang, navigate, course: propCourse, dir }: Pr
                     disabled={!paymentMethod}
                     onClick={() => setOrderStep(3)}
                     style={{
-                      backgroundColor: paymentMethod ? '#18A979' : '#E4E9F0',
+                      backgroundColor: paymentMethod ? '#2F80ED' : '#E4E9F0',
                       color: paymentMethod ? '#FFFFFF' : '#667085',
                       border: 'none', cursor: paymentMethod ? 'pointer' : 'default',
                       padding: '14px', borderRadius: 12,
@@ -407,7 +407,7 @@ export function CourseDetailPage({ lang, navigate, course: propCourse, dir }: Pr
                   <button
                     onClick={() => setOrderStep(4)}
                     style={{
-                      backgroundColor: '#18A979', color: '#FFFFFF',
+                      backgroundColor: '#2F80ED', color: '#FFFFFF',
                       border: 'none', cursor: 'pointer',
                       padding: '14px', borderRadius: 12,
                       fontSize: 15, fontWeight: 700, width: '100%',

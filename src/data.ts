@@ -19,7 +19,7 @@ export const platforms = [
   { id: 'htb', name: 'Hack The Box', status: 'available', statusAr: 'متاح', color: '#9FEF00', dark: true },
   { id: 'pluralsight', name: 'Pluralsight', status: 'on-request', statusAr: 'عند الطلب', color: '#F15B2A' },
   { id: 'linkedin', name: 'LinkedIn Learning', status: 'available', statusAr: 'متاح', color: '#0A66C2' },
-  { id: 'datacamp', name: 'DataCamp', status: 'on-request', statusAr: 'عند الطلب', color: '#03EF62', dark: true },
+  { id: 'datacamp', name: 'DataCamp', status: 'on-request', statusAr: 'عند الطلب', color: '#2F80ED', dark: true },
   { id: 'edx', name: 'edX', status: 'coming-soon', statusAr: 'قريباً', color: '#02262B' },
   { id: 'skillshare', name: 'Skillshare', status: 'coming-soon', statusAr: 'قريباً', color: '#00A88B' },
 ]
@@ -61,7 +61,7 @@ export const courses = [
     image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=400&h=220&fit=crop&auto=format',
     certificate: true,
     tag: 'Populaire',
-    tagColor: '#18A979',
+    tagColor: '#2F80ED',
   },
   {
     id: '3',
@@ -137,7 +137,7 @@ export const courses = [
     image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=220&fit=crop&auto=format',
     certificate: true,
     tag: 'Nouveau',
-    tagColor: '#18A979',
+    tagColor: '#2F80ED',
   },
 ]
 
@@ -147,7 +147,7 @@ export const orderStatuses = [
   { key: 'payment_confirmed', label: 'Paiement confirmé', labelAr: 'تأكيد الدفع', color: '#132A4F' },
   { key: 'processing', label: 'Traitement en cours', labelAr: 'جاري المعالجة', color: '#132A4F' },
   { key: 'action_required', label: 'Action client requise', labelAr: 'إجراء مطلوب من العميل', color: '#F59E0B' },
-  { key: 'delivered', label: 'Livrée', labelAr: 'تم التسليم', color: '#16A36A' },
+  { key: 'delivered', label: 'Livrée', labelAr: 'تم التسليم', color: '#2F80ED' },
   { key: 'cancelled', label: 'Annulée', labelAr: 'ملغاة', color: '#DC3545' },
   { key: 'refund_pending', label: 'Remboursement en cours', labelAr: 'استرداد جاري', color: '#667085' },
   { key: 'refunded', label: 'Remboursée', labelAr: 'تم الاسترداد', color: '#667085' },

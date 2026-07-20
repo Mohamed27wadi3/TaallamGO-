@@ -47,7 +47,7 @@ export function AdminDashboard({ lang, navigate }: Props) {
 
   const kpis = [
     { label: t('Commandes du jour', 'طلبات اليوم', lang), value: '12', delta: '+3', color: '#132A4F', icon: '📦' },
-    { label: t('CA aujourd\'hui', 'رقم الأعمال اليوم', lang), value: '48 400 DZD', delta: '+18%', color: '#18A979', icon: '💰' },
+    { label: t('CA aujourd\'hui', 'رقم الأعمال اليوم', lang), value: '48 400 DZD', delta: '+18%', color: '#2F80ED', icon: '💰' },
     { label: t('Paiements à vérifier', 'مدفوعات للتحقق', lang), value: '4', delta: '', color: '#F59E0B', icon: '⚠️' },
     { label: t('Tickets ouverts', 'تذاكر مفتوحة', lang), value: '7', delta: '-2', color: '#DC3545', icon: '🎧' },
     { label: t('Retards', 'التأخيرات', lang), value: '2', delta: '', color: '#DC3545', icon: '⏰' },
@@ -88,7 +88,7 @@ export function AdminDashboard({ lang, navigate }: Props) {
           <div style={{ backgroundColor: '#FFFFFF', border: '1px solid #E4E9F0', borderRadius: 16, overflowX: 'auto' }}>
             <table style={{ width: '100%', minWidth: 760, borderCollapse: 'collapse', fontSize: 13 }}>
               <thead>
-                <tr style={{ backgroundColor: '#F7F9FC', borderBottom: '1px solid #E4E9F0' }}>
+                <tr style={{ backgroundColor: '#EEF6FF', borderBottom: '1px solid #E4E9F0' }}>
                   {[t('ID', 'الرقم', lang), t('Client', 'العميل', lang), t('Formation', 'الدورة', lang), t('Montant', 'المبلغ', lang), t('Statut', 'الحالة', lang), t('Date', 'التاريخ', lang), t('Actions', 'الإجراءات', lang)].map(h => (
                     <th key={h} style={{ padding: '12px 16px', textAlign: 'left', fontWeight: 700, color: '#667085', fontSize: 12, textTransform: 'uppercase', letterSpacing: '0.04em' }}>
                       {h}
@@ -99,7 +99,7 @@ export function AdminDashboard({ lang, navigate }: Props) {
               <tbody>
                 {mockOrders.map((order) => (
                   <tr key={order.id} style={{ borderBottom: '1px solid #F0F3F8', transition: 'background 0.1s' }}
-                    onMouseEnter={e => (e.currentTarget.style.backgroundColor = '#F7F9FC')}
+                    onMouseEnter={e => (e.currentTarget.style.backgroundColor = '#EEF6FF')}
                     onMouseLeave={e => (e.currentTarget.style.backgroundColor = 'transparent')}
                   >
                     <td style={{ padding: '14px 16px', fontWeight: 600, color: '#132A4F' }}>{order.id}</td>
@@ -125,7 +125,7 @@ export function AdminDashboard({ lang, navigate }: Props) {
                             onClick={() => { setConfirmAction(t('Marquer comme livré', 'تحديد كمُسلَّم', lang)); setShowConfirm(true) }}
                             style={{
                               padding: '4px 10px', borderRadius: 6, fontSize: 12, fontWeight: 600,
-                              backgroundColor: '#E8FDF5', color: '#16A36A', border: 'none', cursor: 'pointer',
+                              backgroundColor: '#EAF3FF', color: '#2F80ED', border: 'none', cursor: 'pointer',
                             }}
                           >
                             {t('Livrer', 'تسليم', lang)}
@@ -157,7 +157,7 @@ export function AdminDashboard({ lang, navigate }: Props) {
           <div style={{ backgroundColor: '#FFFFFF', border: '1px solid #E4E9F0', borderRadius: 16, overflowX: 'auto' }}>
             <table style={{ width: '100%', minWidth: 720, borderCollapse: 'collapse', fontSize: 13 }}>
               <thead>
-                <tr style={{ backgroundColor: '#F7F9FC', borderBottom: '1px solid #E4E9F0' }}>
+                <tr style={{ backgroundColor: '#EEF6FF', borderBottom: '1px solid #E4E9F0' }}>
                   {[t('ID', 'الرقم', lang), t('Client', 'العميل', lang), t('Montant', 'المبلغ', lang), t('Méthode', 'الطريقة', lang), t('Statut', 'الحالة', lang), t('Actions', 'الإجراءات', lang)].map(h => (
                     <th key={h} style={{ padding: '12px 16px', textAlign: 'left', fontWeight: 700, color: '#667085', fontSize: 12, textTransform: 'uppercase', letterSpacing: '0.04em' }}>
                       {h}
@@ -241,8 +241,8 @@ export function AdminDashboard({ lang, navigate }: Props) {
                 {kpi.delta && (
                   <span style={{
                     fontSize: 11, fontWeight: 600, padding: '2px 7px', borderRadius: 20,
-                    backgroundColor: kpi.delta.startsWith('+') ? '#E8FDF5' : '#FEE2E2',
-                    color: kpi.delta.startsWith('+') ? '#16A36A' : '#DC3545',
+                    backgroundColor: kpi.delta.startsWith('+') ? '#EAF3FF' : '#FEE2E2',
+                    color: kpi.delta.startsWith('+') ? '#2F80ED' : '#DC3545',
                   }}>
                     {kpi.delta}
                   </span>
@@ -262,14 +262,14 @@ export function AdminDashboard({ lang, navigate }: Props) {
             </h3>
             <button
               onClick={() => setTab('orders')}
-              style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: 13, color: '#18A979', fontWeight: 600 }}
+              style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: 13, color: '#2F80ED', fontWeight: 600 }}
             >
               {t('Tout voir', 'عرض الكل', lang)}
             </button>
           </div>
           <table style={{ width: '100%', minWidth: 720, borderCollapse: 'collapse', fontSize: 13 }}>
             <thead>
-              <tr style={{ backgroundColor: '#F7F9FC' }}>
+              <tr style={{ backgroundColor: '#EEF6FF' }}>
                 {[t('ID', 'الرقم', lang), t('Client', 'العميل', lang), t('Formation', 'الدورة', lang), t('Montant', 'المبلغ', lang), t('Statut', 'الحالة', lang)].map(h => (
                   <th key={h} style={{ padding: '10px 16px', textAlign: 'left', fontWeight: 700, color: '#667085', fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.04em' }}>
                     {h}
@@ -314,7 +314,7 @@ export function AdminDashboard({ lang, navigate }: Props) {
           <button onClick={() => navigate('home')} style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}>
             <img src={taallamGoLogoSrc} alt="TaallamGo" style={{ height: 28, width: 'auto', maxWidth: 130, filter: 'brightness(0) invert(1)' }} />
           </button>
-          <div style={{ display: isMobile ? 'none' : 'block', fontSize: 10, fontWeight: 700, color: '#18A979', textTransform: 'uppercase', letterSpacing: '0.1em', marginTop: 8 }}>
+          <div style={{ display: isMobile ? 'none' : 'block', fontSize: 10, fontWeight: 700, color: '#2F80ED', textTransform: 'uppercase', letterSpacing: '0.1em', marginTop: 8 }}>
             ADMIN
           </div>
         </div>
@@ -329,8 +329,8 @@ export function AdminDashboard({ lang, navigate }: Props) {
                 whiteSpace: 'nowrap',
                 padding: '9px 12px', borderRadius: 8, border: 'none', cursor: 'pointer',
                 fontSize: 13, fontWeight: 500,
-                backgroundColor: tab === link.key ? 'rgba(24,169,121,0.15)' : 'transparent',
-                color: tab === link.key ? '#18A979' : 'rgba(255,255,255,0.6)',
+                backgroundColor: tab === link.key ? 'rgba(47,128,237,0.15)' : 'transparent',
+                color: tab === link.key ? '#2F80ED' : 'rgba(255,255,255,0.6)',
                 textAlign: 'left',
                 marginBottom: 2,
                 transition: 'all 0.15s',
@@ -356,7 +356,7 @@ export function AdminDashboard({ lang, navigate }: Props) {
       </aside>
 
       {/* Main content */}
-      <main style={{ flex: 1, backgroundColor: '#F7F9FC', padding: isMobile ? '18px 14px 28px' : '32px 32px', minWidth: 0, width: '100%', overflowX: 'hidden' }}>
+      <main style={{ flex: 1, backgroundColor: '#EEF6FF', padding: isMobile ? '18px 14px 28px' : '32px 32px', minWidth: 0, width: '100%', overflowX: 'hidden' }}>
         {renderContent()}
       </main>
 

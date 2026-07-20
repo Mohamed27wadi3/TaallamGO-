@@ -164,7 +164,7 @@ function OrganizationsPage({ lang }: InlineProps) {
   const inputStyle = { width: '100%', height: 44, border: '1.5px solid #E4E9F0', borderRadius: 10, padding: '0 14px', fontSize: 14, color: '#172033', outline: 'none', backgroundColor: '#FFFFFF', fontFamily: lang === 'ar' ? "'IBM Plex Sans Arabic'" : "'Plus Jakarta Sans'" }
 
   return (
-    <div style={{ minHeight: '100vh', backgroundColor: '#F7F9FC' }}>
+    <div style={{ minHeight: '100vh', backgroundColor: '#EEF6FF' }}>
       <div style={{ backgroundColor: '#132A4F', padding: '56px 24px', textAlign: 'center' }}>
         <h1 style={{ fontSize: 36, fontWeight: 800, color: '#FFFFFF', margin: '0 0 12px' }}>
           {t('Pour les organisations', 'للمؤسسات', lang)}
@@ -243,7 +243,7 @@ function HelpPage({ lang, navigate }: InlineProps) {
   const [openFaq, setOpenFaq] = useState<number | null>(null)
 
   return (
-    <div style={{ minHeight: '100vh', backgroundColor: '#F7F9FC' }}>
+    <div style={{ minHeight: '100vh', backgroundColor: '#EEF6FF' }}>
       <div style={{ backgroundColor: '#132A4F', padding: '56px 24px', textAlign: 'center' }}>
         <h1 style={{ fontSize: 36, fontWeight: 800, color: '#FFFFFF', margin: '0 0 12px' }}>
           {t('Centre d\'aide', 'مركز المساعدة', lang)}
@@ -285,7 +285,7 @@ function HelpPage({ lang, navigate }: InlineProps) {
 function AboutPage({ lang }: InlineProps) {
   const t = (fr: string, ar: string, _?: unknown) => lang === 'ar' ? ar : fr
   return (
-    <div style={{ minHeight: '100vh', backgroundColor: '#F7F9FC' }}>
+    <div style={{ minHeight: '100vh', backgroundColor: '#EEF6FF' }}>
       <div style={{ backgroundColor: '#132A4F', padding: '56px 24px', textAlign: 'center' }}>
         <h1 style={{ fontSize: 36, fontWeight: 800, color: '#FFFFFF', margin: '0 0 12px' }}>
           {t('À propos de TaallamGo', 'حول TaallamGo', lang)}
@@ -333,7 +333,7 @@ function TrustPage({ lang }: InlineProps) {
     { icon: '📋', title: t('Preuve de traitement', 'إثبات المعالجة', lang), desc: t('Chaque commande est documentée et traçable. Vous pouvez suivre l\'avancement en temps réel.', 'كل طلب موثق وقابل للتتبع. يمكنك متابعة التقدم في الوقت الفعلي.', lang) },
   ]
   return (
-    <div style={{ minHeight: '100vh', backgroundColor: '#F7F9FC' }}>
+    <div style={{ minHeight: '100vh', backgroundColor: '#EEF6FF' }}>
       <div style={{ backgroundColor: '#132A4F', padding: '56px 24px', textAlign: 'center' }}>
         <h1 style={{ fontSize: 36, fontWeight: 800, color: '#FFFFFF', margin: '0 0 12px' }}>
           {t('Confiance & sécurité', 'الثقة والأمان', lang)}
@@ -361,7 +361,7 @@ function ContactPage({ lang }: InlineProps) {
   const [submitted, setSubmitted] = useState(false)
   const inputStyle = { width: '100%', height: 44, border: '1.5px solid #E4E9F0', borderRadius: 10, padding: '0 14px', fontSize: 14, color: '#172033', outline: 'none', backgroundColor: '#FFFFFF', fontFamily: lang === 'ar' ? "'IBM Plex Sans Arabic'" : "'Plus Jakarta Sans'" }
   return (
-    <div style={{ minHeight: '100vh', backgroundColor: '#F7F9FC' }}>
+    <div style={{ minHeight: '100vh', backgroundColor: '#EEF6FF' }}>
       <div style={{ backgroundColor: '#132A4F', padding: '56px 24px', textAlign: 'center' }}>
         <h1 style={{ fontSize: 36, fontWeight: 800, color: '#FFFFFF', margin: '0 0 12px' }}>
           {t('Contact', 'تواصل معنا', lang)}

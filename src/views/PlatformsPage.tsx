@@ -9,13 +9,13 @@ interface Props {
 
 export function PlatformsPage({ lang, navigate }: Props) {
   const statusConfig = {
-    available: { fr: 'Disponible', ar: 'متاح', color: '#16A36A', bg: '#E8FDF5' },
+    available: { fr: 'Disponible', ar: 'متاح', color: '#2F80ED', bg: '#EAF3FF' },
     'on-request': { fr: 'Sur demande', ar: 'عند الطلب', color: '#F59E0B', bg: '#FFFBEB' },
     'coming-soon': { fr: 'Bientôt', ar: 'قريباً', color: '#667085', bg: '#F0F3F8' },
   }
 
   return (
-    <div style={{ minHeight: '100vh', backgroundColor: '#F7F9FC' }}>
+    <div style={{ minHeight: '100vh', backgroundColor: '#EEF6FF' }}>
       <div style={{ backgroundColor: '#132A4F', padding: '56px 24px', textAlign: 'center' }}>
         <h1 style={{ fontSize: 36, fontWeight: 800, color: '#FFFFFF', margin: '0 0 12px' }}>
           {t('Plateformes disponibles', 'المنصات المتاحة', lang)}

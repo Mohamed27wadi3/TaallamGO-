@@ -44,7 +44,7 @@ export function AuthPage({ lang, navigate, mode: initialMode }: Props) {
   return (
     <div style={{
       minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center',
-      backgroundColor: '#F7F9FC', padding: 24,
+      backgroundColor: '#EEF6FF', padding: 24,
     }}>
       <div style={{
         backgroundColor: '#FFFFFF',
@@ -160,7 +160,7 @@ export function AuthPage({ lang, navigate, mode: initialMode }: Props) {
                       <button
                         type="button"
                         onClick={() => setMode('forgot')}
-                        style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: 13, color: '#18A979', fontWeight: 500 }}
+                        style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: 13, color: '#2F80ED', fontWeight: 500 }}
                       >
                         {t('Oublié ?', 'نسيت؟', lang)}
                       </button>

@@ -2,7 +2,7 @@
 @import 'tailwindcss';
 
 :root {
-  --background: #F7F9FC;
+  --background: #EEF6FF;
   --foreground: #172033;
   --card: #FFFFFF;
   --card-foreground: #172033;
@@ -12,12 +12,12 @@
   --secondary-foreground: #172033;
   --muted: #F0F3F8;
   --muted-foreground: #667085;
-  --accent: #18A979;
+  --accent: #2F80ED;
   --accent-foreground: #FFFFFF;
   --border: #E4E9F0;
-  --ring: #18A979;
+  --ring: #2F80ED;
   --radius: 12px;
-  --success: #16A36A;
+  --success: #2F80ED;
   --warning: #F59E0B;
   --error: #DC3545;
   --font-sans: 'Plus Jakarta Sans', sans-serif;

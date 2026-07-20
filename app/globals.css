@@ -13,10 +13,10 @@ body {
 }
 
 :root {
-  --background: #F7F9FC;
+  --background: #EEF6FF;
   --foreground: #172033;
   --surface: #FFFFFF;
-  --surface-secondary: #F7F9FC;
+  --surface-secondary: #EEF6FF;
   --card: #FFFFFF;
   --card-foreground: #172033;
   --primary: #132A4F;
@@ -25,14 +25,14 @@ body {
   --secondary-foreground: #172033;
   --muted: #EEF3F6;
   --muted-foreground: #5F6B7A;
-  --accent: #128565;
+  --accent: #2F80ED;
   --accent-foreground: #FFFFFF;
-  --soft-accent: #DDF6ED;
+  --soft-accent: #EAF3FF;
   --border: #DCE3EA;
-  --ring: #128565;
+  --ring: #2F80ED;
   --header-bg: rgba(255, 255, 255, 0.86);
   --radius: 12px;
-  --success: #16A36A;
+  --success: #2F80ED;
   --warning: #F59E0B;
   --error: #DC3545;
   --font-sans: 'Plus Jakarta Sans', sans-serif;
@@ -56,11 +56,11 @@ body {
   --secondary-foreground: #F5F7FA;
   --muted: #1E2A35;
   --muted-foreground: #B8C2CC;
-  --accent: #3DD6A5;
+  --accent: #8FB4E8;
   --accent-foreground: #0F1720;
-  --soft-accent: rgba(61, 214, 165, 0.16);
+  --soft-accent: rgba(143, 180, 232, 0.16);
   --border: #344451;
-  --ring: #3DD6A5;
+  --ring: #8FB4E8;
   --header-bg: rgba(23, 33, 43, 0.86);
 }
 
@@ -166,7 +166,7 @@ input:focus,
 textarea:focus,
 select:focus {
   border-color: var(--ring) !important;
-  box-shadow: 0 0 0 4px rgba(24, 169, 121, 0.12);
+  box-shadow: 0 0 0 4px rgba(47, 128, 237, 0.12);
 }
 
 .tg-header {
@@ -278,7 +278,7 @@ select:focus {
   left: 42%;
   width: 260px;
   height: 260px;
-  background: #18A979;
+  background: #2F80ED;
   opacity: 0.08;
   animation: tgFloatThree 24s var(--ease-premium) infinite alternate;
 }
@@ -301,7 +301,7 @@ select:focus {
 }
 
 .tg-network circle {
-  fill: #18A979;
+  fill: #2F80ED;
 }
 
 .tg-cursor-dot,
@@ -346,7 +346,7 @@ select:focus {
   height: 44px;
   margin: -22px 0 0 -22px;
   border-color: color-mix(in srgb, var(--accent) 58%, transparent);
-  background: rgba(24, 169, 121, 0.05);
+  background: rgba(47, 128, 237, 0.05);
 }
 
 .tg-cursor-ring.is-pressed {

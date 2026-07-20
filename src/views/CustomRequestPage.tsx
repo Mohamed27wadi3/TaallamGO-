@@ -67,7 +67,7 @@ export function CustomRequestPage({ lang, navigate }: Props) {
   }
 
   return (
-    <div style={{ minHeight: '100vh', backgroundColor: '#F7F9FC', padding: '48px 24px' }}>
+    <div style={{ minHeight: '100vh', backgroundColor: '#EEF6FF', padding: '48px 24px' }}>
       <div style={{ maxWidth: 620, margin: '0 auto' }}>
         <div style={{ textAlign: 'center', marginBottom: 40 }}>
           <h1 style={{ fontSize: 28, fontWeight: 800, color: '#172033', margin: '0 0 8px' }}>
@@ -125,8 +125,8 @@ export function CustomRequestPage({ lang, navigate }: Props) {
               </div>
               {url && (
                 <div style={{
-                  backgroundColor: '#F0FDF9', border: '1px solid #A7F3D0',
-                  borderRadius: 10, padding: '12px 14px', marginBottom: 20, fontSize: 13, color: '#065F46',
+                  backgroundColor: '#EAF3FF', border: '1px solid #BFD8FF',
+                  borderRadius: 10, padding: '12px 14px', marginBottom: 20, fontSize: 13, color: '#132A4F',
                 }}>
                   ✅ {t('Plateforme détectée : ', 'تم اكتشاف المنصة: ', lang)}
                   <strong>
@@ -251,7 +251,7 @@ export function CustomRequestPage({ lang, navigate }: Props) {
                   onClick={() => setSubmitted(true)}
                   style={{
                     flex: 2, padding: '12px', borderRadius: 12, border: 'none',
-                    backgroundColor: '#18A979', color: '#FFFFFF',
+                    backgroundColor: '#2F80ED', color: '#FFFFFF',
                     cursor: 'pointer', fontSize: 15, fontWeight: 700,
                   }}
                 >

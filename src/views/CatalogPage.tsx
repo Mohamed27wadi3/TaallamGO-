@@ -50,7 +50,7 @@ export function CatalogPage({ lang, navigate }: Props) {
   const activeFilterCount = [selectedPlatform, selectedCategory, selectedLevel].filter(Boolean).length
 
   return (
-    <div style={{ minHeight: '100vh', backgroundColor: '#F7F9FC' }}>
+    <div style={{ minHeight: '100vh', backgroundColor: '#EEF6FF' }}>
       {/* Page header */}
       <div style={{ backgroundColor: '#FFFFFF', borderBottom: '1px solid #E4E9F0', padding: '32px 24px' }}>
         <div style={{ maxWidth: 1200, margin: '0 auto' }}>
@@ -123,7 +123,7 @@ export function CatalogPage({ lang, navigate }: Props) {
               {t('Filtres', 'الفلاتر', lang)}
               {activeFilterCount > 0 && (
                 <span style={{
-                  backgroundColor: '#18A979', color: '#FFFFFF',
+                  backgroundColor: '#2F80ED', color: '#FFFFFF',
                   borderRadius: '50%', width: 18, height: 18,
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
                   fontSize: 11, fontWeight: 700,
