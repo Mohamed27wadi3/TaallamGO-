@@ -1,6 +1,6 @@
 import type { Lang } from '../data'
 import { t } from '../data'
-import taallamGoLogo from '../imports/TaallamGO_-_logo.png'
+import { taallamGoLogoSrc } from '../logo'
 
 interface Props {
   lang: Lang
@@ -45,7 +45,7 @@ export function Footer({ lang, navigate, dir }: Props) {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: 40, marginBottom: 48 }}>
           {/* Brand */}
           <div>
-            <img src={taallamGoLogo} alt="TaallamGo" style={{ height: 36, width: 'auto', filter: 'brightness(0) invert(1)', marginBottom: 16 }} />
+            <img src={taallamGoLogoSrc} alt="TaallamGo" style={{ height: 36, width: 'auto', filter: 'brightness(0) invert(1)', marginBottom: 16 }} />
             <p style={{ fontSize: 14, color: '#94A6BE', lineHeight: 1.7, margin: 0 }}>
               {t(
                 'Les meilleures formations mondiales, accessibles depuis l\'Algérie.',

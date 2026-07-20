@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import type { Lang } from '../data'
 import { t } from '../data'
-import taallamGoLogo from '../imports/TaallamGO_-_logo.png'
+import { taallamGoLogoSrc } from '../logo'
 
 type Page = string
 
@@ -31,7 +31,7 @@ export function Header({ lang, onLangToggle, currentPage, navigate, dir }: Props
           onClick={() => navigate('home')}
           style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0, display: 'flex', alignItems: 'center' }}
         >
-          <img src={taallamGoLogo} alt="TaallamGo" style={{ height: 36, width: 'auto' }} />
+          <img src={taallamGoLogoSrc} alt="TaallamGo" style={{ height: 36, width: 'auto' }} />
         </button>
 
         {/* Desktop nav */}

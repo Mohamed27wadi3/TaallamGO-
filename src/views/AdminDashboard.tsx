@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import type { Lang } from '../data'
 import { t, mockOrders, orderStatuses } from '../data'
-import taallamGoLogo from '../imports/TaallamGO_-_logo.png'
+import { taallamGoLogoSrc } from '../logo'
 
 interface Props {
   lang: Lang
@@ -307,7 +307,7 @@ export function AdminDashboard({ lang, navigate }: Props) {
       }}>
         <div style={{ padding: '0 16px', marginBottom: 24 }}>
           <button onClick={() => navigate('home')} style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}>
-            <img src={taallamGoLogo} alt="TaallamGo" style={{ height: 28, width: 'auto', filter: 'brightness(0) invert(1)' }} />
+            <img src={taallamGoLogoSrc} alt="TaallamGo" style={{ height: 28, width: 'auto', filter: 'brightness(0) invert(1)' }} />
           </button>
           <div style={{ fontSize: 10, fontWeight: 700, color: '#18A979', textTransform: 'uppercase', letterSpacing: '0.1em', marginTop: 8 }}>
             ADMIN

@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import type { Lang } from '../data'
 import { t } from '../data'
-import taallamGoLogo from '../imports/TaallamGO_-_logo.png'
+import { taallamGoLogoSrc } from '../logo'
 
 interface Props {
   lang: Lang
@@ -57,7 +57,7 @@ export function AuthPage({ lang, navigate, mode: initialMode }: Props) {
         {/* Logo */}
         <div style={{ textAlign: 'center', marginBottom: 32 }}>
           <button onClick={() => navigate('home')} style={{ background: 'none', border: 'none', cursor: 'pointer' }}>
-            <img src={taallamGoLogo} alt="TaallamGo" style={{ height: 40, width: 'auto' }} />
+            <img src={taallamGoLogoSrc} alt="TaallamGo" style={{ height: 40, width: 'auto' }} />
           </button>
         </div>
 
