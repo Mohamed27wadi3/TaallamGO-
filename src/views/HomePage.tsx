@@ -244,8 +244,8 @@ export function HomePage({ lang, navigate, dir }: Props) {
               { num: '24h', label: t('Support réactif', 'دعم متجاوب', lang) },
             ].map(stat => (
               <div key={stat.num} style={{ textAlign: dir === 'rtl' ? 'right' : 'left' }}>
-                <div style={{ fontSize: 28, fontWeight: 800, color: '#2F80ED', lineHeight: 1 }}>{stat.num}</div>
-                <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.6)', marginTop: 4 }}>{stat.label}</div>
+                <div style={{ fontSize: 28, fontWeight: 800, color: '#000000', lineHeight: 1 }}>{stat.num}</div>
+                <div style={{ fontSize: 13, color: '#000000', marginTop: 4 }}>{stat.label}</div>
               </div>
             ))}
           </div>
