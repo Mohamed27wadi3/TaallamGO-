@@ -8,9 +8,9 @@ export const categories = [
   { id: 'design', label: 'Design', labelAr: 'التصميم', icon: '🎨', count: 156 },
   { id: 'security', label: 'Cybersécurité', labelAr: 'الأمن السيبراني', icon: '🔐', count: 97 },
   { id: 'business', label: 'Business', labelAr: 'الأعمال', icon: '📈', count: 184 },
-  { id: 'cloud', label: 'Cloud & DevOps', labelAr: 'الحوسبة السحابية', icon: '☁️', count: 129 },
+  { id: 'cloud', label: 'Réseaux', labelAr: 'الشبكات', icon: '☁️', count: 129 },
   { id: 'lang', label: 'Langues', labelAr: 'اللغات', icon: '🌍', count: 88 },
-  { id: 'marketing', label: 'Marketing', labelAr: 'التسويق', icon: '📣', count: 112 },
+  { id: 'marketing', label: 'Certifications', labelAr: 'الشهادات', icon: '📜', count: 112 },
 ]
 
 export const platforms = [

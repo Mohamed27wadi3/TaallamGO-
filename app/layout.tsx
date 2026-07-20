@@ -21,6 +21,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="fr" dir="ltr">
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var s=localStorage.getItem('taallamgo-theme');var t=s==='dark'||s==='light'?s:(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.dataset.theme=t;}catch(e){}})();`,
+          }}
+        />
+      </head>
       <body className="bg-white text-gray-900">
         {children}
       </body>

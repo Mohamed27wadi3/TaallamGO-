@@ -3,6 +3,8 @@ import type { Lang } from '../data'
 import { t } from '../data'
 import { useIsMobile } from '../hooks/useIsMobile'
 import { taallamGoLogoSrc } from '../logo'
+import type { Theme } from '../hooks/useTheme'
+import { ThemeToggle } from './ThemeToggle'
 
 type Page = string
 
@@ -12,6 +14,8 @@ interface Props {
   currentPage: Page
   navigate: (page: Page) => void
   dir: 'ltr' | 'rtl'
+  theme: Theme
+  onThemeToggle: () => void
 }
 
 const navLinks = [
@@ -21,7 +25,7 @@ const navLinks = [
   { key: 'help', fr: 'Aide', ar: 'المساعدة' },
 ]
 
-export function Header({ lang, onLangToggle, currentPage, navigate, dir }: Props) {
+export function Header({ lang, onLangToggle, currentPage, navigate, dir, theme, onThemeToggle }: Props) {
   const [mobileOpen, setMobileOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const isMobile = useIsMobile()
@@ -36,7 +40,7 @@ export function Header({ lang, onLangToggle, currentPage, navigate, dir }: Props
   return (
     <header
       className={`tg-header${scrolled ? ' is-scrolled' : ''}`}
-      style={{ backgroundColor: scrolled ? 'rgba(255,255,255,0.86)' : '#FFFFFF', borderBottom: '1px solid #E4E9F0', position: 'sticky', top: 0, zIndex: 50 }}
+      style={{ backgroundColor: scrolled ? 'var(--header-bg)' : 'var(--surface)', borderBottom: '1px solid var(--border)', position: 'sticky', top: 0, zIndex: 50 }}
     >
       <div style={{ maxWidth: 1200, margin: '0 auto', padding: isMobile ? '0 14px' : '0 24px', height: 64, display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 10 }}>
         {/* Logo */}
@@ -61,8 +65,8 @@ export function Header({ lang, onLangToggle, currentPage, navigate, dir }: Props
                 borderRadius: 8,
                 fontSize: 14,
                 fontWeight: 500,
-                color: currentPage === link.key ? '#132A4F' : '#667085',
-                backgroundColor: currentPage === link.key ? '#E8EDF5' : 'transparent',
+                color: currentPage === link.key ? 'var(--primary)' : 'var(--muted-foreground)',
+                backgroundColor: currentPage === link.key ? 'var(--soft-accent)' : 'transparent',
                 transition: 'all 0.15s',
                 fontFamily: lang === 'ar' ? "'IBM Plex Sans Arabic'" : "'Plus Jakarta Sans'",
                 position: 'relative',
@@ -81,13 +85,13 @@ export function Header({ lang, onLangToggle, currentPage, navigate, dir }: Props
             onClick={onLangToggle}
             style={{
               background: 'none',
-              border: '1px solid #E4E9F0',
+              border: '1px solid var(--border)',
               cursor: 'pointer',
               padding: '5px 10px',
               borderRadius: 8,
               fontSize: 13,
               fontWeight: 600,
-              color: '#132A4F',
+              color: 'var(--primary)',
               display: 'flex',
               alignItems: 'center',
               gap: 4,
@@ -97,18 +101,20 @@ export function Header({ lang, onLangToggle, currentPage, navigate, dir }: Props
             <span>{lang === 'fr' ? 'AR' : 'FR'}</span>
           </button>
 
+          <ThemeToggle theme={theme} onToggle={onThemeToggle} />
+
           <button
             onClick={() => navigate('auth-login')}
             className="hidden sm:block"
             style={{
               background: 'none',
-              border: '1px solid #E4E9F0',
+              border: '1px solid var(--border)',
               cursor: 'pointer',
               padding: '7px 14px',
               borderRadius: 8,
               fontSize: 14,
               fontWeight: 600,
-              color: '#132A4F',
+              color: 'var(--primary)',
               transition: 'all 0.15s',
             }}
           >
@@ -119,7 +125,7 @@ export function Header({ lang, onLangToggle, currentPage, navigate, dir }: Props
             onClick={() => navigate('catalog')}
             className="hidden sm:block"
             style={{
-              background: '#132A4F',
+              background: 'var(--primary)',
               border: 'none',
               cursor: 'pointer',
               padding: '7px 16px',

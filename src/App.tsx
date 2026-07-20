@@ -3,6 +3,7 @@ import type { Lang } from './data'
 import { Header } from './components/Header'
 import { Footer } from './components/Footer'
 import { CustomCursor } from './components/CustomCursor'
+import { useTheme } from './hooks/useTheme'
 import { HomePage } from './views/HomePage'
 import { CatalogPage } from './views/CatalogPage'
 import { CourseDetailPage } from './views/CourseDetailPage'
@@ -38,6 +39,7 @@ export default function App() {
   const [page, setPage] = useState<Page>('home')
   const [lang, setLang] = useState<Lang>('fr')
   const [courseData, setCourseData] = useState<unknown>(null)
+  const { theme, toggleTheme } = useTheme()
 
   const dir = lang === 'ar' ? 'rtl' : 'ltr'
 
@@ -86,6 +88,8 @@ export default function App() {
           currentPage={page}
           navigate={navigate}
           dir={dir as 'ltr' | 'rtl'}
+          theme={theme}
+          onThemeToggle={toggleTheme}
         />
       )}
       <main style={{ flex: 1 }}>
@@ -249,7 +253,7 @@ function AboutPage({ lang }: InlineProps) {
           </p>
         </div>
         {[
-          { title: t('Transparence', 'الشفافية', lang), desc: t('Prix clairs, devis avant commande, aucun frais caché.', 'أسعار واضحة، عروض قبل الطلب، لا رسوم خفية.', lang) },
+          { title: t('Transparence', 'الشفافية', lang), desc: t('Total clair en DZD avant confirmation de commande.', 'إجمالي واضح بالدينار قبل تأكيد الطلب.', lang) },
           { title: t('Sécurité', 'الأمان', lang), desc: t('Vos données et votre argent sont protégés. Nous ne demanderons jamais votre mot de passe.', 'بياناتك وأموالك محمية. لن نطلب أبداً كلمة مرورك.', lang) },
           { title: t('Légalité', 'الشرعية', lang), desc: t('Uniquement des moyens de paiement autorisés par la réglementation algérienne.', 'طرق دفع مرخصة بالتنظيم الجزائري فقط.', lang) },
         ].map((v, i) => (

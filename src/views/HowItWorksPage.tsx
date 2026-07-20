@@ -21,8 +21,8 @@ export function HowItWorksPage({ lang, navigate }: Props) {
     {
       title: t('Obtenez votre devis en DZD', 'احصل على عرض سعرك بالدينار', lang),
       content: t(
-        'Avant toute commande, consultez le devis détaillé : prix de la formation, conversion en dinars, frais de service et total à payer. Aucun engagement, aucun frais caché. Le devis est valide 48h ouvrables.',
-        'قبل أي طلب، اطلع على العرض التفصيلي: سعر الدورة والتحويل بالدينار ورسوم الخدمة والإجمالي للدفع. لا التزام، لا رسوم خفية. العرض صالح 48 ساعة عمل.',
+        'Avant toute commande, consultez le total à payer en DZD. Aucun engagement : le montant final est confirmé avant validation. Le devis est valide 48h ouvrables.',
+        'قبل أي طلب، اطلع على الإجمالي المطلوب بالدينار. لا التزام: يتم تأكيد المبلغ النهائي قبل الموافقة. العرض صالح 48 ساعة عمل.',
         lang
       ),
       icon: '💰',

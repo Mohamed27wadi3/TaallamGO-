@@ -32,8 +32,7 @@ interface Props {
   course: Course | null
 }
 
-const SERVICE_FEE_PERCENT = 0.12
-const EXCHANGE_RATE = 135 // 1 USD = 135 DZD approx
+const TOTAL_ADJUSTMENT_RATE = 0.12
 
 export function CourseDetailPage({ lang, navigate, course: propCourse, dir }: Props) {
   const [orderStep, setOrderStep] = useState(0) // 0: view, 1: quote, 2: confirm, 3: payment, 4: success
@@ -60,8 +59,8 @@ export function CourseDetailPage({ lang, navigate, course: propCourse, dir }: Pr
     tagColor: '#F59E0B',
   }
 
-  const serviceFee = Math.round(course.price_dzd * SERVICE_FEE_PERCENT)
-  const total = course.price_dzd + serviceFee
+  const totalAdjustment = Math.round(course.price_dzd * TOTAL_ADJUSTMENT_RATE)
+  const total = course.price_dzd + totalAdjustment
 
   const paymentMethods = [
     { id: 'ccp', label: t('Virement CCP', 'تحويل CCP', lang), icon: '🏦' },
@@ -81,13 +80,13 @@ export function CourseDetailPage({ lang, navigate, course: propCourse, dir }: Pr
           }}>
             ✅
           </div>
-          <h2 style={{ fontSize: 26, fontWeight: 800, color: '#172033', margin: '0 0 12px' }}>
+          <h2 style={{ fontSize: 26, fontWeight: 800, color: 'var(--foreground)', margin: '0 0 12px' }}>
             {t('Commande créée !', 'تم إنشاء الطلب!', lang)}
           </h2>
-          <p style={{ fontSize: 15, color: '#667085', margin: '0 0 8px' }}>
-            {t('Numéro de commande :', 'رقم الطلب:', lang)} <strong style={{ color: '#132A4F' }}>TGO-2025-0099</strong>
+          <p style={{ fontSize: 15, color: 'var(--muted-foreground)', margin: '0 0 8px' }}>
+            {t('Numéro de commande :', 'رقم الطلب:', lang)} <strong style={{ color: 'var(--primary)' }}>TGO-2025-0099</strong>
           </p>
-          <p style={{ fontSize: 14, color: '#667085', margin: '0 0 32px', lineHeight: 1.7 }}>
+          <p style={{ fontSize: 14, color: 'var(--muted-foreground)', margin: '0 0 32px', lineHeight: 1.7 }}>
             {t(
               'Votre commande est en cours de traitement. Vous recevrez une mise à jour par email. Suivez votre commande depuis votre espace client.',
               'طلبك قيد المعالجة. ستتلقى تحديثاً عبر البريد الإلكتروني. تابع طلبك من لوحة التحكم.',
@@ -113,17 +112,17 @@ export function CourseDetailPage({ lang, navigate, course: propCourse, dir }: Pr
   return (
     <div style={{ minHeight: '100vh', backgroundColor: '#F7F9FC' }}>
       {/* Breadcrumb */}
-      <div style={{ backgroundColor: '#FFFFFF', borderBottom: '1px solid #E4E9F0', padding: '12px 24px' }}>
-        <div style={{ maxWidth: 1200, margin: '0 auto', display: 'flex', alignItems: 'center', gap: 8, fontSize: 13, color: '#667085' }}>
-          <button onClick={() => navigate('home')} style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#667085', fontSize: 13 }}>
+      <div style={{ backgroundColor: 'var(--surface)', borderBottom: '1px solid #E4E9F0', padding: '12px 24px' }}>
+        <div style={{ maxWidth: 1200, margin: '0 auto', display: 'flex', alignItems: 'center', gap: 8, fontSize: 13, color: 'var(--muted-foreground)' }}>
+          <button onClick={() => navigate('home')} style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--muted-foreground)', fontSize: 13 }}>
             {t('Accueil', 'الرئيسية', lang)}
           </button>
           <span>/</span>
-          <button onClick={() => navigate('catalog')} style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#667085', fontSize: 13 }}>
+          <button onClick={() => navigate('catalog')} style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--muted-foreground)', fontSize: 13 }}>
             {t('Catalogue', 'الكتالوج', lang)}
           </button>
           <span>/</span>
-          <span style={{ color: '#172033', fontWeight: 500 }}>
+          <span style={{ color: 'var(--foreground)', fontWeight: 500 }}>
             {lang === 'ar' ? course.titleAr : course.title}
           </span>
         </div>
@@ -147,11 +146,11 @@ export function CourseDetailPage({ lang, navigate, course: propCourse, dir }: Pr
             <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 14, flexWrap: 'wrap' }}>
               <span style={{
                 fontSize: 12, fontWeight: 700, padding: '3px 10px', borderRadius: 6,
-                backgroundColor: '#E8EDF5', color: '#132A4F',
+                backgroundColor: '#E8EDF5', color: 'var(--primary)',
               }}>
                 {course.platform}
               </span>
-              <span style={{ fontSize: 13, color: '#667085' }}>
+              <span style={{ fontSize: 13, color: 'var(--muted-foreground)' }}>
                 {lang === 'ar' ? course.levelAr : course.level}
               </span>
               {course.certificate && (
@@ -161,12 +160,12 @@ export function CourseDetailPage({ lang, navigate, course: propCourse, dir }: Pr
               )}
             </div>
 
-            <h1 style={{ fontSize: isMobile ? 23 : 28, fontWeight: 800, color: '#172033', margin: '0 0 12px', lineHeight: 1.25 }}>
+            <h1 style={{ fontSize: isMobile ? 23 : 28, fontWeight: 800, color: 'var(--foreground)', margin: '0 0 12px', lineHeight: 1.25 }}>
               {lang === 'ar' ? course.titleAr : course.title}
             </h1>
 
-            <p style={{ fontSize: 15, color: '#667085', margin: '0 0 16px' }}>
-              {t('Par', 'بواسطة', lang)} <strong style={{ color: '#172033' }}>{course.instructor}</strong>
+            <p style={{ fontSize: 15, color: 'var(--muted-foreground)', margin: '0 0 16px' }}>
+              {t('Par', 'بواسطة', lang)} <strong style={{ color: 'var(--foreground)' }}>{course.instructor}</strong>
             </p>
 
             {/* Rating */}
@@ -179,16 +178,16 @@ export function CourseDetailPage({ lang, navigate, course: propCourse, dir }: Pr
                   </svg>
                 ))}
               </div>
-              <span style={{ fontSize: 13, color: '#667085' }}>({formatDzd(course.reviews)} {t('avis', 'تقييم', lang)})</span>
-              <span style={{ fontSize: 13, color: '#667085' }}>• {course.duration}</span>
+              <span style={{ fontSize: 13, color: 'var(--muted-foreground)' }}>({formatDzd(course.reviews)} {t('avis', 'تقييم', lang)})</span>
+              <span style={{ fontSize: 13, color: 'var(--muted-foreground)' }}>• {course.duration}</span>
             </div>
 
             {/* Description */}
             <section style={{ marginBottom: 28 }}>
-              <h2 style={{ fontSize: 18, fontWeight: 700, color: '#172033', margin: '0 0 12px' }}>
+              <h2 style={{ fontSize: 18, fontWeight: 700, color: 'var(--foreground)', margin: '0 0 12px' }}>
                 {t('À propos de cette formation', 'حول هذه الدورة', lang)}
               </h2>
-              <p style={{ fontSize: 15, color: '#667085', lineHeight: 1.75, margin: 0 }}>
+              <p style={{ fontSize: 15, color: 'var(--muted-foreground)', lineHeight: 1.75, margin: 0 }}>
                 {t(
                   `Cette formation vous permettra d'acquérir toutes les compétences nécessaires dans le domaine de ${course.platform}. Conçue par ${course.instructor}, elle est reconnue mondialement et appréciée par des milliers d'apprenants.`,
                   `ستتيح لك هذه الدورة اكتساب جميع المهارات اللازمة في مجال ${course.platform}. صُممت بواسطة ${course.instructor} وتحظى باعتراف عالمي وتقدير من آلاف المتعلمين.`,
@@ -199,7 +198,7 @@ export function CourseDetailPage({ lang, navigate, course: propCourse, dir }: Pr
 
             {/* Included */}
             <section style={{ marginBottom: 28 }}>
-              <h2 style={{ fontSize: 18, fontWeight: 700, color: '#172033', margin: '0 0 14px' }}>
+              <h2 style={{ fontSize: 18, fontWeight: 700, color: 'var(--foreground)', margin: '0 0 14px' }}>
                 {t('Ce qui est inclus', 'ما هو مرفق', lang)}
               </h2>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))', gap: 10 }}>
@@ -211,7 +210,7 @@ export function CourseDetailPage({ lang, navigate, course: propCourse, dir }: Pr
                   t('Ressources téléchargeables', 'موارد قابلة للتنزيل', lang),
                   t('Support communauté', 'دعم مجتمعي', lang),
                 ].filter(Boolean).map((item, i) => (
-                  <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 14, color: '#172033' }}>
+                  <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 14, color: 'var(--foreground)' }}>
                     <span style={{ color: '#18A979', fontSize: 16, flexShrink: 0 }}>✓</span>
                     {item}
                   </div>
@@ -221,14 +220,14 @@ export function CourseDetailPage({ lang, navigate, course: propCourse, dir }: Pr
 
             {/* Not included */}
             <section style={{ marginBottom: 28 }}>
-              <h2 style={{ fontSize: 18, fontWeight: 700, color: '#172033', margin: '0 0 14px' }}>
+              <h2 style={{ fontSize: 18, fontWeight: 700, color: 'var(--foreground)', margin: '0 0 14px' }}>
                 {t('Non inclus', 'غير مرفق', lang)}
               </h2>
               {[
                 t('Accès au compte d\'un autre utilisateur', 'الوصول إلى حساب مستخدم آخر', lang),
                 t('Mot de passe externe — TaallamGo ne le demandera jamais', 'كلمة مرور خارجية — لن يطلبها TaallamGo أبداً', lang),
               ].map((item, i) => (
-                <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 14, color: '#667085', marginBottom: 6 }}>
+                <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 14, color: 'var(--muted-foreground)', marginBottom: 6 }}>
                   <span style={{ color: '#DC3545', fontSize: 16, flexShrink: 0 }}>✗</span>
                   {item}
                 </div>
@@ -242,14 +241,14 @@ export function CourseDetailPage({ lang, navigate, course: propCourse, dir }: Pr
               flexWrap: 'wrap', gap: 12,
             }}>
               <div>
-                <div style={{ fontSize: 12, fontWeight: 700, color: '#667085', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: 4 }}>
+                <div style={{ fontSize: 12, fontWeight: 700, color: 'var(--muted-foreground)', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: 4 }}>
                   {t('Lien officiel', 'الرابط الرسمي', lang)}
                 </div>
-                <div style={{ fontSize: 14, color: '#132A4F', fontWeight: 500 }}>
+                <div style={{ fontSize: 14, color: 'var(--primary)', fontWeight: 500 }}>
                   {course.platform}.com
                 </div>
               </div>
-              <span style={{ fontSize: 12, color: '#667085', fontStyle: 'italic' }}>
+              <span style={{ fontSize: 12, color: 'var(--muted-foreground)', fontStyle: 'italic' }}>
                 {t('Les marques appartiennent à leurs propriétaires.', 'العلامات التجارية ملك أصحابها.', lang)}
               </span>
             </div>
@@ -258,43 +257,28 @@ export function CourseDetailPage({ lang, navigate, course: propCourse, dir }: Pr
           {/* Right column — price panel */}
           <div style={{ position: isMobile ? 'static' : 'sticky', top: 80 }}>
             <div style={{
-              backgroundColor: '#FFFFFF',
-              border: '1px solid #E4E9F0',
+              backgroundColor: 'var(--surface)',
+              border: '1px solid var(--border)',
               borderRadius: 20,
               overflow: 'hidden',
               boxShadow: '0 4px 24px rgba(19,42,79,0.08)',
             }}>
               {/* Price breakdown */}
               <div style={{ padding: '24px' }}>
-                <div style={{ fontSize: 13, fontWeight: 600, color: '#667085', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: 16 }}>
+                <div style={{ fontSize: 13, fontWeight: 600, color: 'var(--muted-foreground)', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: 16 }}>
                   {t('Devis détaillé', 'عرض السعر المفصل', lang)}
                 </div>
 
-                {[
-                  { label: t('Prix de la formation', 'سعر الدورة', lang), value: `${formatDzd(course.price_dzd)} DZD` },
-                  { label: t('Conversion USD → DZD', 'تحويل USD → DZD', lang), value: `1$ ≈ ${EXCHANGE_RATE} DZD` },
-                  { label: t('Frais de service (12%)', 'رسوم الخدمة (12%)', lang), value: `+${formatDzd(serviceFee)} DZD` },
-                  { label: t('Réduction', 'تخفيض', lang), value: t('Aucune', 'لا يوجد', lang), subtle: true },
-                ].map((row, i) => (
-                  <div key={i} style={{
-                    display: 'flex', justifyContent: 'space-between', alignItems: 'center',
-                    padding: '10px 0', borderBottom: '1px solid #F0F3F8',
-                    fontSize: 14,
-                  }}>
-                    <span style={{ color: row.subtle ? '#667085' : '#172033' }}>{row.label}</span>
-                    <span style={{ fontWeight: 500, color: row.subtle ? '#667085' : '#172033' }}>{row.value}</span>
-                  </div>
-                ))}
 
                 <div style={{
                   display: 'flex', justifyContent: 'space-between', alignItems: 'center',
-                  padding: '14px 0 0',
+                  padding: 0,
                 }}>
-                  <span style={{ fontSize: 16, fontWeight: 700, color: '#172033' }}>
+                  <span style={{ fontSize: 16, fontWeight: 700, color: 'var(--foreground)' }}>
                     {t('Total à payer', 'الإجمالي للدفع', lang)}
                   </span>
                   <div style={{ textAlign: 'right' }}>
-                    <div style={{ fontSize: 24, fontWeight: 800, color: '#132A4F' }}>
+                    <div style={{ fontSize: 24, fontWeight: 800, color: 'var(--primary)' }}>
                       {formatDzd(total)} DZD
                     </div>
                   </div>
@@ -312,8 +296,8 @@ export function CourseDetailPage({ lang, navigate, course: propCourse, dir }: Pr
                 ].map((meta, i) => (
                   <div key={i} style={{ display: 'flex', gap: 8, alignItems: 'flex-start', fontSize: 13 }}>
                     <span style={{ flexShrink: 0 }}>{meta.icon}</span>
-                    <span style={{ color: '#667085' }}>{meta.label} :</span>
-                    <span style={{ color: '#172033', fontWeight: 500 }}>{meta.value}</span>
+                    <span style={{ color: 'var(--muted-foreground)' }}>{meta.label} :</span>
+                    <span style={{ color: 'var(--foreground)', fontWeight: 500 }}>{meta.value}</span>
                   </div>
                 ))}
               </div>
@@ -336,7 +320,7 @@ export function CourseDetailPage({ lang, navigate, course: propCourse, dir }: Pr
                   <button
                     onClick={() => navigate('help')}
                     style={{
-                      backgroundColor: '#F0F3F8', color: '#172033',
+                      backgroundColor: '#F0F3F8', color: 'var(--foreground)',
                       border: 'none', cursor: 'pointer',
                       padding: '12px', borderRadius: 12,
                       fontSize: 14, fontWeight: 600, width: '100%',
@@ -354,7 +338,7 @@ export function CourseDetailPage({ lang, navigate, course: propCourse, dir }: Pr
                     backgroundColor: '#F0FDF9', border: '1px solid #A7F3D0',
                     borderRadius: 10, padding: '14px', marginBottom: 16, fontSize: 13, color: '#065F46',
                   }}>
-                    ✅ {t('Votre devis est valide 48h. Aucun frais supplémentaire.', 'عرض السعر صالح 48 ساعة. لا رسوم إضافية.', lang)}
+                    ✅ {t('Votre devis est valide 48h. Total confirmé avant commande.', 'عرض السعر صالح 48 ساعة. يتم تأكيد الإجمالي قبل الطلب.', lang)}
                   </div>
                   <button
                     onClick={() => setOrderStep(2)}
@@ -373,7 +357,7 @@ export function CourseDetailPage({ lang, navigate, course: propCourse, dir }: Pr
               {/* Step 2: payment method */}
               {orderStep === 2 && (
                 <div style={{ padding: '0 24px 24px' }}>
-                  <div style={{ fontSize: 14, fontWeight: 700, color: '#172033', marginBottom: 12 }}>
+                  <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--foreground)', marginBottom: 12 }}>
                     {t('Choisissez votre moyen de paiement', 'اختر طريقة الدفع', lang)}
                   </div>
                   <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginBottom: 14 }}>
@@ -386,7 +370,7 @@ export function CourseDetailPage({ lang, navigate, course: propCourse, dir }: Pr
                           padding: '10px 14px', borderRadius: 10,
                           border: `1.5px solid ${paymentMethod === pm.id ? '#132A4F' : '#E4E9F0'}`,
                           backgroundColor: paymentMethod === pm.id ? '#E8EDF5' : '#FFFFFF',
-                          cursor: 'pointer', fontSize: 14, fontWeight: 500, color: '#172033',
+                          cursor: 'pointer', fontSize: 14, fontWeight: 500, color: 'var(--foreground)',
                           textAlign: dir === 'rtl' ? 'right' : 'left',
                         }}
                       >
