@@ -1,0 +1,327 @@
+Conçois un fichier Figma complet, professionnel et prêt pour le handoff développeur pour la startup algérienne EdTech **TaallamGo**.
+
+TaallamGo facilite l’accès légal aux cours, certifications, abonnements et vouchers de plateformes mondiales comme Udemy, Coursera et Hack The Box. Les clients découvrent une offre, voient le prix final en dinars algériens, commandent, paient par un moyen local autorisé, suivent le traitement et reçoivent l’accès sur leur propre compte ou par une méthode officielle.
+
+Slogan : **« Apprenez sans frontières, payez en dinars. »**
+
+Le résultat attendu n’est pas une seule landing page. Crée un système de design cohérent et les principaux écrans d’une plateforme complète : site public, authentification, espace client et administration.
+
+### Identité visuelle obligatoire
+
+Utilise le logo TaallamGo joint sans le redessiner, le déformer ou modifier ses proportions.
+
+Palette :
+
+- bleu nuit principal : `#132A4F` ;
+- vert émeraude accent : `#18A979` ;
+- blanc : `#FFFFFF` ;
+- arrière-plan : `#F7F9FC` ;
+- texte principal : `#172033` ;
+- texte secondaire : `#667085` ;
+- bordures : `#E4E9F0` ;
+- succès : `#16A36A` ;
+- avertissement : `#F59E0B` ;
+- erreur : `#DC3545`.
+
+N’utilise aucun rose, magenta ou violet dominant.
+
+Typographie :
+
+- français : Plus Jakarta Sans ;
+- arabe : IBM Plex Sans Arabic ;
+- titres forts, modernes et courts ;
+- corps très lisible.
+
+Style visuel : EdTech moderne avec la crédibilité d’une fintech. Interface claire, élégante, rassurante et jeune. Beaucoup d’espace blanc, cartes propres, bordures fines, coins entre 12 et 16 px, ombres très légères, icônes linéaires cohérentes et animations discrètes. Évite les effets 3D, le fond noir futuriste, les illustrations enfantines et les écrans surchargés.
+
+### Organisation du fichier Figma
+
+Crée les pages Figma suivantes :
+
+1. `00 — Cover`
+2. `01 — Foundations`
+3. `02 — Components`
+4. `03 — Public Desktop`
+5. `04 — Public Mobile`
+6. `05 — Customer Dashboard`
+7. `06 — Admin Dashboard`
+8. `07 — Arabic RTL`
+9. `08 — Prototype Flows`
+
+Utilise Auto Layout partout où il est pertinent, une grille cohérente, des styles/variables de couleur, de typographie, d’espacement, de rayon et d’ombre. Nomme clairement les frames, sections, composants, propriétés et variantes.
+
+### Foundations
+
+Crée une page présentant :
+
+- logo principal, version compacte et zone de protection ;
+- palette avec noms sémantiques et codes hexadécimaux ;
+- typographie avec Display, H1, H2, H3, H4, Body, Small et Caption ;
+- grille desktop 12 colonnes, largeur 1440 px, contenu maximal 1200 px ;
+- grille tablette et mobile ;
+- échelle d’espacement basée sur 4/8 px ;
+- rayons 8, 12 et 16 px ;
+- ombres légères ;
+- règles d’accessibilité et contrastes.
+
+### Bibliothèque de composants
+
+Crée des composants réutilisables avec variantes et états :
+
+- boutons Primary, Secondary, Outline, Ghost et Danger ;
+- tailles small, medium et large ;
+- états default, hover, pressed, focus, disabled et loading ;
+- champs texte, email, téléphone, mot de passe, URL et recherche ;
+- select, multiselect, checkbox, radio, switch et textarea ;
+- alertes success, warning, error et information ;
+- badges de statut ;
+- chips de filtre ;
+- cartes de formation ;
+- cartes plateforme et catégorie ;
+- navbar desktop et mobile ;
+- sidebar client et admin ;
+- breadcrumbs ;
+- tabs ;
+- pagination ;
+- modal et drawer mobile ;
+- toast ;
+- dropdown ;
+- tableau de données ;
+- timeline de commande ;
+- ticket/message ;
+- carte KPI ;
+- skeleton loaders ;
+- états vide, erreur, hors ligne et 404 ;
+- footer.
+
+Respecte une hauteur de champ cohérente et des zones tactiles mobiles d’au moins 44 px.
+
+### Écrans publics desktop — 1440 px
+
+Crée les écrans suivants :
+
+#### 1. Accueil
+
+Header : logo, Catalogue, Plateformes, Comment ça marche, Organisations, Aide, sélecteur FR/AR, Connexion et bouton « Explorer les formations ».
+
+Hero :
+
+- titre exact : **« Les meilleures formations mondiales, accessibles depuis l’Algérie. »** ;
+- description : **« Découvrez des cours et certifications internationales, payez simplement en dinars et recevez votre accès en toute sécurité. »** ;
+- CTA principal : « Explorer les formations » ;
+- CTA secondaire : « Demander une formation » ;
+- illustration originale et abstraite sur l’apprentissage mondial, sans faux logo partenaire.
+
+Ajoute : recherche principale, catégories populaires, offres populaires, processus en quatre étapes, bloc confiance, offre organisations, FAQ, CTA final et footer.
+
+Le processus en quatre étapes :
+
+1. Choisissez votre formation.
+2. Consultez le prix final en DZD.
+3. Payez avec un moyen local disponible.
+4. Recevez et suivez votre accès.
+
+Le bloc confiance contient : accès personnel, prix transparent, paiement sécurisé et support local.
+
+#### 2. Catalogue
+
+Barre de recherche, filtres plateforme/catégorie/niveau/type/langue/prix/certificat/disponibilité, tri, compteur de résultats, grille de cartes et pagination. Crée aussi les états chargement, aucun résultat et erreur.
+
+#### 3. Fiche formation
+
+Breadcrumb, titre, plateforme, catégorie, description, caractéristiques, ce qui est inclus/non inclus, lien officiel, panneau de prix détaillé, dernière vérification, durée du devis, délai, méthode de livraison, conditions de remboursement, CTA « Commander » et « Poser une question », produits similaires et mention sur la propriété des marques.
+
+Le panneau prix affiche clairement :
+
+- Prix de la formation ;
+- Conversion ;
+- Frais de service ;
+- Réduction éventuelle ;
+- **Total à payer en DZD**.
+
+#### 4. Demande personnalisée
+
+Formulaire par étapes : URL officielle, plateforme détectée, nom de l’offre, type, email de réception et commentaire. Ajoute un résumé et un message indiquant que TaallamGo ne demandera jamais le mot de passe externe.
+
+#### 5. Plateformes
+
+Liste de plateformes avec statuts « Disponible », « Sur demande » ou « Bientôt ». Ne présente aucune plateforme comme partenaire officiel.
+
+#### 6. Comment ça marche
+
+Parcours détaillé avec prix, délais, livraison, remboursement, responsabilités et FAQ.
+
+#### 7. Organisations
+
+Page dédiée aux clubs, universités, écoles et entreprises. Inclure avantages, cas d’usage, étapes et formulaire de devis groupé : organisation, responsable, nombre d’apprenants, plateformes, budget, délai et besoin de facture.
+
+#### 8. Confiance et sécurité
+
+Expliquer : accès personnel, aucun mot de passe externe, protection des informations, paiements autorisés, preuve de traitement, lutte contre la fraude et canaux officiels.
+
+#### 9. Centre d’aide
+
+Recherche, catégories FAQ, articles populaires, contact et suivi d’un ticket.
+
+#### 10. À propos et contact
+
+Mission, histoire, valeurs et formulaire professionnel. N’invente pas de membres d’équipe, adresse, statistiques ou témoignages.
+
+#### 11. Authentification
+
+Inscription, connexion, vérification email et mot de passe oublié. Design simple, rassurant et cohérent.
+
+### Parcours de commande
+
+Crée les frames reliées suivantes :
+
+1. Choix de l’offre.
+2. Informations de livraison.
+3. Devis détaillé.
+4. Résumé et acceptation des conditions.
+5. Choix du paiement.
+6. Écran « Paiement de démonstration — aucune somme ne sera débitée ».
+7. Paiement réussi.
+8. Paiement refusé.
+9. Commande créée avec numéro et accès au suivi.
+
+Conserve le résumé de commande visible sur desktop et facilement accessible sur mobile.
+
+### Espace client
+
+Crée un dashboard avec sidebar et version mobile :
+
+- vue d’ensemble ;
+- commandes actives ;
+- historique ;
+- détail d’une commande ;
+- devis ;
+- reçus/factures ;
+- livraisons numériques ;
+- demandes personnalisées ;
+- tickets support ;
+- notifications ;
+- liste de souhaits ;
+- profil et sécurité.
+
+La page détail commande doit utiliser une timeline avec les statuts :
+
+- En attente de paiement ;
+- Paiement en vérification ;
+- Paiement confirmé ;
+- Traitement en cours ;
+- Action du client requise ;
+- Livrée ;
+- Annulée ;
+- Remboursement en cours ;
+- Remboursée ;
+- Litige.
+
+Ajoute les états normaux, vide, loading, retard, action requise et erreur.
+
+### Administration
+
+Crée une administration différente visuellement du site public mais utilisant le même design system.
+
+Écrans :
+
+- dashboard avec commandes du jour, chiffre d’affaires, marge, paiements à vérifier, retards, remboursements et tickets ;
+- catalogue ;
+- création/modification d’une offre ;
+- plateformes et catégories ;
+- demandes et devis ;
+- liste et détail des commandes ;
+- traitement et livraison ;
+- clients et organisations ;
+- paiements et remboursements ;
+- tickets et SLA ;
+- contenu, FAQ et traductions ;
+- coupons ;
+- utilisateurs internes, rôles et permissions ;
+- paramètres ;
+- journal d’audit.
+
+Utilise des tableaux lisibles, filtres, recherche, actions groupées prudentes, confirmations pour les actions sensibles et badges de statut accessibles. Ne crée aucune interface permettant de modifier, confirmer et rembourser seul une même transaction sans contrôle.
+
+### Version mobile — 390 px
+
+Crée les versions mobiles complètes des écrans prioritaires :
+
+- accueil ;
+- menu ;
+- catalogue et filtres dans un drawer ;
+- fiche formation ;
+- demande personnalisée ;
+- commande et paiement ;
+- dashboard client ;
+- détail commande ;
+- ticket support ;
+- profil.
+
+Le mobile doit être une vraie adaptation, pas une réduction du desktop. Utilise CTA sticky lorsque pertinent, navigation claire, texte lisible et formulaires faciles à remplir.
+
+### Arabe RTL
+
+Crée au minimum les variantes RTL de :
+
+- accueil ;
+- catalogue ;
+- fiche formation ;
+- commande ;
+- dashboard client ;
+- détail commande.
+
+Utilise IBM Plex Sans Arabic. Inverse correctement l’ordre horizontal, les icônes directionnelles, la sidebar, les breadcrumbs et la timeline. Ne retourne pas les logos ou icônes non directionnels.
+
+Exemples de textes :
+
+- « أفضل الدورات العالمية، متاحة من الجزائر. »
+- « تعلّم بلا حدود وادفع بالدينار. »
+- « استكشف الدورات »
+- « اطلب دورة »
+- « السعر الإجمالي بالدينار الجزائري »
+
+### Contenu et données de démonstration
+
+Utilise du contenu français réaliste et cohérent. Les offres sont des exemples de démonstration clairement identifiables. N’utilise aucun faux avis, faux partenariat, faux nombre de clients ou fausse réduction.
+
+Les logos et marques de plateformes doivent rester secondaires et accompagnés d’une mention indiquant que leurs marques appartiennent à leurs propriétaires. Si les assets officiels ne sont pas fournis, utilise des libellés texte ou placeholders neutres.
+
+### Prototype interactif
+
+Crée des connexions de prototype pour ces parcours :
+
+1. Accueil → Catalogue → Fiche → Devis → Paiement démo → Confirmation → Suivi.
+2. Accueil → Demande personnalisée → Confirmation de demande.
+3. Connexion → Dashboard → Commande → Ticket support.
+4. Admin → Commandes → Détail → Traitement → Livraison.
+5. Changement français → arabe RTL.
+
+Ajoute overlays pour filtres, menus, confirmations et erreurs. Utilise des transitions simples et professionnelles.
+
+### Accessibilité et handoff
+
+- Respecte au minimum WCAG 2.2 AA pour les contrastes.
+- Utilise des tailles lisibles et des focus states visibles.
+- Ne communique jamais un statut uniquement par la couleur.
+- Ajoute des annotations sur les comportements, validations, erreurs, responsive et données dynamiques.
+- Utilise des noms de layers compréhensibles.
+- Évite les groupes inutiles et les frames désorganisées.
+- Prépare le fichier pour une reprise directe par une équipe Next.js/Tailwind.
+
+### Résultat final attendu
+
+Livre un fichier Figma cohérent contenant :
+
+- design system complet ;
+- composants et variantes ;
+- écrans desktop ;
+- écrans mobiles prioritaires ;
+- espace client ;
+- administration ;
+- variantes arabes RTL ;
+- états loading, empty, success et error ;
+- prototypes des parcours critiques ;
+- annotations pour le développement.
+
+Le résultat doit donner l’impression d’une vraie startup algérienne sérieuse, prête à lancer un MVP, et non d’un template générique ou d’une boutique informelle d’abonnements.

@@ -1,0 +1,714 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ==================== AUTH & USERS ====================
+
+model User {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  emailVerified DateTime?
+  name          String?
+  image         String?
+  password      String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  // Relations
+  accounts      Account[]
+  sessions      Session[]
+  profile       UserProfile?
+  orders        Order[]
+  customRequests CustomRequest[]
+  supportTickets SupportTicket[]
+  notifications Notification[]
+  auditLogs     AuditLog[]
+  userRoles     UserRole[]
+
+  @@index([email])
+  @@map("users")
+}
+
+model Account {
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@id([provider, providerAccountId])
+  @@index([userId])
+  @@map("accounts")
+}
+
+model Session {
+  id        String   @id @default(cuid())
+  sessionToken String  @unique
+  userId    String
+  expires   DateTime
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@map("sessions")
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+  type       String   @default("email_verification") // email_verification, password_reset
+  createdAt  DateTime @default(now())
+
+  @@id([identifier, token])
+  @@map("verification_tokens")
+}
+
+// ==================== PROFILES ====================
+
+model UserProfile {
+  id          String   @id @default(cuid())
+  userId      String   @unique
+  firstName   String?
+  lastName    String?
+  phone       String?
+  wilaya      String?
+  language    String   @default("fr")
+  type        String   @default("individual") // individual, organization
+  riskLevel   String   @default("low") // low, medium, high
+  blocked     Boolean  @default(false)
+  blockedReason String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([riskLevel])
+  @@map("user_profiles")
+}
+
+model Organization {
+  id        String   @id @default(cuid())
+  name      String
+  slug      String   @unique
+  type      String   // university, school, company, club
+  ownerId   String
+  bio       String?
+  logoUrl   String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  members   OrganizationMember[]
+  orders    Order[]
+
+  @@index([ownerId])
+  @@map("organizations")
+}
+
+model OrganizationMember {
+  id             String   @id @default(cuid())
+  organizationId String
+  userId         String
+  role           String   @default("member") // owner, admin, member
+  joinedAt       DateTime @default(now())
+
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+
+  @@unique([organizationId, userId])
+  @@index([organizationId])
+  @@map("organization_members")
+}
+
+// ==================== RBAC ====================
+
+model Role {
+  id          String   @id @default(cuid())
+  name        String   @unique
+  description String?
+  createdAt   DateTime @default(now())
+
+  permissions RolePermission[]
+  userRoles   UserRole[]
+
+  @@map("roles")
+}
+
+model Permission {
+  id          String   @id @default(cuid())
+  name        String   @unique
+  description String?
+  resource    String   // users, orders, products, payments, etc.
+  action      String   // create, read, update, delete, approve
+  createdAt   DateTime @default(now())
+
+  roles RolePermission[]
+
+  @@unique([resource, action])
+  @@map("permissions")
+}
+
+model RolePermission {
+  id           String   @id @default(cuid())
+  roleId       String
+  permissionId String
+  createdAt    DateTime @default(now())
+
+  role       Role       @relation(fields: [roleId], references: [id], onDelete: Cascade)
+  permission Permission @relation(fields: [permissionId], references: [id], onDelete: Cascade)
+
+  @@unique([roleId, permissionId])
+  @@index([roleId])
+  @@map("role_permissions")
+}
+
+model UserRole {
+  id        String   @id @default(cuid())
+  userId    String
+  roleId    String
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  role Role @relation(fields: [roleId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, roleId])
+  @@index([userId])
+  @@map("user_roles")
+}
+
+// ==================== CATALOG ====================
+
+model Platform {
+  id            String   @id @default(cuid())
+  name          String   @unique
+  slug          String   @unique
+  description   String?
+  status        String   @default("available") // available, on-request, coming-soon
+  color         String?
+  logoUrl       String?
+  officialUrl   String?
+  deliveryMethods String? // JSON array of methods
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  categories  PlatformCategory[]
+  products    Product[]
+  customRequests CustomRequest[]
+
+  @@map("platforms")
+}
+
+model Category {
+  id        String   @id @default(cuid())
+  name      String   @unique
+  nameAr    String?
+  slug      String   @unique
+  icon      String?
+  description String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  platformCategories PlatformCategory[]
+  products           Product[]
+
+  @@map("categories")
+}
+
+model PlatformCategory {
+  id         String @id @default(cuid())
+  platformId String
+  categoryId String
+
+  platform Platform @relation(fields: [platformId], references: [id], onDelete: Cascade)
+  category Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+
+  @@unique([platformId, categoryId])
+  @@map("platform_categories")
+}
+
+model Product {
+  id              String   @id @default(cuid())
+  platformId      String
+  categoryId      String
+  slug            String   @unique
+  title           String
+  titleAr         String?
+  description     String?
+  descriptionAr   String?
+  type            String   // course, subscription, certification, voucher
+  level           String?  // beginner, intermediate, advanced
+  duration        String?
+  instructor      String?
+  imageUrl        String?
+  officialUrl     String?
+  certificate     Boolean  @default(false)
+  language        String?
+  status          String   @default("available")
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  platform   Platform @relation(fields: [platformId], references: [id])
+  category   Category @relation(fields: [categoryId], references: [id])
+  variants   ProductVariant[]
+  prices     Price[]
+  orderItems OrderItem[]
+
+  @@index([platformId])
+  @@index([categoryId])
+  @@index([status])
+  @@map("products")
+}
+
+model ProductVariant {
+  id          String   @id @default(cuid())
+  productId   String
+  title       String?
+  description String?
+  sku         String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  product    Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+  orderItems OrderItem[]
+
+  @@index([productId])
+  @@map("product_variants")
+}
+
+model Price {
+  id              String   @id @default(cuid())
+  productId       String
+  amountUsd       Int      // cents
+  amountDzd       Int      // smallest unit
+  exchangeRate    Decimal  @db.Decimal(10, 4)
+  exchangeMargin  Decimal  @db.Decimal(5, 4)
+  feePercentage   Decimal  @db.Decimal(5, 4)
+  commissionPercentage Decimal @db.Decimal(5, 4)
+  verifiedAt      DateTime
+  validUntil      DateTime?
+  currency        String   @default("DZD")
+  source          String?  // manual, api_integration
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@index([productId])
+  @@index([verifiedAt])
+  @@map("prices")
+}
+
+model PriceHistory {
+  id            String   @id @default(cuid())
+  productId     String
+  oldAmountDzd  Int?
+  newAmountDzd  Int
+  changedAt     DateTime @default(now())
+  changedBy     String?
+  reason        String?
+
+  @@index([productId])
+  @@index([changedAt])
+  @@map("price_histories")
+}
+
+// ==================== CUSTOM REQUESTS ====================
+
+model CustomRequest {
+  id          String   @id @default(cuid())
+  userId      String
+  platformId  String?
+  url         String
+  title       String?
+  description String?
+  status      String   @default("pending") // pending, reviewing, quoted, rejected, completed
+  rejectionReason String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  user         User   @relation(fields: [userId], references: [id])
+  platform     Platform? @relation(fields: [platformId], references: [id])
+  quote        Quote?
+
+  @@index([userId])
+  @@index([status])
+  @@index([createdAt])
+  @@map("custom_requests")
+}
+
+model Quote {
+  id            String   @id @default(cuid())
+  requestId     String   @unique
+  version       Int      @default(1)
+  totalDzd      Int
+  validUntil    DateTime
+  status        String   @default("pending") // pending, accepted, rejected, expired, converted
+  acceptedAt    DateTime?
+  rejectedAt    DateTime?
+  rejectionReason String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  customRequest CustomRequest @relation(fields: [requestId], references: [id], onDelete: Cascade)
+  items         QuoteItem[]
+  order         Order?
+
+  @@index([requestId])
+  @@index([validUntil])
+  @@index([status])
+  @@map("quotes")
+}
+
+model QuoteItem {
+  id          String   @id @default(cuid())
+  quoteId     String
+  description String
+  amountDzd   Int
+  quantity    Int      @default(1)
+
+  quote Quote @relation(fields: [quoteId], references: [id], onDelete: Cascade)
+
+  @@index([quoteId])
+  @@map("quote_items")
+}
+
+// ==================== ORDERS ====================
+
+model Order {
+  id                String   @id @default(cuid())
+  publicId          String   @unique // TGO-YYYY-XXXX format
+  userId            String
+  organizationId    String?
+  quoteId           String?  @unique
+  totalDzd          Int
+  status            String   @default("awaiting_payment")
+  // awaiting_payment, payment_review, paid, processing, customer_action_required, delivered, cancelled, refund_pending, refunded, disputed
+  deliveryMethod    String?  // gift, voucher, license, manual
+  notes             String?
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  user           User      @relation(fields: [userId], references: [id])
+  organization   Organization? @relation(fields: [organizationId], references: [id])
+  quote          Quote?    @relation(fields: [quoteId], references: [id])
+  items          OrderItem[]
+  events         OrderEvent[]
+  payment        Payment?
+  refund         Refund?
+  delivery       OrderDelivery?
+  supportTickets SupportTicket[]
+
+  @@index([userId])
+  @@index([organizationId])
+  @@index([status])
+  @@index([createdAt])
+  @@map("orders")
+}
+
+model OrderItem {
+  id              String   @id @default(cuid())
+  orderId         String
+  productId       String
+  variantId       String?
+  priceDzd        Int      // snapshot
+  quantity        Int      @default(1)
+
+  order   Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  product Product @relation(fields: [productId], references: [id])
+  variant ProductVariant? @relation(fields: [variantId], references: [id])
+
+  @@index([orderId])
+  @@index([variantId])
+  @@map("order_items")
+}
+
+model OrderEvent {
+  id        String   @id @default(cuid())
+  orderId   String
+  type      String   // status_change, payment_received, delivery_sent, action_required, cancelled, etc.
+  data      Json?
+  timestamp DateTime @default(now())
+
+  order Order @relation(fields: [orderId], references: [id], onDelete: Cascade)
+
+  @@index([orderId])
+  @@index([timestamp])
+  @@map("order_events")
+}
+
+model OrderDelivery {
+  id           String   @id @default(cuid())
+  orderId      String   @unique
+  method       String   // gift, voucher, license, manual
+  status       String   @default("pending") // pending, delivered, confirmed, failed
+  proof        String?
+  deliveredAt  DateTime?
+  confirmedAt  DateTime?
+  deliveredBy  String?
+  notes        String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  order Order @relation(fields: [orderId], references: [id], onDelete: Cascade)
+
+  @@map("order_deliveries")
+}
+
+// ==================== PAYMENTS ====================
+
+model Payment {
+  id                String   @id @default(cuid())
+  orderId           String   @unique
+  amountDzd         Int
+  currency          String   @default("DZD")
+  status            String   @default("pending")
+  // pending, processing, succeeded, failed, canceled, refunded
+  provider          String   @default("mock") // mock, cib, edahabia, stripe, etc
+  referenceExternal String?  @unique
+  metadata          Json?
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  order    Order             @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  attempts PaymentAttempt[]
+
+  @@index([orderId])
+  @@index([status])
+  @@index([referenceExternal])
+  @@map("payments")
+}
+
+model PaymentAttempt {
+  id          String   @id @default(cuid())
+  paymentId   String
+  status      String   // initiated, processing, succeeded, failed, requires_action
+  errorCode   String?
+  errorMessage String?
+  metadata    Json?
+  createdAt   DateTime @default(now())
+
+  payment Payment @relation(fields: [paymentId], references: [id], onDelete: Cascade)
+
+  @@index([paymentId])
+  @@index([createdAt])
+  @@map("payment_attempts")
+}
+
+// ==================== REFUNDS ====================
+
+model Refund {
+  id              String   @id @default(cuid())
+  orderId         String   @unique
+  amountDzd       Int
+  reason          String
+  status          String   @default("pending")
+  // pending, approved, rejected, processing, completed, failed
+  approvedBy      String?
+  approvedAt      DateTime?
+  rejectedReason  String?
+  referenceExternal String?
+  metadata        Json?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  order Order @relation(fields: [orderId], references: [id], onDelete: Cascade)
+
+  @@index([orderId])
+  @@index([status])
+  @@map("refunds")
+}
+
+// ==================== SUPPORT ====================
+
+model SupportTicket {
+  id          String   @id @default(cuid())
+  publicId    String   @unique
+  userId      String
+  orderId     String?
+  category    String
+  priority    String   @default("normal") // low, normal, high, urgent
+  subject     String
+  status      String   @default("open") // open, in-progress, waiting, resolved, closed
+  assignedTo  String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  user     User          @relation(fields: [userId], references: [id])
+  order    Order?        @relation(fields: [orderId], references: [id])
+  messages TicketMessage[]
+  attachments Attachment[]
+
+  @@index([userId])
+  @@index([orderId])
+  @@index([status])
+  @@index([createdAt])
+  @@map("support_tickets")
+}
+
+model TicketMessage {
+  id        String   @id @default(cuid())
+  ticketId  String
+  senderId  String
+  content   String
+  isInternal Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  ticket SupportTicket @relation(fields: [ticketId], references: [id], onDelete: Cascade)
+
+  @@index([ticketId])
+  @@map("ticket_messages")
+}
+
+model Attachment {
+  id        String   @id @default(cuid())
+  ticketId  String
+  fileName  String
+  fileSize  Int
+  fileType  String
+  fileUrl   String
+  scanned   Boolean  @default(false)
+  uploadedAt DateTime @default(now())
+
+  ticket SupportTicket @relation(fields: [ticketId], references: [id], onDelete: Cascade)
+
+  @@index([ticketId])
+  @@map("attachments")
+}
+
+// ==================== NOTIFICATIONS ====================
+
+model Notification {
+  id        String   @id @default(cuid())
+  userId    String
+  type      String   // email_verified, payment_confirmed, order_shipped, refund_processed, etc
+  title     String?
+  message   String
+  data      Json?
+  readAt    DateTime?
+  sentAt    DateTime @default(now())
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([readAt])
+  @@map("notifications")
+}
+
+model EmailTemplate {
+  id          String   @id @default(cuid())
+  key         String   @unique
+  subjectFr   String
+  bodyFr      String
+  subjectAr   String
+  bodyAr      String
+  variables   String[] // JSON array of variable names
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("email_templates")
+}
+
+// ==================== AUDIT & SECURITY ====================
+
+model AuditLog {
+  id          String   @id @default(cuid())
+  userId      String?
+  action      String   // create, read, update, delete, approve, reject
+  resource    String   // users, orders, products, payments, etc
+  resourceId  String?
+  dataBefore  Json?
+  dataAfter   Json?
+  status      String   // success, failure
+  errorMessage String?
+  ipAddress   String?
+  userAgent   String?
+  timestamp   DateTime @default(now())
+
+  user User? @relation(fields: [userId], references: [id])
+
+  @@index([userId])
+  @@index([action])
+  @@index([timestamp])
+  @@index([resource])
+  @@map("audit_logs")
+}
+
+model SystemSetting {
+  id        String   @id @default(cuid())
+  key       String   @unique
+  value     String
+  type      String   @default("string") // string, integer, decimal, boolean, json
+  updatedAt DateTime @updatedAt
+
+  @@map("system_settings")
+}
+
+model RiskFlag {
+  id          String   @id @default(cuid())
+  userId      String
+  reason      String
+  severity    String   @default("medium") // low, medium, high, critical
+  flaggedAt   DateTime @default(now())
+  reviewedAt  DateTime?
+  reviewedBy  String?
+  resolved    Boolean  @default(false)
+
+  @@index([userId])
+  @@index([severity])
+  @@map("risk_flags")
+}
+
+model Coupon {
+  id            String   @id @default(cuid())
+  code          String   @unique
+  type          String   // fixed, percentage
+  value         Decimal  @db.Decimal(10, 4)
+  maxRedemptions Int?
+  redemptions   Int      @default(0)
+  validFrom     DateTime
+  validUntil    DateTime
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  redemptionLogs CouponRedemption[]
+
+  @@index([code])
+  @@index([validUntil])
+  @@map("coupons")
+}
+
+model CouponRedemption {
+  id        String   @id @default(cuid())
+  couponId  String
+  userId    String
+  orderId   String
+  redeemedAt DateTime @default(now())
+
+  coupon Coupon @relation(fields: [couponId], references: [id])
+
+  @@unique([couponId, userId, orderId])
+  @@index([couponId])
+  @@index([redeemedAt])
+  @@map("coupon_redemptions")
+}
