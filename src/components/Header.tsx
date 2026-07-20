@@ -48,7 +48,7 @@ export function Header({ lang, onLangToggle, currentPage, navigate, dir, theme, 
           onClick={() => navigate('home')}
           style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0, display: 'flex', alignItems: 'center', flexShrink: 0 }}
         >
-          <ThemeLogo />
+          <ThemeLogo lang={lang} />
         </button>
 
         {/* Desktop nav */}

@@ -191,21 +191,25 @@ select:focus {
 }
 
 .tg-theme-logo__image {
+  display: none;
   width: auto;
   height: 100%;
   object-fit: contain;
   transform: none;
 }
 
-.tg-theme-logo__image--dark {
+.tg-theme-logo--fr .tg-theme-logo__image--fr.tg-theme-logo__image--light,
+.tg-theme-logo--ar .tg-theme-logo__image--ar.tg-theme-logo__image--light {
+  display: block;
+}
+
+:root[data-theme="dark"] .tg-theme-logo--fr .tg-theme-logo__image--fr.tg-theme-logo__image--light,
+:root[data-theme="dark"] .tg-theme-logo--ar .tg-theme-logo__image--ar.tg-theme-logo__image--light {
   display: none;
 }
 
-:root[data-theme="dark"] .tg-theme-logo__image--light {
-  display: none;
-}
-
-:root[data-theme="dark"] .tg-theme-logo__image--dark {
+:root[data-theme="dark"] .tg-theme-logo--fr .tg-theme-logo__image--fr.tg-theme-logo__image--dark,
+:root[data-theme="dark"] .tg-theme-logo--ar .tg-theme-logo__image--ar.tg-theme-logo__image--dark {
   display: block;
 }
 

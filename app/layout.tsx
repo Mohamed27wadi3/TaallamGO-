@@ -24,7 +24,7 @@ export default function RootLayout({
       <head>
         <script
           dangerouslySetInnerHTML={{
-            __html: `(function(){try{var s=localStorage.getItem('taallamgo-theme');var t=s==='dark'||s==='light'?s:'light';document.documentElement.dataset.theme=t;}catch(e){document.documentElement.dataset.theme='light';}})();`,
+            __html: `(function(){try{var s=localStorage.getItem('taallamgo-theme');var t=s==='dark'||s==='light'?s:'light';var l=localStorage.getItem('taallamgo-lang');var lang=l==='ar'||l==='fr'?l:'fr';document.documentElement.dataset.theme=t;document.documentElement.lang=lang;document.documentElement.dir=lang==='ar'?'rtl':'ltr';}catch(e){document.documentElement.dataset.theme='light';document.documentElement.lang='fr';document.documentElement.dir='ltr';}})();`,
           }}
         />
       </head>

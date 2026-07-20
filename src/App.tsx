@@ -36,6 +36,12 @@ type Page =
 const PAGES_NO_HEADER: Page[] = ['dashboard', 'admin']
 const PAGES_NO_FOOTER: Page[] = ['dashboard', 'admin', 'auth-login', 'auth-register', 'auth-forgot']
 
+function getInitialLang(): Lang {
+  if (typeof window === 'undefined') return 'fr'
+  const saved = window.localStorage.getItem('taallamgo-lang')
+  return saved === 'ar' || saved === 'fr' ? saved : 'fr'
+}
+
 type NavigationEntry = {
   page: Page
   data?: unknown
@@ -62,7 +68,7 @@ const BACK_FALLBACKS: Record<Page, Page> = {
 
 export default function App() {
   const [page, setPage] = useState<Page>('home')
-  const [lang, setLang] = useState<Lang>('fr')
+  const [lang, setLang] = useState<Lang>(getInitialLang)
   const [courseData, setCourseData] = useState<unknown>(null)
   const [navigationHistory, setNavigationHistory] = useState<NavigationEntry[]>([])
   const { theme, toggleTheme } = useTheme()
@@ -94,7 +100,13 @@ export default function App() {
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
-  const toggleLang = () => setLang(prev => prev === 'fr' ? 'ar' : 'fr')
+  const toggleLang = () => {
+    setLang(prev => {
+      const next = prev === 'fr' ? 'ar' : 'fr'
+      window.localStorage.setItem('taallamgo-lang', next)
+      return next
+    })
+  }
 
   const props = { lang, navigate, dir: dir as 'ltr' | 'rtl' }
 
