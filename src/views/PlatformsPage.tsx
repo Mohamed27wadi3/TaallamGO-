@@ -30,18 +30,6 @@ export function PlatformsPage({ lang, navigate }: Props) {
       </div>
 
       <div style={{ maxWidth: 1200, margin: '0 auto', padding: '48px 24px' }}>
-        {/* Notice */}
-        <div style={{
-          backgroundColor: '#FFFBEB', border: '1px solid #FDE68A',
-          borderRadius: 12, padding: '14px 20px', marginBottom: 36,
-          fontSize: 14, color: '#92400E', lineHeight: 1.65,
-        }}>
-          ℹ️ {t(
-            'TaallamGo n\'est pas un partenaire officiel de ces plateformes. Leurs marques et logos appartiennent à leurs propriétaires respectifs.',
-            'TaallamGo ليست شريكاً رسمياً لهذه المنصات. علاماتها التجارية وشعاراتها ملك لأصحابها.',
-            lang
-          )}
-        </div>
 
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: 20 }}>
           {platforms.map(platform => {

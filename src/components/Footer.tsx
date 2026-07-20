@@ -94,13 +94,6 @@ export function Footer({ lang, navigate, dir }: Props) {
           <p style={{ fontSize: 13, color: '#667085', margin: 0 }}>
             © 2025 TaallamGo. {t('Tous droits réservés.', 'جميع الحقوق محفوظة.', lang)}
           </p>
-          <p style={{ fontSize: 12, color: '#667085', margin: 0, maxWidth: 500, textAlign: 'center' }}>
-            {t(
-              'Les marques Udemy, Coursera, Hack The Box et autres appartiennent à leurs propriétaires respectifs. TaallamGo n\'est pas un partenaire officiel.',
-              'علامات Udemy وCoursera وHack The Box وغيرها تخص أصحابها. TaallamGo ليست شريكاً رسمياً.',
-              lang
-            )}
-          </p>
         </div>
       </div>
     </footer>
