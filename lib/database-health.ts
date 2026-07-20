@@ -1,19 +1,30 @@
-import { db } from './db'
-
 const LOCAL_PLACEHOLDER_DATABASES = [
   'postgresql://user:password@localhost',
   'postgres://user:password@localhost',
 ]
 
-export function getDatabaseConfigurationError() {
+export function getEffectiveDatabaseUrl() {
   const databaseUrl = process.env.DATABASE_URL
+  const isMissingOrLocal =
+    !databaseUrl ||
+    LOCAL_PLACEHOLDER_DATABASES.some(value => databaseUrl.startsWith(value))
+
+  if (isMissingOrLocal) {
+    return process.env.PRISMA_DATABASE_URL || process.env.POSTGRES_URL || databaseUrl
+  }
+
+  return databaseUrl
+}
+
+export function getDatabaseConfigurationError() {
+  const databaseUrl = getEffectiveDatabaseUrl()
 
   if (!databaseUrl) {
-    return 'La variable DATABASE_URL est absente. Ajoute une base PostgreSQL dans Vercel puis renseigne DATABASE_URL.'
+    return 'Aucune URL PostgreSQL disponible. Ajoute DATABASE_URL, PRISMA_DATABASE_URL ou POSTGRES_URL dans Vercel.'
   }
 
   if (LOCAL_PLACEHOLDER_DATABASES.some(value => databaseUrl.startsWith(value))) {
-    return 'La base de données utilise encore localhost. Sur Vercel, configure une vraie URL PostgreSQL dans DATABASE_URL.'
+    return 'La base de données utilise encore localhost. Sur Vercel, configure une vraie URL PostgreSQL dans DATABASE_URL, PRISMA_DATABASE_URL ou POSTGRES_URL.'
   }
 
   return null
@@ -37,6 +48,7 @@ export async function checkDatabaseReady() {
   }
 
   try {
+    const { db } = await import('./db')
     await db.$queryRaw`SELECT 1`
     return { ok: true, error: null }
   } catch (error) {
